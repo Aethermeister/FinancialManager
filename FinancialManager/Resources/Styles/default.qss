@@ -1,0 +1,92 @@
+QMainWindow
+{
+    background-color: rgb(50, 50, 50);
+}
+
+QWidget
+{
+    background-color: rgb(50, 50, 50);
+}
+
+QWidget[type="header"]
+{
+    background-color: rgb(34, 34, 34);
+}
+
+QWidget[type="controlWidget"]
+{
+    background-color: rgb(30, 30, 30);
+}
+
+QScrollArea
+{
+    background: tranparent;
+}
+
+QLabel
+{
+    color: white;
+    background: transparent;
+}
+
+QLabel[error="true"]
+{
+    color: red;
+    background: transparent;
+}
+
+QPushButton
+{
+    color: white;
+    background-color: rgb(30, 30, 30);
+    border: none;
+    height: 35px;
+    max-width: 350px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(25, 25, 25);
+}
+
+QPushButton:pressed
+{
+    background-color: rgb(20, 20, 20);
+}
+
+QPushButton:checked
+{
+    background-color: rgb(15, 15, 15);
+}
+
+QPushButton[type="controlButton"]
+{
+    height: 50px;
+    max-width: 400px;
+    font-size: 12px;
+}
+
+QPushButton[type="controlButton"]:checked
+{
+    background-color: rgb(15, 15, 15);
+    font-weight: bold;
+}
+
+QLineEdit
+{
+    color: white;
+    border: none;
+    border-bottom : 1px solid darkGray;
+    height: 30px;
+    max-width: 350px;
+}
+
+QLineEdit:focus
+{
+    border-bottom : 1px solid white;
+}
+
+QLineEdit[error="true"]
+{
+    border-bottom : 1px solid red;
+}
