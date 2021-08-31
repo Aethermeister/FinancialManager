@@ -50,8 +50,9 @@ namespace Authentication
         void sig_createAccount();
         /**
          * Signal emitted when the login procedure finishes with success
+         * The signal's parameters hold the user related authentication information
         */
-        void sig_loggedIn();
+        void sig_loggedIn(const QString& username, const QString& password, const QString& id);
     };
 }
 

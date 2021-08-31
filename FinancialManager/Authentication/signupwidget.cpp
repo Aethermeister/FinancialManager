@@ -97,10 +97,13 @@ namespace Authentication
             return;
         }
 
+        //Create unique id for the new user
+        const auto id = QUuid::createUuid().toString();
+
         //Create a JSON object with id and password elements
         QJsonObject newUserObject
         {
-            {"id", QUuid::createUuid().toString()},
+            {"id", id},
             {"password", password}
         };
 
@@ -114,7 +117,7 @@ namespace Authentication
         const auto newUsersDocument = QJsonDocument(usersObject);
         writeJSONFile(USERSFILE, newUsersDocument);
 
-        //Emit the signal wich indicated that the user is signed up and authorized
-        emit sig_signedUp();
+        //Emit the signal which indicates that the user is signed up and authorized
+        emit sig_signedUp(username, password, id);
     }
 }

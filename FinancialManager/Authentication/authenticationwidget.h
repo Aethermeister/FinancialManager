@@ -37,8 +37,9 @@ namespace Authentication
         /**
          * Signal Emitted when a successful authentication has been made
          * Successful authentication: login and sign up
+         * The signal's parameters hold the user related authentication information
         */
-        void sig_authenticated();
+        void sig_authenticated(const QString& username, const QString& password, const QString& id);
     };
 }
 

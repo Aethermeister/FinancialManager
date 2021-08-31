@@ -14,10 +14,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("Aether Projects");
     QCoreApplication::setApplicationVersion("1.0");
 
-    //Check (and create if needed) appdata folder//
-    checkAppDataFolder();
-    //Check (and create if needed) needed files
-    checkUsersFile();
+    //Check (and create if needed) appdata folder
+    checkFolderExistence(APPDATALOCATION());
+    //Check (and create if needed) needed users file
+    checkFileExistence(USERSFILE);
 
     QFile styleFile(":/Styles/default.qss");
     styleFile.open(QFile::ReadOnly);

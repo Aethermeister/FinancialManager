@@ -1,23 +1,13 @@
 #include "authenticationcomponent.h"
 #include "Core/defines.h"
 
-#include <QStyle>
+
 
 namespace Authentication
 {
     void AuthenticationComponent::setInformationLabel(QLabel *information_lbl)
     {
         m_information_lbl = information_lbl;
-    }
-
-    void AuthenticationComponent::setLineEditErrorState(QLineEdit *lineEdit, bool error)
-    {
-        lineEdit->setProperty("error", error);
-
-        //Update the style of the QLineEdit
-        //so the dynamic property dependent changes are applied
-        lineEdit->style()->unpolish(lineEdit);
-        lineEdit->style()->polish(lineEdit);
     }
 
     void AuthenticationComponent::showErrorInformation(const QString &message)
@@ -35,7 +25,7 @@ namespace Authentication
         return existingUsersObject.keys().contains(username);
     }
 
-    bool AuthenticationComponent::checkForExistingUsername(const QString &username, const QString &password) const
+    bool AuthenticationComponent::checkForExistingUsername(const QString &username, const QString &password, QString *id) const
     {
         //Get the content of the users JSON file
         //and check whether the parameter given username exists
@@ -50,6 +40,8 @@ namespace Authentication
             const auto userPassword = userObject.value("password").toString();
             if(userPassword == password)
             {
+                //Set the id pointer with the user id
+                *id = userObject.value("id").toString();
                 return true;
             }
         }

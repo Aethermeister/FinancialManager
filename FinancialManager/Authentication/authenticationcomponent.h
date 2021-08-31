@@ -22,12 +22,6 @@ namespace Authentication
         void setInformationLabel(QLabel* information_lbl);
 
         /**
-         * Sets the error property for the parameter given QLineEdit
-         * After the new property value is set updates the QLineEdit style
-         * so the ui changes are applied
-        */
-        void setLineEditErrorState(QLineEdit* lineEdit, bool error);
-        /**
          * Shows the parameter given error message
         */
         void showErrorInformation(const QString& message);
@@ -40,8 +34,9 @@ namespace Authentication
         /**
          * Checks whether a user with the given username and password exists
          * Return true if the user exist and the given password matches the user
+         * Also return the user id via the parameter given QString pointer
         */
-        bool checkForExistingUsername(const QString& username, const QString& password) const;
+        bool checkForExistingUsername(const QString& username, const QString& password, QString *id) const;
 
     private:
         QLabel* m_information_lbl;

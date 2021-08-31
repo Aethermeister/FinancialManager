@@ -29,6 +29,6 @@ private:
     /**
      * Shows the ContentWidget ui in the content area
     */
-    void showMainContentWidget();
+    void showMainContentWidget(const QString& username, const QString& password, const QString& id);
 };
 #endif // MAINWINDOW_H

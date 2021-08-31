@@ -79,9 +79,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="m_newRecord_btn">
         <property name="text">
-         <string>Record??????</string>
+         <string>New Record</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -95,7 +95,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="m_history_btn">
         <property name="text">
          <string>History</string>
         </property>

@@ -15,7 +15,9 @@ SOURCES += \
     Authentication/authenticationwidget.cpp \
     Authentication/loginwidget.cpp \
     Authentication/signupwidget.cpp \
+    Content/Components/revertrecordwidget.cpp \
     Content/contentwidget.cpp \
+    Content/newrecordwidget.cpp \
     Content/overviewwidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -27,7 +29,9 @@ HEADERS += \
     Authentication/authenticationwidget.h \
     Authentication/loginwidget.h \
     Authentication/signupwidget.h \
+    Content/Components/revertrecordwidget.h \
     Content/contentwidget.h \
+    Content/newrecordwidget.h \
     Content/overviewwidget.h \
     Core/defines.h \
     defines.h \
@@ -39,7 +43,9 @@ FORMS += \
     Authentication/authenticationwidget.ui \
     Authentication/loginwidget.ui \
     Authentication/signupwidget.ui \
+    Content/Components/revertrecordwidget.ui \
     Content/contentwidget.ui \
+    Content/newrecordwidget.ui \
     Content/overviewwidget.ui \
     mainwindow.ui
 

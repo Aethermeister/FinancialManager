@@ -1,5 +1,8 @@
 #include "loginwidget.h"
 #include "ui_loginwidget.h"
+#include "Core/defines.h"
+
+#include <QTimer>
 
 namespace Authentication
 {
@@ -65,8 +68,9 @@ namespace Authentication
             return;
         }
 
+        QString id = QString();
         //Check whether the given user exists
-        if(!checkForExistingUsername(username, password))
+        if(!checkForExistingUsername(username, password, &id))
         {
             setLineEditErrorState(ui->m_username_lineEdit, true);
             setLineEditErrorState(ui->m_password_lineEdit, true);
@@ -76,7 +80,7 @@ namespace Authentication
             return;
         }
 
-        //Emit the signal wich indicated that the user is authorized
-        emit sig_loggedIn();
+        //Emit the signal which indicates that the user is authorized
+        emit sig_loggedIn(username, password, id);
     }
 }
