@@ -45,6 +45,11 @@ void MainWindow::showMainContentWidget(const QString& username, const QString& p
     Content::ContentWidget* contentWidget = new Content::ContentWidget(std::make_shared<User>(username, password, id), ui->m_container_widget);
     ui->m_container_layout->addWidget(contentWidget);
 
+    //Show the username in the header widget
+    ui->m_title_lbl->setText(QString("Aether's Financial Manager - %0").arg(username));
     ui->m_header_widget->setVisible(true);
+
+    connect(ui->m_profile_btn, &QPushButton::clicked, contentWidget, &Content::ContentWidget::slot_showProfileWidget);
+    connect(contentWidget, &Content::ContentWidget::sig_logout, this, &MainWindow::showAuthenticationWidget);
 }
 

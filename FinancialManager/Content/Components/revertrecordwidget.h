@@ -1,6 +1,7 @@
 #ifndef REVERTRECORDWIDGET_H
 #define REVERTRECORDWIDGET_H
-#include <user.h>
+#include "notificationbase.h"
+#include "user.h"
 
 #include <QFrame>
 
@@ -11,11 +12,12 @@ class RevertRecordWidget;
 namespace Content::Component
 {
     /**
-     * Component ui class used by the NewRecordWidget ui class
+     * Component ui class derived from the NotificationBase class
+     * and used by the NewRecordWidget ui class
      * This class is responsible to schedule the persistence of the new Records
      * Also provides a 'Revert' option which nullifies the given Record
     */
-    class RevertRecordWidget : public QFrame
+    class RevertRecordWidget : public QFrame, public NotificationBase
     {
         Q_OBJECT
 
@@ -36,33 +38,23 @@ namespace Content::Component
         void initializeConnections() const;
 
         /**
-         * Overridden EventFilter so custom behaviour can be implemented
-        */
-        bool eventFilter(QObject* watched, QEvent* event) override;
-        /**
-         * Move the currently active RevertRecordWidget widgets
-         * so they are shown in their correct position
-        */
-        void moveActiveRevertRecordsWidgets();
-
-        /**
          * Persist the Record in memory if the user did not reverted the Record creation
         */
         void persistRecord();
 
         /**
-         * Stores the currently active RevertRecordWidget widgets
+         * The new Record which needs to be persisted
         */
-        static QList<RevertRecordWidget*> ActiveRevertRecordsWidgets;
-
         Record m_record;
+        /**
+         * The current user which persists the new Record
+        */
         std::shared_ptr<User> m_user;
 
-        QTimer* m_timer;
-        const int m_timeout = 50; //The interval for the QTimer timeout signal
-        const int m_time = 5000; //The QTimer runs for this long [ms]
-        int m_remainingTime = m_time; //The QTimer has this long to run [ms]
-        bool m_isRevertClicked = false; //This flag indicates whether the Record should be persisted or not
+        /**
+         * Flag which indicates whether the Records should be persisted or not
+        */
+        bool m_isRevertClicked = false;
 
     private slots:
         /**

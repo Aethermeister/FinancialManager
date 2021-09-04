@@ -10,12 +10,6 @@ namespace Authentication
         m_information_lbl = information_lbl;
     }
 
-    void AuthenticationComponent::showErrorInformation(const QString &message)
-    {
-        m_information_lbl->setText(message);
-        m_information_lbl->setVisible(true);
-    }
-
     bool AuthenticationComponent::checkForExistingUsername(const QString &username) const
     {
         //Get the content of the users JSON file and check the already stored usernames

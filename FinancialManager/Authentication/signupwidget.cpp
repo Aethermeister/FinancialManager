@@ -58,7 +58,7 @@ namespace Authentication
         {
             setLineEditErrorState(ui->m_username_lineEdit, true);
 
-            showErrorInformation("Username cannot be empty");
+            showInformation(ui->m_information_lbl, "Username cannot be empty");
 
             return;
         }
@@ -69,7 +69,7 @@ namespace Authentication
         {
             setLineEditErrorState(ui->m_password_lineEdit, true);
 
-            showErrorInformation("Password has to contain at least 6 characters");
+            showInformation(ui->m_information_lbl, "Password has to contain at least 6 characters");
 
             return;
         }
@@ -81,7 +81,7 @@ namespace Authentication
             setLineEditErrorState(ui->m_password_lineEdit, true);
             setLineEditErrorState(ui->m_verifyPassword_lineEdit, true);
 
-            showErrorInformation("Passwords do not match");
+            showInformation(ui->m_information_lbl, "Passwords do not match");
 
             return;
         }
@@ -92,7 +92,7 @@ namespace Authentication
         {
             setLineEditErrorState(ui->m_username_lineEdit, true);
 
-            showErrorInformation("Username is already used");
+            showInformation(ui->m_information_lbl, "Username is already used");
 
             return;
         }

@@ -70,9 +70,6 @@
         <property name="checked">
          <bool>true</bool>
         </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
         <property name="type" stdset="0">
          <string>controlButton</string>
         </property>
@@ -84,9 +81,6 @@
          <string>New Record</string>
         </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
         <property name="type" stdset="0">
@@ -102,9 +96,6 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
         <property name="type" stdset="0">
          <string>controlButton</string>
         </property>
@@ -116,9 +107,6 @@
          <string>Statistics</string>
         </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
         <property name="type" stdset="0">

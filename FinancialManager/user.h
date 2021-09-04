@@ -61,6 +61,32 @@ public:
     */
     QCompleter* whatForsCompleter() const;
 
+    /**
+     * Returns the username
+    */
+    const QString username() const;
+    /**
+     * Returns the user id
+    */
+    const QString id() const;
+    /**
+     * Returns the user password
+    */
+    const QString password() const;
+    /**
+     * Sets the user password with the parameter given value
+    */
+    void setPassword(const QString& password);
+
+    /**
+     * Returns whether the user account will be deleted
+    */
+    bool isMarkedForDeletion() const;
+    /**
+     * Sets the deletion state of the user account
+    */
+    void setMarkedForDeletion(bool marked);
+
 private:
     /**
      * Checks the User related AppData files
@@ -83,15 +109,51 @@ private:
     */
     void persistRecordsData() const;
 
+    /**
+     * Deletes the user related files and the user data from the users file
+    */
+    void deleteUser() const;
+
+    /**
+     * Username of the user
+    */
     QString m_username;
+    /**
+     * Password of the user
+    */
     QString m_password;
+    /**
+     * User id of the user
+    */
     QString m_id;
 
+    /**
+     * Flag which indicates whether the user has to be deleted
+    */
+    bool m_isMarkedForDeletion = false;
+
+    /**
+     * Path to the user specific folder in the AppData
+    */
     QString m_userFolder;
+    /**
+     * Path to the user specific records file in the AppData
+    */
     QString m_userRecordsFile;
 
+    /**
+     * List of the user's records
+    */
     QList<Record> m_records;
+    /**
+     * List of the previously used locations without duplications
+     * Used as source for the corresponding QCompleter
+    */
     QStringList m_locations;
+    /**
+     * List of the previously used whatFors without duplications
+     * Used as source for the corresponding QCompleter
+    */
     QStringList m_whatFors;
 };
 

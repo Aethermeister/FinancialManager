@@ -13,7 +13,15 @@ User::User(const QString &username, const QString &password, const QString &id) 
 
 User::~User()
 {
-    persistRecordsData();
+    //Delete the user and the user related files if the deletion mark was previously set
+    if(m_isMarkedForDeletion)
+    {
+        deleteUser();
+    }
+    else //Otherwise save the records data to the corresponding file
+    {
+        persistRecordsData();
+    }
 }
 
 void User::persistNewRecord(const Record& newRecord)
@@ -34,6 +42,36 @@ QCompleter *User::whatForsCompleter() const
 {
 
     return new QCompleter(m_whatFors);
+}
+
+const QString User::username() const
+{
+    return m_username;
+}
+
+const QString User::id() const
+{
+    return m_id;
+}
+
+const QString User::password() const
+{
+    return m_password;
+}
+
+void User::setPassword(const QString &password)
+{
+    m_password = password;
+}
+
+bool User::isMarkedForDeletion() const
+{
+    return m_isMarkedForDeletion;
+}
+
+void User::setMarkedForDeletion(bool marked)
+{
+    m_isMarkedForDeletion = marked;
 }
 
 void User::checkUserFiles() const
@@ -75,19 +113,13 @@ void User::readRecordsFile()
 
 void User::updateCompleterSource(const QString &location, const QString &whatFor)
 {
-    //Check whether the parameter given location is already stored
-    //and store it if not
-    if(!m_locations.contains(location))
-    {
-        m_locations.prepend(location);
-    }
+    //Remove the new location before adding it to the QList to prevent duplications
+    m_locations.removeOne(location);
+    m_locations.prepend(location);
 
-    //Check whether the parameter given whatFor is already stored
-    //and store it if not
-    if(!m_whatFors.contains(whatFor))
-    {
-        m_whatFors.prepend(whatFor);
-    }
+    //Remove the new whatFor before adding it to the QList to prevent duplications
+    m_whatFors.removeOne(whatFor);
+    m_whatFors.prepend(whatFor);
 }
 
 void User::persistRecordsData() const
@@ -111,4 +143,21 @@ void User::persistRecordsData() const
     //Save the Records to the Records file in the AppData folder
     const auto recordsDocument = QJsonDocument(recordsArray);
     writeJSONFile(m_userRecordsFile, recordsDocument);
+}
+
+void User::deleteUser() const
+{
+    //Remove the user related files
+    QDir dir(m_userFolder);
+    dir.removeRecursively();
+
+    //Get the content of the users JSON file
+    //and modify it by removing this user
+    const auto usersDocument = readJSONFile(USERSFILE);
+    auto usersObject = usersDocument.object();
+    usersObject.remove(m_username);
+
+    //Save the modified JSON content to the users JSON file
+    const auto modifiedUsersDocument = QJsonDocument(usersObject);
+    writeJSONFile(USERSFILE, modifiedUsersDocument);
 }

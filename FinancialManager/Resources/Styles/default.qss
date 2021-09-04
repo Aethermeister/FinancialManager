@@ -22,7 +22,7 @@ QFrame[type="notification"]
 {
     color: white;
     border: 1px solid white;
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(60, 60, 60);
 }
 
 QGroupBox
@@ -107,6 +107,26 @@ QPushButton[type="controlButton"]:checked
 {
     background-color: rgb(15, 15, 15);
     font-weight: bold;
+}
+
+QPushButton[type="redButton"]
+{
+    background-color: rgb(150, 0, 0);
+}
+
+QPushButton[type="redButton"]:hover
+{
+    background-color: rgb(125, 0, 0);
+}
+
+QPushButton[type="redButton"]:pressed
+{
+    background-color: rgb(100, 0, 0);
+}
+
+QPushButton[type="headerButton"]
+{
+    background-color: none;
 }
 
 QLineEdit

@@ -22,11 +22,6 @@ namespace Authentication
         void setInformationLabel(QLabel* information_lbl);
 
         /**
-         * Shows the parameter given error message
-        */
-        void showErrorInformation(const QString& message);
-
-        /**
          * Checks whether a user with the same parameter given name already exists
          * Return true if the given username already exists
         */

@@ -45,7 +45,7 @@ namespace Authentication
 
     signals:
         /**
-         * Signal emitted when the user want to go to the LoginWidget
+         * Signal emitted when the user wants to go to the LoginWidget
         */
         void sig_backToLogin();
         /**

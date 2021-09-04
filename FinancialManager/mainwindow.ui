@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1200</width>
     <height>600</height>
    </rect>
   </property>
@@ -40,7 +40,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="m_title_lbl">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
@@ -80,14 +80,21 @@
            <height>35</height>
           </size>
          </property>
-         <property name="text">
-          <string>USR</string>
+         <property name="icon">
+          <iconset resource="Resources/resources.qrc">
+           <normaloff>:/Images/profile.png</normaloff>:/Images/profile.png</iconset>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+         <property name="iconSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
          </property>
          <property name="flat">
           <bool>true</bool>
+         </property>
+         <property name="type" stdset="0">
+          <string>headerButton</string>
          </property>
         </widget>
        </item>
@@ -123,7 +130,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>800</width>
+         <width>1200</width>
          <height>546</height>
         </rect>
        </property>
@@ -147,6 +154,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

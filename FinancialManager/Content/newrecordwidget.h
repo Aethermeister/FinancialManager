@@ -42,6 +42,9 @@ namespace Content
         */
         void initializeConnections();
 
+        /**
+         * The current user
+        */
         std::shared_ptr<User> m_user;
 
     private slots:
@@ -51,24 +54,6 @@ namespace Content
         */
         void slot_submit();
     };
-
-//    class RevertRecordWidget : public QWidget
-//    {
-//    public:
-//        RevertRecordWidget(QWidget *parent = nullptr);
-//        ~RevertRecordWidget();
-
-//    private:
-//        bool eventFilter(QObject* watched, QEvent* event) override;
-//        void moveActiveRevertRecordsWidget();
-
-//        static QList<RevertRecordWidget*> ActiveRevertRecordsWidgets;
-
-//        const int m_fixWidth = 250;
-//        const int m_fixHeight = 150;
-
-//        int m_timeout = 5;
-//    };
 }
 
 #endif // NEWRECORDWIDGET_H

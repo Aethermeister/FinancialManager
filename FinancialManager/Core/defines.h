@@ -1,6 +1,8 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#include "widgetdefines.h"
+
 #include <QDebug>
 
 #include <QStandardPaths>
@@ -11,12 +13,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#include <QStyle>
 
-#include <QWidget>
-#include <QLayout>
-#include <QLineEdit>
-#include <QLabel>
 
 #define USERSFILE APPDATALOCATION() + "/users.json"
 
@@ -45,24 +42,7 @@ inline void writeJSONFile(const QString& filename, const QJsonDocument& content)
 */
 inline const QJsonDocument readJSONFile(const QString& filename);
 
-/**
- * Removes the child QWidget of the parameter given parentWidget and parentLayout
- * and deletes the removed QWidget
-*/
-inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayout);
 
-/**
- * Sets the error property for the parameter given QLineEdit
- * After the new property value is set updates the QLineEdit style
- * so the ui changes are applied
-*/
-inline void setLineEditErrorState(QLineEdit* lineEdit, bool error);
-/**
- * Sets the isNegative property for the parameter given QLabel
- * After the new property value is set updates the QLabel style
- * so the ui changes are applied
-*/
-inline void setLabelNegativeState(QLabel* label, bool isNegative);
 
 inline const QString APPDATALOCATION()
 {
@@ -134,39 +114,6 @@ inline const QJsonDocument readJSONFile(const QString& filename)
     }
 
     return content;
-}
-
-inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayout)
-{
-    //Get the current QWidget child to the parameter given parentWidget
-    //and remove it from parameter given parentLayout if it is valid
-    //and delete it
-    auto activeWidget = parentWidget->findChild<QWidget*>();
-    if(activeWidget)
-    {
-        parentLayout->removeWidget(activeWidget);
-        activeWidget->deleteLater();
-    }
-}
-
-inline void setLineEditErrorState(QLineEdit* lineEdit, bool error)
-{
-    lineEdit->setProperty("error", error);
-
-    //Update the style of the QLineEdit
-    //so the dynamic property dependent changes are applied
-    lineEdit->style()->unpolish(lineEdit);
-    lineEdit->style()->polish(lineEdit);
-}
-
-inline void setLabelNegativeState(QLabel* label, bool isNegative)
-{
-    label->setProperty("isNegative", isNegative);
-
-    //Update the style of the QLabel
-    //so the dynamic property dependent changes are applied
-    label->style()->unpolish(label);
-    label->style()->polish(label);
 }
 
 #endif // DEFINES_H

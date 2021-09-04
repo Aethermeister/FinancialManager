@@ -53,7 +53,7 @@ namespace Authentication
         {
             setLineEditErrorState(ui->m_username_lineEdit, true);
 
-            showErrorInformation("Username is empty");
+            showInformation(ui->m_information_lbl, "Username is empty");
 
             return;
         }
@@ -63,7 +63,7 @@ namespace Authentication
         {
             setLineEditErrorState(ui->m_password_lineEdit, true);
 
-            showErrorInformation("Password is empty");
+            showInformation(ui->m_information_lbl, "Password is empty");
 
             return;
         }
@@ -75,7 +75,7 @@ namespace Authentication
             setLineEditErrorState(ui->m_username_lineEdit, true);
             setLineEditErrorState(ui->m_password_lineEdit, true);
 
-            showErrorInformation("Incorrect username and/or password");
+            showInformation(ui->m_information_lbl, "Incorrect username and/or password");
 
             return;
         }

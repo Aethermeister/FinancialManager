@@ -15,38 +15,45 @@ SOURCES += \
     Authentication/authenticationwidget.cpp \
     Authentication/loginwidget.cpp \
     Authentication/signupwidget.cpp \
+    Content/Components/notificationbase.cpp \
+    Content/Components/notificationwidget.cpp \
     Content/Components/revertrecordwidget.cpp \
     Content/contentwidget.cpp \
     Content/newrecordwidget.cpp \
     Content/overviewwidget.cpp \
+    Content/profilewidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    user.cpp \
-    widgetstylebase.cpp
+    user.cpp
 
 HEADERS += \
     Authentication/authenticationcomponent.h \
     Authentication/authenticationwidget.h \
     Authentication/loginwidget.h \
     Authentication/signupwidget.h \
+    Content/Components/notificationbase.h \
+    Content/Components/notificationwidget.h \
     Content/Components/revertrecordwidget.h \
     Content/contentwidget.h \
     Content/newrecordwidget.h \
     Content/overviewwidget.h \
+    Content/profilewidget.h \
     Core/defines.h \
+    Core/widgetdefines.h \
     defines.h \
     mainwindow.h \
-    user.h \
-    widgetstylebase.h
+    user.h
 
 FORMS += \
     Authentication/authenticationwidget.ui \
     Authentication/loginwidget.ui \
     Authentication/signupwidget.ui \
+    Content/Components/notificationwidget.ui \
     Content/Components/revertrecordwidget.ui \
     Content/contentwidget.ui \
     Content/newrecordwidget.ui \
     Content/overviewwidget.ui \
+    Content/profilewidget.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -542,6 +542,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>m_amount_lineEdit</tabstop>
+  <tabstop>m_whatFor_lineEdit</tabstop>
+  <tabstop>m_location_lineEdit</tabstop>
+  <tabstop>m_year_lineEdit</tabstop>
+  <tabstop>m_month_lineEdit</tabstop>
+  <tabstop>m_day_lineEdit</tabstop>
+  <tabstop>m_hours_lineEdit</tabstop>
+  <tabstop>m_minutes_lineEdit</tabstop>
+  <tabstop>m_submit_btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

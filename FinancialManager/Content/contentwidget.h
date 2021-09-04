@@ -23,6 +23,15 @@ namespace Content
         explicit ContentWidget(std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~ContentWidget();
 
+    public slots:
+        /**
+         * Q_SLOT of the showProfileWidget method to make it public
+        */
+        void slot_showProfileWidget();
+
+    protected:
+        void resizeEvent(QResizeEvent *event);
+
     private:
         Ui::ContentWidget *ui;
 
@@ -30,6 +39,11 @@ namespace Content
          * Sets the common connections related to this class
         */
         void initializeConnections() const;
+
+        /**
+         * Sets the checked state of the QPushButtons in the control menu area
+        */
+        void adjustControlButtons();
 
         /**
          * Shows the OverviewWidget ui in the content area
@@ -40,7 +54,21 @@ namespace Content
         */
         void showNewRecordWidget();
 
+        /**
+         * Shows the ProfileWidget ui in the content area
+        */
+        void showProfileWidget();
+
+        /**
+         * The current user
+        */
         std::shared_ptr<User> m_user;
+
+    signals:
+        /**
+         * Signal emitted when the user wants to logout
+        */
+        void sig_logout();
     };
 
     #endif // CONTENTWIDGET_H
