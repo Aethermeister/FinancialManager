@@ -3,6 +3,7 @@
 #include "Core/defines.h"
 #include "overviewwidget.h"
 #include "newrecordwidget.h"
+#include "recordshistorywidget.h"
 #include "profilewidget.h"
 #include "Components/notificationbase.h"
 
@@ -41,6 +42,7 @@ namespace Content
     {
         connect(ui->m_overview_btn, &QPushButton::clicked, this, &ContentWidget::showOverviewWidget);
         connect(ui->m_newRecord_btn, &QPushButton::clicked, this, &ContentWidget::showNewRecordWidget);
+        connect(ui->m_history_btn, &QPushButton::clicked, this, &ContentWidget::showHistoryWidget);
 
         connect(ui->m_exit_btn, &QPushButton::clicked, &QApplication::quit);
     }
@@ -96,6 +98,18 @@ namespace Content
         //Create a new NewRecordWidget and add it to the container widget
         NewRecordWidget* newRecordWidget = new NewRecordWidget(m_user, ui->m_container_widget);
         ui->m_container_layout->addWidget(newRecordWidget);
+    }
+
+    void ContentWidget::showHistoryWidget()
+    {
+        adjustControlButtons();
+
+        //Delete the current widget from the container widget
+        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+
+        //Create a new NewRecordWidget and add it to the container widget
+        RecordsHistoryWidget* historyWidget = new RecordsHistoryWidget(m_user, ui->m_container_widget);
+        ui->m_container_layout->addWidget(historyWidget);
     }
 
     void ContentWidget::showProfileWidget()

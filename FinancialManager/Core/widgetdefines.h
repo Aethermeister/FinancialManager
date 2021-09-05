@@ -32,7 +32,7 @@ inline void setLineEditErrorState(QLineEdit* lineEdit, bool error);
  * After the new property value is set updates the QLabel style
  * so the ui changes are applied
 */
-inline void setLabelNegativeState(QLabel* label, bool isNegative);
+inline void setLabelNegativeState(QLabel* label, int amount);
 
 /**
  * Shows the parameter given QLabel and sets its text with the parameter given message
@@ -68,9 +68,20 @@ inline void setLineEditErrorState(QLineEdit* lineEdit, bool error)
     updateWidgetStyle(lineEdit);
 }
 
-inline void setLabelNegativeState(QLabel* label, bool isNegative)
+inline void setLabelNegativeState(QLabel* label, int amount)
 {
-    label->setProperty("isNegative", isNegative);
+    auto amountString = QString::number(amount);
+
+    //Check whether the amount value is negative or not
+    //and change the style accordingly
+    const bool isAmountNegative = amount < 0;
+    if(!isAmountNegative)
+    {
+        amountString = "+" + amountString;
+    }
+    label->setText(amountString);
+
+    label->setProperty("isNegative", isAmountNegative);
 
     //Update the style of the QLabel
     //so the dynamic property dependent changes are applied

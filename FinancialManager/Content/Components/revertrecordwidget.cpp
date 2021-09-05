@@ -31,18 +31,7 @@ namespace Content::Component
         NotificationBase::initializeUi();
 
         //Set the text of the amount QLabel
-        const auto amount = m_record.Amount;
-        auto amountString = QString::number(amount);
-
-        //Check whether the amount value is negative or not
-        //and change the style accordingly
-        const bool isAmountNegative = amount < 0;
-        if(!isAmountNegative)
-        {
-            amountString = "+" + amountString;
-        }
-        ui->m_amount_lbl->setText(amountString);
-        setLabelNegativeState(ui->m_amount_lbl, isAmountNegative);
+        setLabelNegativeState(ui->m_amount_lbl, m_record.Amount);
 
         connect(m_timer, &QTimer::timeout, [=]
         {

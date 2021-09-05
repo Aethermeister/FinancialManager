@@ -74,6 +74,11 @@ void User::setMarkedForDeletion(bool marked)
     m_isMarkedForDeletion = marked;
 }
 
+QList<Record> User::records()
+{
+    return m_records;
+}
+
 void User::checkUserFiles() const
 {
     //Check the User AppData folder
@@ -126,15 +131,17 @@ void User::persistRecordsData() const
 {
     //Create an array from the actual Records list
     QJsonArray recordsArray;
-    for(const auto& record : m_records)
+
+    QList<Record>::const_reverse_iterator record;
+    for(record = m_records.crbegin(); record != m_records.crend(); ++record)
     {
         QJsonObject recordObject
         {
-            {"amount", record.Amount},
-            {"date", record.Date.toString()},
-            {"time", record.Time.toString()},
-            {"location", record.Location},
-            {"whatFor", record.WhatFor}
+            {"amount", record->Amount},
+            {"date", record->Date.toString()},
+            {"time", record->Time.toString()},
+            {"location", record->Location},
+            {"whatFor", record->WhatFor}
         };
 
         recordsArray.append(recordObject);

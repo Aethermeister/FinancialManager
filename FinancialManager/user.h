@@ -87,6 +87,8 @@ public:
     */
     void setMarkedForDeletion(bool marked);
 
+    QList<Record> records();
+
 private:
     /**
      * Checks the User related AppData files

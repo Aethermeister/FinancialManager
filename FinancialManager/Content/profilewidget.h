@@ -41,7 +41,7 @@ namespace Content
          * Message which is informing the user about the scheduled deletion of the account
         */
         const QString deletionMessage = "This account was marked for deletion and will be deleted after the next logout.\n"
-                                        "Cancel the delation by clicking on the 'Cancel Deletion' button";
+                                        "Cancel the deletion by clicking on the 'Cancel Deletion' button";
 
     private slots:
         /**

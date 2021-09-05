@@ -55,6 +55,11 @@ namespace Content
         void showNewRecordWidget();
 
         /**
+         * Shows the HistoryWidget ui in the content area
+        */
+        void showHistoryWidget();
+
+        /**
          * Shows the ProfileWidget ui in the content area
         */
         void showProfileWidget();
