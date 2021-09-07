@@ -12,7 +12,7 @@ namespace Content
 {
     /**
      * Ui class which provides interactable interface for the user to create new Records
-     * This class is responsible to correctly create a new Record
+     * This class is responsible for correctly creating a new Record
     */
     class NewRecordWidget : public QWidget
     {

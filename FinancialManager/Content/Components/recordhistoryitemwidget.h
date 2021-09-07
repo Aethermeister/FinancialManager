@@ -10,6 +10,11 @@ class RecordHistoryItemWidget;
 
 namespace Content::Component
 {
+    /**
+     * Ui class which acts as indicator for a given Record
+     * The RecordsHistoryWidget ui class uses a list of this RecordHistoryItemWidget
+     * to list all of the Records for the current user
+    */
     class RecordHistoryItemWidget : public QWidget
     {
         Q_OBJECT
@@ -18,7 +23,15 @@ namespace Content::Component
         explicit RecordHistoryItemWidget(Record record, QWidget *parent = nullptr);
         ~RecordHistoryItemWidget();
 
+        /**
+         * Sets the checked state of whis object
+        */
         void setChecked(bool checked);
+
+        /**
+         * Returns the Record which this object was initialized with
+        */
+        Record record() const;
 
     protected:
         void paintEvent(QPaintEvent *event) override;
@@ -30,15 +43,33 @@ namespace Content::Component
     private:
         Ui::RecordHistoryItemWidget *ui;
 
+        /**
+         * Sets the initial state of the Ui
+        */
         void initializeUi();
 
+        /**
+         * The Record this object is initialized with
+        */
         Record m_record;
 
+        /**
+         * Flag which indicates whether the mouse pointer is hovering this ui object
+        */
         bool m_isMouseOver = false;
+        /**
+         * Flag which indicates whether the mouse left button is pressed on this ui object
+        */
         bool m_isPressed = false;
+        /**
+         * Flag which indicates whether this ui object is checked
+        */
         bool m_isChecked = false;
 
     signals:
+        /**
+         * Emitted when this ui object is clicked
+        */
         void sig_recordItemClicked(bool checked);
     };
 }

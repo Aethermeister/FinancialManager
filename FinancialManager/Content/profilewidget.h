@@ -62,7 +62,7 @@ namespace Content
 
     signals:
         /**
-         * Emitted when the user click the Logout QPushButton
+         * Emitted when the user clicks the Logout QPushButton
         */
         void sig_requestLogout();
     };
