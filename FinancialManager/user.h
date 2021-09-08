@@ -24,6 +24,17 @@ public:
     {
     }
 
+    bool operator==(const Record &record)
+    {
+        return (
+                    Amount == record.Amount &&
+                    WhatFor == record.WhatFor &&
+                    Location == record.Location &&
+                    Date == record.Date &&
+                    Time == record.Time
+                );
+    }
+
     int Amount;
 
     QDate Date;
@@ -87,6 +98,14 @@ public:
     */
     void setMarkedForDeletion(bool marked);
 
+    /**
+     * Removes the parameter given Record from the list of Records
+    */
+    void deleteRecord(const Record &record);
+
+    /**
+     * Returns the list of Records
+    */
     QList<Record> records();
 
 private:

@@ -98,7 +98,7 @@ QPushButton
     background-color: rgb(30, 30, 30);
     border: none;
     height: 35px;
-    max-width: 350px;
+
 }
 
 QPushButton:hover

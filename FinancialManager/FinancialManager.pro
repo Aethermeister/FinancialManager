@@ -18,6 +18,7 @@ SOURCES += \
     Content/Components/historyfilterwidget.cpp \
     Content/Components/notificationbase.cpp \
     Content/Components/notificationwidget.cpp \
+    Content/Components/recordcontentwidget.cpp \
     Content/Components/recordhistoryitemwidget.cpp \
     Content/Components/revertrecordwidget.cpp \
     Content/contentwidget.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     Content/Components/historyfilterwidget.h \
     Content/Components/notificationbase.h \
     Content/Components/notificationwidget.h \
+    Content/Components/recordcontentwidget.h \
     Content/Components/recordhistoryitemwidget.h \
     Content/Components/revertrecordwidget.h \
     Content/contentwidget.h \
@@ -56,6 +58,7 @@ FORMS += \
     Authentication/signupwidget.ui \
     Content/Components/historyfilterwidget.ui \
     Content/Components/notificationwidget.ui \
+    Content/Components/recordcontentwidget.ui \
     Content/Components/recordhistoryitemwidget.ui \
     Content/Components/revertrecordwidget.ui \
     Content/contentwidget.ui \

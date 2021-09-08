@@ -2,6 +2,9 @@
 #include "ui_historyfilterwidget.h"
 #include "Core/defines.h"
 
+#include <QStyleOption>
+#include <QPainter>
+
 namespace Content::Component
 {
     HistoryFilterWidget::HistoryFilterWidget(QWidget *parent) :
@@ -18,7 +21,7 @@ namespace Content::Component
         delete ui;
     }
 
-    void HistoryFilterWidget::initializeConnections()
+    void HistoryFilterWidget::initializeConnections() const
     {
         //Connect every QLineEdits' editingFinished signal to the slot_validateFilter slot
         //So every filter change will run the filter value validation and on success emit the sig_filterHistory signal

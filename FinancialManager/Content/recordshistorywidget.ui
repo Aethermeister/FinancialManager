@@ -14,27 +14,41 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
-    <widget class="Content::Component::HistoryFilterWidget" name="m_filter_widget" native="true"/>
+   <item row="2" column="2">
+    <widget class="Content::Component::RecordContentWidget" name="m_recordContent_widget" native="true"/>
    </item>
-   <item row="2" column="1">
-    <widget class="QGroupBox" name="m_recordContainer_groupBox">
-     <property name="title">
-      <string>Record Content</string>
+   <item row="1" column="3" rowspan="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <property name="flat">
-      <bool>true</bool>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </widget>
+    </spacer>
    </item>
-   <item row="0" column="1">
+   <item row="0" column="2">
     <widget class="QPushButton" name="m_filter_btn">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
      <property name="text">
       <string>Filter</string>
@@ -43,6 +57,9 @@
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="Content::Component::HistoryFilterWidget" name="m_filter_widget" native="true"/>
    </item>
    <item row="0" column="0" rowspan="3">
     <widget class="QScrollArea" name="scrollArea">
@@ -54,13 +71,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>250</width>
+       <width>350</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>250</width>
+       <width>350</width>
        <height>16777215</height>
       </size>
      </property>
@@ -75,7 +92,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>250</width>
+        <width>350</width>
         <height>404</height>
        </rect>
       </property>
@@ -101,6 +118,22 @@
      </widget>
     </widget>
    </item>
+   <item row="1" column="1">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>25</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -108,6 +141,12 @@
    <class>Content::Component::HistoryFilterWidget</class>
    <extends>QWidget</extends>
    <header location="global">Content/Components/historyfilterwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Content::Component::RecordContentWidget</class>
+   <extends>QWidget</extends>
+   <header>Content/Components/recordcontentwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

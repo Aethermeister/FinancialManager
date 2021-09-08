@@ -75,7 +75,7 @@ namespace Content::Component
         /**
          * Sets the common connections related to this class
         */
-        void initializeConnections();
+        void initializeConnections() const;
 
         /**
          * Validates the Amount filter value of the parameter given QLineEdit
@@ -106,7 +106,7 @@ namespace Content::Component
          * Emitted when the user sets a filter value
          * and the validation of the filter values are successful
         */
-        void sig_filterHistory(const FilterData &filterData);
+        void sig_filterHistory(const Content::Component::FilterData &filterData);
     };
 }
 

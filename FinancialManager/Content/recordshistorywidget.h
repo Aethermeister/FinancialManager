@@ -70,6 +70,12 @@ namespace Content
          * Adjusts the visibility of the Record items according to the filter
         */
         void slot_filterRecordsHistory(Component::FilterData filterData);
+
+        /**
+         * Called when the user clicks  the Delete Record button when one is selected
+         * Removes the selected Record from the User data and from the ui
+        */
+        void slot_deleteSelectedRecord();
     };
 }
 

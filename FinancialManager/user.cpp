@@ -74,6 +74,11 @@ void User::setMarkedForDeletion(bool marked)
     m_isMarkedForDeletion = marked;
 }
 
+void User::deleteRecord(const Record &record)
+{
+    m_records.removeOne(record);
+}
+
 QList<Record> User::records()
 {
     return m_records;
