@@ -54,8 +54,7 @@ namespace Content::Component
         //If the object is not pressed or checked set the ui style to hover
         if(!m_isPressed && !m_isChecked)
         {
-            setProperty("state", "hover");
-            updateWidgetStyle(this);
+            setWidgetStyleByProperty(this, "state", "hover");
         }
     }
 
@@ -68,8 +67,7 @@ namespace Content::Component
         //If the object is not pressed or checked set the ui style to normal
         if(!m_isPressed && !m_isChecked)
         {
-            setProperty("state", "normal");
-            updateWidgetStyle(this);
+            setWidgetStyleByProperty(this, "state", "normal");
         }
     }
 
@@ -85,8 +83,7 @@ namespace Content::Component
         //Set the m_isPressed flag to true since the Mouse Left button is pressed on the ui
         //and set the ui style to pressed
         m_isPressed = true;
-        setProperty("state", "pressed");
-        updateWidgetStyle(this);
+        setWidgetStyleByProperty(this, "state", "pressed");
     }
 
     void RecordHistoryItemWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -107,21 +104,18 @@ namespace Content::Component
             //Set the ui style according to the checked state
             if(m_isChecked)
             {
-                setProperty("state", "checked");
-                updateWidgetStyle(this);
+                setWidgetStyleByProperty(this, "state", "checked");
             }
             else
             {
-                setProperty("state", "hover");
-                updateWidgetStyle(this);
+                setWidgetStyleByProperty(this, "state", "hover");
             }
 
             emit sig_recordItemClicked(m_isChecked);
         }
         else
         {
-            setProperty("state", "normal");
-            updateWidgetStyle(this);
+            setWidgetStyleByProperty(this, "state", "normal");
         }
     }
 

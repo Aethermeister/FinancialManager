@@ -178,3 +178,53 @@ QProgressBar::chunk
 {
     background-color: rgb(34, 119, 59);
 }
+
+QScrollBar:vertical
+{
+    background-color: #2A2929;
+    width: 15px;
+    margin: 15px 3px 15px 3px;
+    border: 1px transparent #2A2929;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical
+{
+    background-color: rgb(34, 34, 34);
+    min-height: 5px;
+    border-radius: 4px;
+}
+
+QScrollBar:horizontal
+{
+    background-color: #2A2929;
+    height: 15px;
+    margin: 3px 15px 3px 15px;
+    border: 1px transparent #2A2929;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:horizontal
+{
+    background-color: rgb(34, 34, 34);
+    min-width: 5px;
+    border-radius: 4px;
+}
+
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal
+{
+    border: none;
+    background: none;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal
+{
+    border: none;
+    background: none;
+}
+
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+{
+    background: none;
+}

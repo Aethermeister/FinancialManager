@@ -33,7 +33,12 @@ inline void setLineEditErrorState(QLineEdit* lineEdit, bool error);
  * so the ui changes are applied
 */
 inline void setLabelNegativeState(QLabel* label, int amount);
-
+/**
+ * Sets the parameter given property
+ * and updates the given QWidget
+ * so the ui changes are applied
+*/
+inline void setWidgetStyleByProperty(QWidget *widget, const QString &propertyName, const QVariant &stateValue);
 /**
  * Shows the parameter given QLabel and sets its text with the parameter given message
 */
@@ -86,6 +91,12 @@ inline void setLabelNegativeState(QLabel* label, int amount)
     //Update the style of the QLabel
     //so the dynamic property dependent changes are applied
     updateWidgetStyle(label);
+}
+
+inline void setWidgetStyleByProperty(QWidget *widget, const QString &propertyName, const QVariant &stateValue)
+{
+    widget->setProperty(propertyName.toStdString().c_str(), stateValue);
+    updateWidgetStyle(widget);
 }
 
 inline void showInformation(QLabel* label, const QString& message)

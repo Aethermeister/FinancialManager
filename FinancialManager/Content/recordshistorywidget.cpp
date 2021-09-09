@@ -2,7 +2,6 @@
 #include "ui_recordshistorywidget.h"
 #include "Core/defines.h"
 
-
 #include <QSpacerItem>
 
 namespace Content
@@ -43,8 +42,7 @@ namespace Content
                 if(m_activeRecordItemWidget)
                 {
                     m_activeRecordItemWidget->setChecked(false);
-                    m_activeRecordItemWidget->setProperty("state", "normal");
-                    updateWidgetStyle(m_activeRecordItemWidget);
+                    setWidgetStyleByProperty(m_activeRecordItemWidget, "state", "normal");
 
                     m_activeRecordItemWidget = nullptr;
                 }
