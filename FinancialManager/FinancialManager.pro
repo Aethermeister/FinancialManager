@@ -16,6 +16,7 @@ SOURCES += \
     Authentication/loginwidget.cpp \
     Authentication/signupwidget.cpp \
     Content/Components/historyfilterwidget.cpp \
+    Content/Components/historylistingwidget.cpp \
     Content/Components/notificationbase.cpp \
     Content/Components/notificationwidget.cpp \
     Content/Components/recordcontentwidget.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     Authentication/loginwidget.h \
     Authentication/signupwidget.h \
     Content/Components/historyfilterwidget.h \
+    Content/Components/historylistingwidget.h \
     Content/Components/notificationbase.h \
     Content/Components/notificationwidget.h \
     Content/Components/recordcontentwidget.h \
@@ -57,6 +59,7 @@ FORMS += \
     Authentication/loginwidget.ui \
     Authentication/signupwidget.ui \
     Content/Components/historyfilterwidget.ui \
+    Content/Components/historylistingwidget.ui \
     Content/Components/notificationwidget.ui \
     Content/Components/recordcontentwidget.ui \
     Content/Components/recordhistoryitemwidget.ui \

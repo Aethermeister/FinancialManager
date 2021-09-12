@@ -27,38 +27,8 @@ namespace Content
         ui->m_filter_widget->setVisible(false);
         ui->m_recordContent_widget->setVisible(false);
 
-        //List the Records
-        const auto records = m_user->records();
-        for(const auto& record : records)
-        {
-            //Create ui for the given record
-            const auto historyItem = new Component::RecordHistoryItemWidget(record, ui->m_historyContainer_widget);
-            ui->m_historyContainer_layout->addWidget(historyItem);
-
-            //Create connection to handle the item click signals
-            connect(historyItem, &Component::RecordHistoryItemWidget::sig_recordItemClicked, this, [=](bool checked)
-            {
-                //Reset the active/previously selected Record item
-                if(m_activeRecordItemWidget)
-                {
-                    m_activeRecordItemWidget->setChecked(false);
-                    setWidgetStyleByProperty(m_activeRecordItemWidget, "state", "normal");
-
-                    m_activeRecordItemWidget = nullptr;
-                }
-
-                //If the sender Record item is checked set it as the new active Record item
-                if(checked)
-                {
-                    ui->m_recordContent_widget->initializeUi(record);
-                    m_activeRecordItemWidget = historyItem;
-                }
-
-                ui->m_recordContent_widget->setVisible(checked);
-            });
-        }
-
-        ui->m_historyContainer_layout->addItem(new QSpacerItem(10,10, QSizePolicy::Expanding, QSizePolicy::Expanding));
+        //Initialize the Listing widget which contains the record items
+        ui->m_historyListing_widget->initialize(m_user, ui->m_recordContent_widget);
     }
 
     void RecordsHistoryWidget::initializeConnections() const
@@ -165,7 +135,7 @@ namespace Content
     void RecordsHistoryWidget::slot_filterRecordsHistory(Component::FilterData filterData)
     {
         //Iterate over the existing Record items and run the filter on them
-        const auto recordItems = ui->m_historyContainer_widget->findChildren<Component::RecordHistoryItemWidget*>();
+        const auto recordItems = ui->m_historyListing_widget->recordItemWidgets();
         for(auto &recordItem : recordItems)
         {
             //Set the visibility of the current Record item according to the filter results
@@ -178,15 +148,17 @@ namespace Content
 
     void RecordsHistoryWidget::slot_deleteSelectedRecord()
     {
-        if(m_activeRecordItemWidget)
+        if(ui->m_historyListing_widget->activeRecordItemWidget())
         {
             //Through the User delete the selected Record
-            const auto &selectedRecord = m_activeRecordItemWidget->record();
+            const auto &selectedRecord = ui->m_historyListing_widget->activeRecordItemWidget()->record();
             m_user->deleteRecord(selectedRecord);
 
             //Remove the Record related item from the ui
-            m_activeRecordItemWidget->deleteLater();
-            m_activeRecordItemWidget = nullptr;
+            ui->m_historyListing_widget->activeRecordItemWidget()->deleteLater();
+            ui->m_historyListing_widget->setActiveRecordItemWidget(nullptr);
+
+            ui->m_recordContent_widget->setVisible(false);
         }
     }
 }

@@ -8,10 +8,11 @@
 
 namespace Content::Component
 {
-    RecordHistoryItemWidget::RecordHistoryItemWidget(Record record, QWidget *parent) :
+    RecordHistoryItemWidget::RecordHistoryItemWidget(Record record, bool isInteractive, QWidget *parent) :
         QWidget(parent),
         ui(new Ui::RecordHistoryItemWidget),
-        m_record(record)
+        m_record(record),
+        m_isInteractive(isInteractive)
     {
         ui->setupUi(this);
 
@@ -49,12 +50,16 @@ namespace Content::Component
     {
         Q_UNUSED(event)
 
-        //Set the m_isMouseOver flag to true since the Mouse pointer leaves the ui
-        m_isMouseOver = true;
-        //If the object is not pressed or checked set the ui style to hover
-        if(!m_isPressed && !m_isChecked)
+        //Check whether this widget is marked as interactive
+        if(m_isInteractive)
         {
-            setWidgetStyleByProperty(this, "state", "hover");
+            //Set the m_isMouseOver flag to true since the Mouse pointer leaves the ui
+            m_isMouseOver = true;
+            //If the object is not pressed or checked set the ui style to hover
+            if(!m_isPressed && !m_isChecked)
+            {
+                setWidgetStyleByProperty(this, "state", "hover");
+            }
         }
     }
 
@@ -62,12 +67,16 @@ namespace Content::Component
     {
         Q_UNUSED(event)
 
-        //Set the m_isMouseOver flag to false since the Mouse pointer leaves the ui
-        m_isMouseOver = false;
-        //If the object is not pressed or checked set the ui style to normal
-        if(!m_isPressed && !m_isChecked)
+        //Check whether this widget is marked as interactive
+        if(m_isInteractive)
         {
-            setWidgetStyleByProperty(this, "state", "normal");
+            //Set the m_isMouseOver flag to false since the Mouse pointer leaves the ui
+            m_isMouseOver = false;
+            //If the object is not pressed or checked set the ui style to normal
+            if(!m_isPressed && !m_isChecked)
+            {
+                setWidgetStyleByProperty(this, "state", "normal");
+            }
         }
     }
 
@@ -80,10 +89,14 @@ namespace Content::Component
             return;
         }
 
-        //Set the m_isPressed flag to true since the Mouse Left button is pressed on the ui
-        //and set the ui style to pressed
-        m_isPressed = true;
-        setWidgetStyleByProperty(this, "state", "pressed");
+        //Check whether this widget is marked as interactive
+        if(m_isInteractive)
+        {
+            //Set the m_isPressed flag to true since the Mouse Left button is pressed on the ui
+            //and set the ui style to pressed
+            m_isPressed = true;
+            setWidgetStyleByProperty(this, "state", "pressed");
+        }
     }
 
     void RecordHistoryItemWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -95,27 +108,31 @@ namespace Content::Component
             return;
         }
 
-        //Set the m_isPressed flag to true since the Mouse Left button is released on the ui
-        m_isPressed = false;
-        if(m_isMouseOver)
+        //Check whether this widget is marked as interactive
+        if(m_isInteractive)
         {
-            //Change the checked state
-            m_isChecked = !m_isChecked;
-            //Set the ui style according to the checked state
-            if(m_isChecked)
+            //Set the m_isPressed flag to true since the Mouse Left button is released on the ui
+            m_isPressed = false;
+            if(m_isMouseOver)
             {
-                setWidgetStyleByProperty(this, "state", "checked");
+                //Change the checked state
+                m_isChecked = !m_isChecked;
+                //Set the ui style according to the checked state
+                if(m_isChecked)
+                {
+                    setWidgetStyleByProperty(this, "state", "checked");
+                }
+                else
+                {
+                    setWidgetStyleByProperty(this, "state", "hover");
+                }
+
+                emit sig_recordItemClicked(m_isChecked);
             }
             else
             {
-                setWidgetStyleByProperty(this, "state", "hover");
+                setWidgetStyleByProperty(this, "state", "normal");
             }
-
-            emit sig_recordItemClicked(m_isChecked);
-        }
-        else
-        {
-            setWidgetStyleByProperty(this, "state", "normal");
         }
     }
 

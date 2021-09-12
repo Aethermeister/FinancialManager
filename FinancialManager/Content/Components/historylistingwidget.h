@@ -1,0 +1,66 @@
+#ifndef HISTORYLISTINGWIDGET_H
+#define HISTORYLISTINGWIDGET_H
+#include "recordcontentwidget.h"
+#include "recordhistoryitemwidget.h"
+#include "user.h"
+
+#include <QWidget>
+
+namespace Ui {
+class HistoryListingWidget;
+}
+
+namespace Content::Component
+{
+    /**
+     * Ui class which lists the given User's records
+     * This class is responsible for keeping the listed records up-to-date
+    */
+    class HistoryListingWidget : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit HistoryListingWidget(QWidget *parent = nullptr);
+        ~HistoryListingWidget();
+
+        /**
+         * Initializes the widget by listing every Record of the given User
+         * Also handles the user's interactions made on the listed Record items
+        */
+        void initialize(std::shared_ptr<User> user, Component::RecordContentWidget* recordContentWidget);
+        /**
+         * Initializes the widget by kisting the first X (parameter given) Record of the given User
+        */
+        void initialize(std::shared_ptr<User> user, int listedItemsCount = 10);
+
+        /**
+         * Returns the currently active/selected Record History Item Widget
+        */
+        Component::RecordHistoryItemWidget* activeRecordItemWidget() const;
+        /**
+         * Sets the active/selected Record History Item Widget
+        */
+        void setActiveRecordItemWidget(Component::RecordHistoryItemWidget* recordItemWidget);
+
+        /**
+         * Returns the listed Record History Item Widgets
+        */
+        QList<Component::RecordHistoryItemWidget*> recordItemWidgets() const;
+
+    private:
+        Ui::HistoryListingWidget *ui;
+
+        /**
+         * The current User
+        */
+        std::shared_ptr<User> m_user;
+        /**
+         * The currently selected Record item
+         * It is initialized with nullptr because there is no selection at the beginning
+        */
+        Component::RecordHistoryItemWidget* m_activeRecordItemWidget = nullptr;
+    };
+}
+
+#endif // HISTORYLISTINGWIDGET_H

@@ -97,7 +97,7 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="m_historyContainer_widget">
+     <widget class="Content::Component::HistoryListingWidget" name="m_historyListing_widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -124,7 +124,6 @@
         <height>16777215</height>
        </size>
       </property>
-      <layout class="QVBoxLayout" name="m_historyContainer_layout"/>
      </widget>
     </widget>
    </item>
@@ -157,6 +156,12 @@
    <class>Content::Component::RecordContentWidget</class>
    <extends>QWidget</extends>
    <header>Content/Components/recordcontentwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Content::Component::HistoryListingWidget</class>
+   <extends>QWidget</extends>
+   <header>Content/Components/historylistingwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -20,7 +20,7 @@ namespace Content::Component
         Q_OBJECT
 
     public:
-        explicit RecordHistoryItemWidget(Record record, QWidget *parent = nullptr);
+        explicit RecordHistoryItemWidget(Record record, bool isInteractive, QWidget *parent = nullptr);
         ~RecordHistoryItemWidget();
 
         /**
@@ -53,6 +53,10 @@ namespace Content::Component
         */
         Record m_record;
 
+        /**
+         * Flag which indicates whether this QWidget should be affected by the user through the mouse pointer
+        */
+        bool m_isInteractive;
         /**
          * Flag which indicates whether the mouse pointer is hovering this ui object
         */

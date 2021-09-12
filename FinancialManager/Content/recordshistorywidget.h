@@ -58,11 +58,7 @@ namespace Content
          * The current user
         */
         std::shared_ptr<User> m_user;
-        /**
-         * The currently selected Record item
-         * It is initialized with nullptr because there is no selection at the beginning
-        */
-        Component::RecordHistoryItemWidget* m_activeRecordItemWidget = nullptr;
+
 
     private slots:
         /**
