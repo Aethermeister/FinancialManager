@@ -154,10 +154,6 @@ namespace Content
             const auto &selectedRecord = ui->m_historyListing_widget->activeRecordItemWidget()->record();
             m_user->deleteRecord(selectedRecord);
 
-            //Remove the Record related item from the ui
-            ui->m_historyListing_widget->activeRecordItemWidget()->deleteLater();
-            ui->m_historyListing_widget->setActiveRecordItemWidget(nullptr);
-
             ui->m_recordContent_widget->setVisible(false);
         }
     }

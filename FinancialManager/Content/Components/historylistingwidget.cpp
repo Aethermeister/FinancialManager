@@ -19,6 +19,9 @@ namespace Content::Component
 
     void HistoryListingWidget::initialize(std::shared_ptr<User> user, Component::RecordContentWidget *recordContentWidget)
     {
+        connect(user.get(), &User::sig_recordAdded, this, &HistoryListingWidget::slot_newRecordAdded);
+        connect(user.get(), &User::sig_recordDeleted, this, &HistoryListingWidget::slot_recordDeleted);
+
         //List the Records
         const auto records = user->records();
 
@@ -108,5 +111,38 @@ namespace Content::Component
     QList<RecordHistoryItemWidget *> HistoryListingWidget::recordItemWidgets() const
     {
         return findChildren<Component::RecordHistoryItemWidget*>();
+    }
+
+    void HistoryListingWidget::slot_newRecordAdded(int index, const Record &record)
+    {
+        const auto historyItem = new Component::RecordHistoryItemWidget(record, false, this);
+        ui->m_historyListing_layout->insertWidget(index, historyItem);
+    }
+
+    void HistoryListingWidget::slot_recordDeleted(const Record &record)
+    {
+        //Check whether there is a selected Record item and whether that item is the one being deleted
+        if(m_activeRecordItemWidget)
+        {
+            if(m_activeRecordItemWidget->record() == record)
+            {
+                m_activeRecordItemWidget->deleteLater();
+                m_activeRecordItemWidget = nullptr;
+                return;
+            }
+        }
+
+        //If there is no Record item selected or the selected one is not which is beind deleted
+        //Iterate over the Record items and compare their Reocord object
+        //Delete the Record item if it has the parameter given Record
+        const auto recordItems = recordItemWidgets();
+        for(const auto& recordItem : recordItems)
+        {
+            if(recordItem->record() == record)
+            {
+                recordItem->deleteLater();
+                return;
+            }
+        }
     }
 }

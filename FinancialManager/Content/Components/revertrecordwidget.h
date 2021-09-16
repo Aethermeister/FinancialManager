@@ -38,11 +38,6 @@ namespace Content::Component
         void initializeConnections() const;
 
         /**
-         * Persist the Record in memory if the user did not reverted the Record creation
-        */
-        void persistRecord();
-
-        /**
          * The new Record which needs to be persisted
         */
         Record m_record;
@@ -50,11 +45,6 @@ namespace Content::Component
          * The current user which persists the new Record
         */
         std::shared_ptr<User> m_user;
-
-        /**
-         * Flag which indicates whether the Records should be persisted or not
-        */
-        bool m_isRevertClicked = false;
 
     private slots:
         /**

@@ -13,15 +13,15 @@ namespace Content::Component
     {
         ui->setupUi(this);
 
+        //Save the new Record
+        m_user->persistNewRecord(m_record);
+
         initializeUi();
         initializeConnections();
     }
 
     RevertRecordWidget::~RevertRecordWidget()
     {
-        //Persist the Record data
-        persistRecord();
-
         delete ui;
     }
 
@@ -45,19 +45,10 @@ namespace Content::Component
         connect(ui->m_revent_btn, &QPushButton::clicked, this, &RevertRecordWidget::slot_revertButtonClicked);
     }
 
-    void RevertRecordWidget::persistRecord()
-    {
-        //If the revert button was not clicked previously store the new Record through the User
-        if(!m_isRevertClicked)
-        {
-            m_user->persistNewRecord(std::move(m_record));
-        }
-    }
-
     void RevertRecordWidget::slot_revertButtonClicked()
     {
-        //Set the revert flag and stop the countdown
-        m_isRevertClicked = true;
+        //Delete the Record through the User
+        m_user->deleteRecord(m_record);
         this->deleteLater();
     }
 }

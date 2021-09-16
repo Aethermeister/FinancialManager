@@ -1,6 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QDate>
@@ -49,10 +50,12 @@ public:
  * The User manages a list of Record which is the essential data source for other operations
  * The User is responsible for getting existing data, managing and persisting them
 */
-class User
+class User : public QObject
 {
+    Q_OBJECT
+
 public:
-    User(const QString& username, const QString& password, const QString& id);
+    User(const QString& username, const QString& password, const QString& id, QObject *parent = Q_NULLPTR);
     ~User();
 
     /**
@@ -131,6 +134,11 @@ private:
     void persistRecordsData() const;
 
     /**
+     * Returns the index of the new Record among the existing Records according to the new Record's date time values
+    */
+    int searchForNewRecordPosition(const QDate &searchedDate, const QTime &searchedTime);
+
+    /**
      * Deletes the user related files and the user data from the users file
     */
     void deleteUser() const;
@@ -176,6 +184,20 @@ private:
      * Used as source for the corresponding QCompleter
     */
     QStringList m_whatFors;
+
+signals:
+    /**
+     * Emitted when the user creates a new record
+     * The first integer parameter is the index of the new Record in the history
+     * The other parameter is the newly created Record
+    */
+    void sig_recordAdded(int index, const Record &record);
+    /**
+     * Emitted when the user deletes a record either by reverting a record creation
+     * or deleting an existing record from the history
+     * The parameter is the deleted Record
+    */
+    void sig_recordDeleted(const Record &record);
 };
 
 #endif // USER_H

@@ -1,8 +1,8 @@
 #include "user.h"
 #include "Core/defines.h"
 
-User::User(const QString &username, const QString &password, const QString &id) :
-    m_username(username), m_password(password), m_id(id)
+User::User(const QString &username, const QString &password, const QString &id, QObject *parent) :
+    QObject(parent), m_username(username), m_password(password), m_id(id)
 {
     m_userFolder = APPDATALOCATION() + "/" + m_id;
     m_userRecordsFile = m_userFolder + "/records.json";
@@ -29,8 +29,12 @@ void User::persistNewRecord(const Record& newRecord)
     //Update the completer source lists
     updateCompleterSource(newRecord.Location, newRecord.WhatFor);
 
-    //Store the new Record in memory
-    m_records.prepend(std::move(newRecord));
+    //Search for the index where the new Record should be inserted
+    //and store the new Record in memory at the correct position
+    const auto indexOfNewRecord = searchForNewRecordPosition(newRecord.Date, newRecord.Time);
+    m_records.insert(indexOfNewRecord, newRecord);
+
+    emit sig_recordAdded(indexOfNewRecord, newRecord);
 }
 
 QCompleter *User::locationsCompleter() const
@@ -77,6 +81,7 @@ void User::setMarkedForDeletion(bool marked)
 void User::deleteRecord(const Record &record)
 {
     m_records.removeOne(record);
+    emit sig_recordDeleted(record);
 }
 
 QList<Record> User::records()
@@ -155,6 +160,32 @@ void User::persistRecordsData() const
     //Save the Records to the Records file in the AppData folder
     const auto recordsDocument = QJsonDocument(recordsArray);
     writeJSONFile(m_userRecordsFile, recordsDocument);
+}
+
+int User::searchForNewRecordPosition(const QDate &searchedDate, const QTime &searchedTime)
+{
+    //Search the for the index of the new Record
+    //Iterate over the list of existing Records and compare the date time values
+    int counter = 0;
+    for(auto& record : m_records)
+    {
+        //Since the Records are stored in chronological order check whether the new Record's date is greater than the tested one
+        if(searchedDate > record.Date)
+        {
+            break;
+        }
+        else if(searchedDate == record.Date) //If the new Record is created on a day when there are already Records check the time
+        {
+            if(searchedTime >= record.Time)
+            {
+                break;
+            }
+        }
+
+        counter += 1;
+    }
+
+    return counter;
 }
 
 void User::deleteUser() const
