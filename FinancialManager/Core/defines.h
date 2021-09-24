@@ -2,6 +2,7 @@
 #define DEFINES_H
 
 #include "widgetdefines.h"
+#include "Settings/settingsmanager.h"
 
 #include <QDebug>
 
@@ -15,7 +16,12 @@
 
 
 
-#define USERSFILE APPDATALOCATION() + "/users.json"
+#define USERSFILE APPLICATIONFOLDER() + "/users.json"
+
+/**
+ * Returns the path to the currently used application files (e.g.: users.json)
+*/
+inline const QString APPLICATIONFOLDER();
 
 /**
  * Returns the path to this application's AppData folder
@@ -43,6 +49,26 @@ inline void writeJSONFile(const QString& filename, const QJsonDocument& content)
 inline const QJsonDocument readJSONFile(const QString& filename);
 
 
+inline const QString APPLICATIONFOLDER()
+{
+    //'folderPath' holds the path to the currently used application files
+    QString folderPath = QString();
+    //Get the FILE_STORAGE settings data
+    const auto fileStorage = Settings::SettingsManager::instance()->data<Settings::FileStorage>(Settings::SettingsData::FILE_STORAGE);
+
+    //Set the 'folderPath' variable according to the set FILE_STORAGE value
+    if(fileStorage == Settings::FileStorage::LOCAL)
+    {
+        folderPath = APPDATALOCATION();
+    }
+    else if(fileStorage == Settings::FileStorage::CUSTOM)
+    {
+        //If CUSTOM FILE_STORAGE is used than retrieve the CUSTOM_STORAGE_PATH from the settings
+        folderPath = Settings::SettingsManager::instance()->data<QString>(Settings::SettingsData::CUSTOM_STORAGE_PATH);
+    }
+
+    return folderPath;
+}
 
 inline const QString APPDATALOCATION()
 {

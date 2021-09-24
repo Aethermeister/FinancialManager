@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion("1.0");
 
     //Check (and create if needed) appdata folder
-    checkFolderExistence(APPDATALOCATION());
-    //Check (and create if needed) needed users file
+    checkFolderExistence(APPLICATIONFOLDER());
+    //Check (and create if needed) users file
     checkFileExistence(USERSFILE);
 
     QFile styleFile(":/Styles/default.qss");

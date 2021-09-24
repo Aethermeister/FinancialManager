@@ -30,5 +30,11 @@ private:
      * Shows the ContentWidget ui in the content area
     */
     void showMainContentWidget(const QString& username, const QString& password, const QString& id);
+
+private slots:
+    /**
+     * Shows the Settings Widget as a modal dialog over the MainWindow ui
+    */
+    void slot_showSettingsWindow();
 };
 #endif // MAINWINDOW_H

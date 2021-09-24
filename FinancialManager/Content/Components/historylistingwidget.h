@@ -57,6 +57,12 @@ namespace Content::Component
         */
         Component::RecordHistoryItemWidget* m_activeRecordItemWidget = nullptr;
 
+        /**
+         * Shows an information QLabel instead of listing the Record items
+         * This is automatically called when there is no Record during the initialization of the ui
+        */
+        void showNoRecordMessage();
+
     private slots:
         /**
          * Called when the user creates a new Record and the User object emits the corresponding signal

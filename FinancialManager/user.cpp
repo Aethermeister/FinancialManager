@@ -4,7 +4,7 @@
 User::User(const QString &username, const QString &password, const QString &id, QObject *parent) :
     QObject(parent), m_username(username), m_password(password), m_id(id)
 {
-    m_userFolder = APPDATALOCATION() + "/" + m_id;
+    m_userFolder = APPLICATIONFOLDER() + "/" + m_id;
     m_userRecordsFile = m_userFolder + "/records.json";
 
     checkUserFiles();

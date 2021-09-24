@@ -5,6 +5,7 @@
 #include "Core/defines.h"
 #include "Authentication/authenticationwidget.h"
 #include "Content/contentwidget.h"
+#include "Settings/settingswindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Always show the AuthenticationWidget first
     showAuthenticationWidget();
+
+    connect(ui->m_settings_btn, &QPushButton::clicked, this, &MainWindow::slot_showSettingsWindow);
 }
 
 MainWindow::~MainWindow()
@@ -30,10 +33,10 @@ void MainWindow::showAuthenticationWidget()
     Authentication::AuthenticationWidget* authenticationWidget = new Authentication::AuthenticationWidget(ui->m_container_widget);
     ui->m_container_layout->addWidget(authenticationWidget);
 
+    ui->m_title_lbl->setText(QString("Aether's Financial Manager"));
+
     //Connect the corresponding signals and slots
     connect(authenticationWidget, &Authentication::AuthenticationWidget::sig_authenticated, this, &MainWindow::showMainContentWidget);
-
-    ui->m_header_widget->setVisible(false);
 }
 
 void MainWindow::showMainContentWidget(const QString& username, const QString& password, const QString& id)
@@ -47,9 +50,15 @@ void MainWindow::showMainContentWidget(const QString& username, const QString& p
 
     //Show the username in the header widget
     ui->m_title_lbl->setText(QString("Aether's Financial Manager - %0").arg(username));
-    ui->m_header_widget->setVisible(true);
 
     connect(ui->m_profile_btn, &QPushButton::clicked, contentWidget, &Content::ContentWidget::slot_showProfileWidget);
     connect(contentWidget, &Content::ContentWidget::sig_logout, this, &MainWindow::showAuthenticationWidget);
+}
+
+void MainWindow::slot_showSettingsWindow()
+{
+    //Create the Settings Window and show it as a model dialog
+    Settings::SettingsWindow* settingsWindow = new Settings::SettingsWindow();
+    settingsWindow->exec();
 }
 

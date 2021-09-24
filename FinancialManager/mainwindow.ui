@@ -67,6 +67,38 @@
         </spacer>
        </item>
        <item>
+        <widget class="QPushButton" name="m_settings_btn">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="icon">
+          <iconset resource="Resources/resources.qrc">
+           <normaloff>:/Images/settings.png</normaloff>:/Images/settings.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="type" stdset="0">
+          <string>headerButton</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="m_profile_btn">
          <property name="minimumSize">
           <size>

@@ -38,6 +38,13 @@ Content--Component--RecordHistoryItemWidget[state="checked"]
     background-color: rgb(35, 35, 35);
 }
 
+QDialog
+{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(50, 50, 50);
+}
+
 QFrame[type="notification"]
 {
     color: white;
@@ -148,6 +155,26 @@ QPushButton[type="redButton"]:pressed
 QPushButton[type="headerButton"]
 {
     background-color: none;
+}
+
+QRadioButton
+{
+    color: white;
+}
+
+QRadioButton:disabled
+{
+    color: gray;
+}
+
+QCheckBox
+{
+    color: white;
+}
+
+QCheckBox:disabled
+{
+    color: gray;
 }
 
 QLineEdit

@@ -19,6 +19,24 @@ namespace Authentication
         return existingUsersObject.keys().contains(username);
     }
 
+    bool AuthenticationComponent::checkForExistingUsername(const QString &username, QString *password)
+    {
+        //Get the content of the users JSON file
+        const auto existingUsersDocument = readJSONFile(USERSFILE);
+        const auto existingUsersObject = existingUsersDocument.object();
+
+        //Check whether the given username exists
+        const auto userExists = existingUsersObject.keys().contains(username);
+        if(userExists)
+        {
+            //If the username exists get the corresponding password
+            const auto userObject = existingUsersObject.value(username).toObject();
+            *password = userObject.value("password").toString();
+        }
+
+        return userExists;
+    }
+
     bool AuthenticationComponent::checkForExistingUsername(const QString &username, const QString &password, QString *id) const
     {
         //Get the content of the users JSON file

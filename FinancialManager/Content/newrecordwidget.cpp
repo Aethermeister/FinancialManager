@@ -28,6 +28,9 @@ namespace Content
     {
         initializeRecordSettings();
         initializeDateTimeSettings();
+
+        //Initialize the non-interactive Records history widget
+        ui->m_historyListing_widget->initialize(m_user);
     }
 
     void NewRecordWidget::initializeRecordSettings()

@@ -28,8 +28,7 @@ namespace Content::Component
         //Show a message if there are no records
         if(records.empty())
         {
-            QLabel *nothingToShow_label = new QLabel("Nothing to show", this);
-            ui->m_historyListing_layout->addWidget(nothingToShow_label);
+            showNoRecordMessage();
         }
         else
         {
@@ -69,6 +68,9 @@ namespace Content::Component
 
     void HistoryListingWidget::initialize(std::shared_ptr<User> user, int listedItemsCount)
     {
+        connect(user.get(), &User::sig_recordAdded, this, &HistoryListingWidget::slot_newRecordAdded);
+        connect(user.get(), &User::sig_recordDeleted, this, &HistoryListingWidget::slot_recordDeleted);
+
         //List the Records
         //Check whether there are enough records for the list counter
         //and reset the counter if it is originally over the records count
@@ -81,8 +83,7 @@ namespace Content::Component
         //Show a message if there are no records
         if(records.empty())
         {
-            QLabel *nothingToShow_label = new QLabel("Nothing to show", this);
-            ui->m_historyListing_layout->addWidget(nothingToShow_label);
+            showNoRecordMessage();
         }
         else
         {
@@ -111,6 +112,21 @@ namespace Content::Component
     QList<RecordHistoryItemWidget *> HistoryListingWidget::recordItemWidgets() const
     {
         return findChildren<Component::RecordHistoryItemWidget*>();
+    }
+
+    void HistoryListingWidget::showNoRecordMessage()
+    {
+        //Create QLabel which shows the information if no Record is available
+        QLabel *nothingToShow_label = new QLabel("Nothing to show", this);
+        nothingToShow_label->setAlignment(Qt::AlignCenter);
+
+        //Change the font style of the QLabel
+        auto font = nothingToShow_label->font();
+        font.setItalic(true);
+        font.setBold(true);
+        nothingToShow_label->setFont(font);
+
+        ui->m_historyListing_layout->addWidget(nothingToShow_label);
     }
 
     void HistoryListingWidget::slot_newRecordAdded(int index, const Record &record)

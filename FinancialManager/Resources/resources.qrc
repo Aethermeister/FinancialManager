@@ -4,5 +4,6 @@
         <file>Images/diamond.png</file>
         <file>Images/profile.png</file>
         <file>Images/filter.png</file>
+        <file>Images/settings.png</file>
     </qresource>
 </RCC>

@@ -27,6 +27,10 @@ SOURCES += \
     Content/overviewwidget.cpp \
     Content/profilewidget.cpp \
     Content/recordshistorywidget.cpp \
+    Settings/customfilestoragewidget.cpp \
+    Settings/localfilestoragewidget.cpp \
+    Settings/settingsmanager.cpp \
+    Settings/settingswindow.cpp \
     main.cpp \
     mainwindow.cpp \
     user.cpp
@@ -50,6 +54,10 @@ HEADERS += \
     Content/recordshistorywidget.h \
     Core/defines.h \
     Core/widgetdefines.h \
+    Settings/customfilestoragewidget.h \
+    Settings/localfilestoragewidget.h \
+    Settings/settingsmanager.h \
+    Settings/settingswindow.h \
     defines.h \
     mainwindow.h \
     user.h
@@ -69,6 +77,9 @@ FORMS += \
     Content/overviewwidget.ui \
     Content/profilewidget.ui \
     Content/recordshistorywidget.ui \
+    Settings/customfilestoragewidget.ui \
+    Settings/localfilestoragewidget.ui \
+    Settings/settingswindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -27,6 +27,11 @@ namespace Authentication
         */
         bool checkForExistingUsername(const QString& username) const;
         /**
+         * Checks whether a user with the parameter given name already exists
+         * Return true if the user exist and return the corresponding password via parameter
+        */
+        bool checkForExistingUsername(const QString& username, QString* password);
+        /**
          * Checks whether a user with the given username and password exists
          * Return true if the user exist and the given password matches the user
          * Also return the user id via the parameter given QString pointer
