@@ -53,6 +53,7 @@ HEADERS += \
     Content/profilewidget.h \
     Content/recordshistorywidget.h \
     Core/defines.h \
+    Core/encrypt.h \
     Core/widgetdefines.h \
     Settings/customfilestoragewidget.h \
     Settings/localfilestoragewidget.h \

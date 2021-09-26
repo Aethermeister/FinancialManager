@@ -26,6 +26,14 @@ namespace Settings
         settings.setValue(QString::number(key), value);
     }
 
+    void SettingsManager::setData(const SettingsData key, const QString &value)
+    {
+        const auto encodedSettingsData = encodeData(value);
+
+        QSettings settings;
+        settings.setValue(QString::number(key), encodedSettingsData);
+    }
+
     void SettingsManager::initializeSettingsData()
     {
         QSettings settings;

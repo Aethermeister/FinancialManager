@@ -55,7 +55,7 @@ namespace Settings
         connect(ui->m_custom_radioBtn, &QRadioButton::toggled, this, &SettingsWindow::slot_fileStorageChanged);
         connect(ui->m_database_radioBtn, &QRadioButton::toggled, this, &SettingsWindow::slot_fileStorageChanged);
 
-        connect(ui->m_ok_btn, &QPushButton::clicked, this, QDialog::deleteLater);
+        connect(ui->m_ok_btn, &QPushButton::clicked, this, &QDialog::deleteLater);
     }
 
     void SettingsWindow::showFileStorageContentWidget(FileStorage fileStorage)

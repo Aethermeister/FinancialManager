@@ -2,6 +2,7 @@
 #define DEFINES_H
 
 #include "widgetdefines.h"
+#include "encrypt.h"
 #include "Settings/settingsmanager.h"
 
 #include <QDebug>
@@ -120,7 +121,11 @@ inline void writeJSONFile(const QString& filename, const QJsonDocument& content)
     QFile file(filename);
     if(file.open(QIODevice::WriteOnly))
     {
-        file.write(content.toJson());
+        //Create a compressed version of the json content before saving it to the file
+        const auto jsonContent = content.toJson();
+        const auto compressedJsonContent = compressData(jsonContent);
+
+        file.write(compressedJsonContent);
         file.close();
     }
 }
@@ -133,8 +138,12 @@ inline const QJsonDocument readJSONFile(const QString& filename)
     QFile file(filename);
     if(file.open(QIODevice::ReadOnly))
     {
+        //After reading the content of the file uncompress it so the data can be processed
+        const auto fileContent = file.readAll();
+        const auto uncompressedFileContent = uncompressData(fileContent);
+
         //Get the JSON content of the opened file and return it
-        content = QJsonDocument::fromJson(file.readAll());
+        content = QJsonDocument::fromJson(uncompressedFileContent);
 
         file.close();
     }

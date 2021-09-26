@@ -1,8 +1,6 @@
 #include "authenticationcomponent.h"
 #include "Core/defines.h"
 
-
-
 namespace Authentication
 {
     void AuthenticationComponent::setInformationLabel(QLabel *information_lbl)
@@ -31,7 +29,8 @@ namespace Authentication
         {
             //If the username exists get the corresponding password
             const auto userObject = existingUsersObject.value(username).toObject();
-            *password = userObject.value("password").toString();
+            const auto base64Password = userObject.value("password").toString();
+            *password = decodeData(base64Password);
         }
 
         return userExists;
@@ -49,8 +48,9 @@ namespace Authentication
         const auto userObject = existingUsersObject.value(username).toObject();
         if(!userObject.isEmpty())
         {
+            const auto base64Password = encodeData(password);
             const auto userPassword = userObject.value("password").toString();
-            if(userPassword == password)
+            if(userPassword == base64Password)
             {
                 //Set the id pointer with the user id
                 *id = userObject.value("id").toString();

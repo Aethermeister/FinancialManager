@@ -1,9 +1,11 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
+#include "Core/encrypt.h"
 
 #include <QString>
 #include <QVariant>
 #include <QSettings>
+#include <QDebug>
 
 namespace Settings
 {
@@ -54,6 +56,10 @@ namespace Settings
          * Stores the parameter given value with the given key in the registry
         */
         void setData(const SettingsData key, const QVariant &value);
+        /**
+         * Stores the parameter given QString value with the given key in the registry after encoding it
+        */
+        void setData(const SettingsData key, const QString& value);
 
         /**
          * Retrieves the settings data of the parameter given key from the registry
@@ -64,6 +70,24 @@ namespace Settings
         {
             QSettings settings;
             return qvariant_cast<T>(settings.value(QString::number(key)));
+        }
+
+        /**
+         * Retrieves the settings data of the parameter given key from the registry
+         * and returns it converting it to the required type
+         *
+         * This template is specifically used for QString so the retrieved data can be decoded
+        */
+        template<>
+        QString data<QString>(const SettingsData key) const
+        {
+            //Get the QString settings data stored in the registry
+            //and decode it before returning it
+            QSettings settings;
+            const auto settingsData = qvariant_cast<QString>(settings.value(QString::number(key)));
+            const auto decodedSettingsData = decodeData(settingsData);
+
+            return decodedSettingsData;
         }
 
     private:

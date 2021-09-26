@@ -69,9 +69,12 @@ namespace Content
         const auto newPassword = ui->m_newPassword_lineEdit->text();
         const auto verifyNewPassword = ui->m_verifyNewPassword_lineEdit->text();
 
+        const auto oldBase64Password = encodeData(oldPassword);
+        const auto newBase64Password = encodeData(newPassword);
+
         //Check whether the user has given the correct old password
         //and show error if they are not the same
-        if(oldPassword != m_user->password())
+        if(oldBase64Password != m_user->password())
         {
             setLineEditErrorState(ui->m_oldPassword_lineEdit, true);
 
@@ -82,7 +85,7 @@ namespace Content
 
         //Check whether the user given password is the same with the old password
         //and show error if they are the same
-        if(newPassword == m_user->password())
+        if(newBase64Password == m_user->password())
         {
             setLineEditErrorState(ui->m_newPassword_lineEdit, true);
 
@@ -121,13 +124,13 @@ namespace Content
 
         //Modify the password in the JSON object
         auto userObject = usersObject.value(m_user->username()).toObject();
-        userObject["password"] = newPassword;
+        userObject["password"] = newBase64Password;
         usersObject[m_user->username()] = userObject;
 
         //Save the modified JSON content to the users JSON file
         const auto modifiedUsersDocument = QJsonDocument(usersObject);
         writeJSONFile(USERSFILE, modifiedUsersDocument);
-        m_user->setPassword(newPassword);
+        m_user->setPassword(newBase64Password);
 
         //Reset the password change related ui
         ui->m_oldPassword_lineEdit->clear();
