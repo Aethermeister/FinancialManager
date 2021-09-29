@@ -1,7 +1,7 @@
 #include "profilewidget.h"
 #include "ui_profilewidget.h"
 #include "Core/defines.h"
-#include "Components/notificationwidget.h"
+#include "Notification/notificationwidget.h"
 
 namespace Content
 {
@@ -138,7 +138,7 @@ namespace Content
         ui->m_verifyNewPassword_lineEdit->clear();
 
         //Show notification indicating that the password has been changed successfully
-        Component::NotificationWidget* passwordChangedNotification = new Component::NotificationWidget("Password has been changed", parentWidget()->parentWidget());
+        Notification::NotificationWidget* passwordChangedNotification = new Notification::NotificationWidget("Password has been changed", parentWidget()->parentWidget());
         passwordChangedNotification->show();
     }
 
@@ -153,7 +153,7 @@ namespace Content
         //Show deletion information on the ui and show a notification as well
         showInformation(ui->m_deletionInformation_lbl, deletionMessage);
 
-        Component::NotificationWidget* deletionNotification = new Component::NotificationWidget("Account has been marked for deletion", parentWidget()->parentWidget());
+        Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account has been marked for deletion", parentWidget()->parentWidget());
         deletionNotification->show();
     }
 
@@ -168,7 +168,7 @@ namespace Content
         //Hide the deletion information QLabel and show notification to notify the user about the deletion cancellation
         ui->m_deletionInformation_lbl->setVisible(false);
 
-        Component::NotificationWidget* deletionNotification = new Component::NotificationWidget("Account deletion has been canceled", parentWidget()->parentWidget());
+        Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account deletion has been canceled", parentWidget()->parentWidget());
         deletionNotification->show();
     }
 }

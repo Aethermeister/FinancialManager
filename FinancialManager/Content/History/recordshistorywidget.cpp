@@ -4,7 +4,7 @@
 
 #include <QSpacerItem>
 
-namespace Content
+namespace Content::History
 {
     RecordsHistoryWidget::RecordsHistoryWidget(std::shared_ptr<User> user, QWidget *parent) :
         QWidget(parent),

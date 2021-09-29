@@ -2,7 +2,7 @@
 #include "ui_revertrecordwidget.h"
 #include "Core/defines.h"
 
-namespace Content::Component
+namespace Notification
 {
     RevertRecordWidget::RevertRecordWidget(const Record& record, std::shared_ptr<User> user, QWidget *parent) :
         QFrame(parent),

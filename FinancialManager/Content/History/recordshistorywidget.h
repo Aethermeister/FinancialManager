@@ -10,7 +10,7 @@ namespace Ui {
 class RecordsHistoryWidget;
 }
 
-namespace Content
+namespace Content::History
 {
     /**
      * Ui class which provides interactable interface for the user to manage the Records

@@ -1,7 +1,7 @@
 #include "newrecordwidget.h"
 #include "ui_newrecordwidget.h"
 #include "Core/defines.h"
-#include "Components/revertrecordwidget.h"
+#include "Notification/revertrecordwidget.h"
 
 #include <QDateTime>
 #include <QTimer>
@@ -146,8 +146,8 @@ namespace Content
             //which will schedule the Record persistence
             if(isDateValid && isTimeValid)
             {
-                Component::RevertRecordWidget* revertRecordWidget =
-                        new Component::RevertRecordWidget(Record(amount, date, time, location, whatFor), m_user, parentWidget()->parentWidget());
+                Notification::RevertRecordWidget* revertRecordWidget =
+                        new Notification::RevertRecordWidget(Record(amount, date, time, location, whatFor), m_user, parentWidget()->parentWidget());
 
                 revertRecordWidget->show();
 

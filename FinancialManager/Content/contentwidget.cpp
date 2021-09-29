@@ -3,9 +3,9 @@
 #include "Core/defines.h"
 #include "overviewwidget.h"
 #include "newrecordwidget.h"
-#include "recordshistorywidget.h"
+#include "History/recordshistorywidget.h"
 #include "profilewidget.h"
-#include "Components/notificationbase.h"
+#include "Notification/notificationbase.h"
 
 namespace Content
 {
@@ -35,7 +35,7 @@ namespace Content
     {
         Q_UNUSED(event);
 
-        Component::NotificationBase::moveActiveNotificationWidgets();
+        Notification::NotificationBase::moveActiveNotificationWidgets();
     }
 
     void ContentWidget::initializeConnections() const
@@ -108,7 +108,7 @@ namespace Content
         deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new NewRecordWidget and add it to the container widget
-        RecordsHistoryWidget* historyWidget = new RecordsHistoryWidget(m_user, ui->m_container_widget);
+        History::RecordsHistoryWidget* historyWidget = new History::RecordsHistoryWidget(m_user, ui->m_container_widget);
         ui->m_container_layout->addWidget(historyWidget);
     }
 

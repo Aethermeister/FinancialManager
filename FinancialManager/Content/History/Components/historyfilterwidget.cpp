@@ -5,7 +5,7 @@
 #include <QStyleOption>
 #include <QPainter>
 
-namespace Content::Component
+namespace Content::History::Component
 {
     HistoryFilterWidget::HistoryFilterWidget(QWidget *parent) :
         QWidget(parent),

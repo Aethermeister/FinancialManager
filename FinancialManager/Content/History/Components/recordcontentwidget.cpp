@@ -2,7 +2,7 @@
 #include "ui_recordcontentwidget.h"
 #include "Core/defines.h"
 
-namespace Content::Component
+namespace Content::History::Component
 {
     RecordContentWidget::RecordContentWidget(QWidget *parent) :
         QWidget(parent),

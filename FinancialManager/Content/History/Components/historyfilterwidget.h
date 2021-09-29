@@ -11,7 +11,7 @@ namespace Ui {
 class HistoryFilterWidget;
 }
 
-namespace Content::Component
+namespace Content::History::Component
 {
     /**
      * This struct is a wrapper for the filter related data
@@ -106,7 +106,7 @@ namespace Content::Component
          * Emitted when the user sets a filter value
          * and the validation of the filter values are successful
         */
-        void sig_filterHistory(const Content::Component::FilterData &filterData);
+        void sig_filterHistory(const Content::History::Component::FilterData &filterData);
     };
 }
 

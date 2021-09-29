@@ -9,7 +9,7 @@ namespace Ui {
 class RevertRecordWidget;
 }
 
-namespace Content::Component
+namespace Notification
 {
     /**
      * Component ui class derived from the NotificationBase class

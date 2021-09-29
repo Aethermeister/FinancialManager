@@ -8,7 +8,7 @@ namespace Ui {
 class RecordHistoryItemWidget;
 }
 
-namespace Content::Component
+namespace Content::History::Component
 {
     /**
      * Ui class which acts as indicator for a given Record

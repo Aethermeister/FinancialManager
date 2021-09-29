@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 
-namespace Content::Component
+namespace Notification
 {
     /**
      * Base class of the notification ui classes

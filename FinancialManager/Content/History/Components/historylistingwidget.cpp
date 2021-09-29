@@ -3,7 +3,7 @@
 #include "recordhistoryitemwidget.h"
 #include "ui_historylistingwidget.h"
 
-namespace Content::Component
+namespace Content::History::Component
 {
     HistoryListingWidget::HistoryListingWidget(QWidget *parent) :
         QWidget(parent),

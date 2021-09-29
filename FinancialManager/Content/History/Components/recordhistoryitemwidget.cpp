@@ -6,7 +6,7 @@
 #include <QStyleOption>
 #include <QPainter>
 
-namespace Content::Component
+namespace Content::History::Component
 {
     RecordHistoryItemWidget::RecordHistoryItemWidget(Record record, bool isInteractive, QWidget *parent) :
         QWidget(parent),

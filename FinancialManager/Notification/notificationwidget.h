@@ -9,7 +9,7 @@ namespace Ui {
 class NotificationWidget;
 }
 
-namespace Content::Component
+namespace Notification
 {
     /**
      * Component ui class derived from the NotificationBase class

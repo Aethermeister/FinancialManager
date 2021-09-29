@@ -10,7 +10,7 @@ namespace Ui {
 class HistoryListingWidget;
 }
 
-namespace Content::Component
+namespace Content::History::Component
 {
     /**
      * Ui class which lists the given User's records

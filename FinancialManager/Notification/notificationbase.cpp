@@ -1,6 +1,6 @@
 #include "notificationbase.h"
 
-namespace Content::Component
+namespace Notification
 {
     QList<QWidget*> NotificationBase::ActiveNotificationWidgets{};
 

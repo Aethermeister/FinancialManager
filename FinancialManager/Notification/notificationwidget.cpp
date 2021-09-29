@@ -1,7 +1,7 @@
 #include "notificationwidget.h"
 #include "ui_notificationwidget.h"
 
-namespace Content::Component
+namespace Notification
 {
     NotificationWidget::NotificationWidget(const QString& message, QWidget *parent) :
         QFrame(parent),

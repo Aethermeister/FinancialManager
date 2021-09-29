@@ -64,7 +64,7 @@
         <property name="widgetResizable">
          <bool>true</bool>
         </property>
-        <widget class="Content::Component::HistoryListingWidget" name="m_historyListing_widget">
+        <widget class="Content::History::Component::HistoryListingWidget" name="m_historyListing_widget">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -627,9 +627,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>Content::Component::HistoryListingWidget</class>
+   <class>Content::History::Component::HistoryListingWidget</class>
    <extends>QWidget</extends>
-   <header>Content/Components/historylistingwidget.h</header>
+   <header>Content/History/Components/historylistingwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
