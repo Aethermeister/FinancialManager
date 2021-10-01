@@ -29,7 +29,7 @@ namespace Content::History::Component
         connect(ui->m_fromAmount_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
         connect(ui->m_toAmount_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
 
-        connect(ui->m_whatFor_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
+        connect(ui->m_item_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
         connect(ui->m_location_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
 
         connect(ui->m_fromYear_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
@@ -161,9 +161,9 @@ namespace Content::History::Component
         bool isToAmountOk = true;
         const auto toAmount = validateAmountFilter(ui->m_toAmount_lineEdit, &isToAmountOk);
 
-        //The whatFor and location filter values do not need any complex validation
+        //The item and location filter values do not need any complex validation
         //These values are used in raw QString format
-        const auto whatFor = ui->m_whatFor_lineEdit->text();
+        const auto item = ui->m_item_lineEdit->text();
         const auto location = ui->m_location_lineEdit->text();
 
         //Get the Date filter values and the validation flags
@@ -184,7 +184,7 @@ namespace Content::History::Component
                 isFromAmountOk && isFromDateOk && isFromTimeOk)
         {
             emit sig_filterHistory(FilterData(qMakePair(fromAmount, toAmount), qMakePair(fromDate, toDate),
-                                              qMakePair(fromTime, toTime), std::move(whatFor), std::move(location)));
+                                              qMakePair(fromTime, toTime), std::move(item), std::move(location)));
         }
 
     }

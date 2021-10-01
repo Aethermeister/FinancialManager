@@ -35,10 +35,10 @@ namespace Content
 
     void NewRecordWidget::initializeRecordSettings()
     {
-        //Add a completer to the location and whatFor QLineEdits
-        //using the User extracted location and whatFor data source
+        //Add a completer to the location and item QLineEdits
+        //using the User extracted location and item data source
         ui->m_location_lineEdit->setCompleter(m_user->locationsCompleter());
-        ui->m_whatFor_lineEdit->setCompleter(m_user->whatForsCompleter());
+        ui->m_item_lineEdit->setCompleter(m_user->itemsCompleter());
     }
 
     void NewRecordWidget::initializeDateTimeSettings()
@@ -70,11 +70,11 @@ namespace Content
         const auto amount = amountString.toInt(&amountOk);
         setLineEditErrorState(ui->m_amount_lineEdit, !amountOk);
 
-        //Get the whatFor value from the ui and check whether it is a NOT empty QString
+        //Get the item value from the ui and check whether it is a NOT empty QString
         //Set error style in case of error
-        const auto whatFor = ui->m_whatFor_lineEdit->text();
-        const auto whatForOk = !whatFor.isEmpty();
-        setLineEditErrorState(ui->m_whatFor_lineEdit, !whatForOk);
+        const auto item = ui->m_item_lineEdit->text();
+        const auto itemOk = !item.isEmpty();
+        setLineEditErrorState(ui->m_item_lineEdit, !itemOk);
 
         //Get the location value from the ui and check whether it is a NOT empty QString
         //Set error style in case of error
@@ -123,7 +123,7 @@ namespace Content
         setLineEditErrorState(ui->m_minutes_lineEdit, !minutesOk);
 
         //If the user given values are correct so far proceed with additional validation
-        if(amountOk && whatForOk && locationOk &&
+        if(amountOk && itemOk && locationOk &&
                 yearOk && monthOk && dayOk &&
                 hoursOk && minutesOk)
         {
@@ -147,7 +147,7 @@ namespace Content
             if(isDateValid && isTimeValid)
             {
                 Notification::RevertRecordWidget* revertRecordWidget =
-                        new Notification::RevertRecordWidget(Record(amount, date, time, location, whatFor), m_user, parentWidget()->parentWidget());
+                        new Notification::RevertRecordWidget({amount, date, time, location, item}, m_user, parentWidget()->parentWidget());
 
                 revertRecordWidget->show();
 

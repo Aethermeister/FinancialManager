@@ -16,12 +16,12 @@
 struct Record
 {
 public:
-    Record(const int amount, const QDate& date, const QTime& time, const QString& location, const QString& whatFor) :
+    Record(const int amount, const QDate& date, const QTime& time, const QString& location, const QString& item) :
         Amount(amount),
         Date(date),
         Time(time),
         Location(location),
-        WhatFor(whatFor)
+        Item(item)
     {
     }
 
@@ -29,7 +29,7 @@ public:
     {
         return (
                     Amount == record.Amount &&
-                    WhatFor == record.WhatFor &&
+                    Item == record.Item &&
                     Location == record.Location &&
                     Date == record.Date &&
                     Time == record.Time
@@ -42,7 +42,7 @@ public:
     QTime Time;
 
     QString Location;
-    QString WhatFor;
+    QString Item;
 };
 
 /**
@@ -70,10 +70,10 @@ public:
     */
     QCompleter* locationsCompleter() const;
     /**
-     * Creates a QCompleter for the whatFor QLineEdit in the NewRecordWidget ui class
-     * This QCompleter is used so the user does not have to type the already used whatFors
+     * Creates a QCompleter for the item QLineEdit in the NewRecordWidget ui class
+     * This QCompleter is used so the user does not have to type the already used items
     */
-    QCompleter* whatForsCompleter() const;
+    QCompleter* itemsCompleter() const;
 
     /**
      * Returns the username
@@ -126,7 +126,7 @@ private:
      * Updates the source list used by the related QCompleters
      * The lists are appended with the parameter given values
     */
-    void updateCompleterSource(const QString& location, const QString& whatFor);
+    void updateCompleterSource(const QString& location, const QString& item);
 
     /**
      * Saves the actual Records list to the Records file in the User AppData folder
@@ -180,10 +180,10 @@ private:
     */
     QStringList m_locations;
     /**
-     * List of the previously used whatFors without duplications
+     * List of the previously used items without duplications
      * Used as source for the corresponding QCompleter
     */
-    QStringList m_whatFors;
+    QStringList m_items;
 
 signals:
     /**

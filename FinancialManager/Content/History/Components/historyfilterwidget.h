@@ -21,9 +21,9 @@ namespace Content::History::Component
     {
     public:
         FilterData(QPair<QString, QString> amountFilter, QPair<QDate, QDate> dateFilter, QPair<QTime, QTime> timeFilter,
-                   const QString &whatForFilter, const QString &locationFilter) :
+                   const QString &itemFilter, const QString &locationFilter) :
             AmountFilter(amountFilter), DateFilter(dateFilter), TimeFilter(timeFilter),
-            WhatForFilter(whatForFilter), LocationFilter(locationFilter)
+            ItemFilter(itemFilter), LocationFilter(locationFilter)
         {
 
         }
@@ -46,9 +46,9 @@ namespace Content::History::Component
         QPair<QTime, QTime> TimeFilter;
         /**
          * This QString holds the data the user is filtering/searching for
-         * Given Record WhatFor value is tested whether that value contains this filter value or not
+         * Given Record Item value is tested whether that value contains this filter value or not
         */
-        QString WhatForFilter;
+        QString ItemFilter;
         /**
          * This QString holds the data the user is filtering/searching for
          * Given Record Location value is tested whether that value contains this filter value or not

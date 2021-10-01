@@ -91,7 +91,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>What For:</string>
+         <string>Item:</string>
         </property>
        </widget>
       </item>
@@ -144,7 +144,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="m_whatFor_lineEdit">
+       <widget class="QLineEdit" name="m_item_lineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -933,7 +933,7 @@ p, li { white-space: pre-wrap; }
  <tabstops>
   <tabstop>m_fromAmount_lineEdit</tabstop>
   <tabstop>m_toAmount_lineEdit</tabstop>
-  <tabstop>m_whatFor_lineEdit</tabstop>
+  <tabstop>m_item_lineEdit</tabstop>
   <tabstop>m_location_lineEdit</tabstop>
   <tabstop>m_fromYear_lineEdit</tabstop>
   <tabstop>m_fromMonth_lineEdit</tabstop>

@@ -27,7 +27,7 @@ User::~User()
 void User::persistNewRecord(const Record& newRecord)
 {
     //Update the completer source lists
-    updateCompleterSource(newRecord.Location, newRecord.WhatFor);
+    updateCompleterSource(newRecord.Location, newRecord.Item);
 
     //Search for the index where the new Record should be inserted
     //and store the new Record in memory at the correct position
@@ -42,10 +42,10 @@ QCompleter *User::locationsCompleter() const
     return new QCompleter(m_locations);
 }
 
-QCompleter *User::whatForsCompleter() const
+QCompleter *User::itemsCompleter() const
 {
 
-    return new QCompleter(m_whatFors);
+    return new QCompleter(m_items);
 }
 
 const QString User::username() const
@@ -116,25 +116,25 @@ void User::readRecordsFile()
         const auto date = QDate::fromString(recordObject.value("date").toString());
         const auto time = QTime::fromString(recordObject.value("time").toString());
         const auto location = recordObject.value("location").toString();
-        const auto whatFor = recordObject.value("whatFor").toString();
+        const auto item = recordObject.value("item").toString();
 
         //Update the completer source lists
-        updateCompleterSource(location, whatFor);
+        updateCompleterSource(location, item);
 
         //Put the Record to the beginning of the list so the latest Record will be the first element
-        m_records.prepend(Record(amount, date, time, location, whatFor));
+        m_records.prepend({amount, date, time, location, item});
     }
 }
 
-void User::updateCompleterSource(const QString &location, const QString &whatFor)
+void User::updateCompleterSource(const QString &location, const QString &item)
 {
     //Remove the new location before adding it to the QList to prevent duplications
     m_locations.removeOne(location);
     m_locations.prepend(location);
 
-    //Remove the new whatFor before adding it to the QList to prevent duplications
-    m_whatFors.removeOne(whatFor);
-    m_whatFors.prepend(whatFor);
+    //Remove the new item before adding it to the QList to prevent duplications
+    m_items.removeOne(item);
+    m_items.prepend(item);
 }
 
 void User::persistRecordsData() const
@@ -151,7 +151,7 @@ void User::persistRecordsData() const
             {"date", record->Date.toString()},
             {"time", record->Time.toString()},
             {"location", record->Location},
-            {"whatFor", record->WhatFor}
+            {"item", record->Item}
         };
 
         recordsArray.append(recordObject);

@@ -44,12 +44,12 @@ namespace Content::History
         const auto isAmountOk = filterAmount(record.Amount, filterData.AmountFilter);
         const auto isDateOk = filterDate(record.Date, filterData.DateFilter);
         const auto isTimeOk = isDateOk ? filterTime(record.Time, filterData.TimeFilter) : false;
-        const auto isWhatForOk = record.WhatFor.contains(filterData.WhatForFilter, Qt::CaseInsensitive);
+        const auto isItemOk = record.Item.contains(filterData.ItemFilter, Qt::CaseInsensitive);
         const auto isLocationOk = record.Location.contains(filterData.LocationFilter, Qt::CaseInsensitive);
 
         //Return the summarized filter result
         //True: The corresponding Record item is visible
-        return (isAmountOk && isDateOk && isTimeOk && isWhatForOk && isLocationOk);
+        return (isAmountOk && isDateOk && isTimeOk && isItemOk && isLocationOk);
     }
 
     bool RecordsHistoryWidget::filterAmount(int amount, QPair<QString, QString> amountFilter)

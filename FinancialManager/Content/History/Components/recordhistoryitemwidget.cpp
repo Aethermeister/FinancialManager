@@ -144,9 +144,9 @@ namespace Content::History::Component
         //Show the creation date of the corresponding Record with the format below
         ui->m_date_lbl->setText(m_record.Date.toString("yyyy.MM.dd."));
 
-        //Elide the whatFor text so it fitst the ui size
-        const auto fontMetrics = ui->m_whatFor_lbl->fontMetrics();
-        const auto whatFor = fontMetrics.elidedText(m_record.WhatFor, Qt::ElideRight, width() - 100);
-        ui->m_whatFor_lbl->setText(whatFor);
+        //Elide the item text so it fitst the ui size
+        const auto fontMetrics = ui->m_item_lbl->fontMetrics();
+        const auto item = fontMetrics.elidedText(m_record.Item, Qt::ElideRight, width() - 100);
+        ui->m_item_lbl->setText(item);
     }
 }
