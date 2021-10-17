@@ -20,7 +20,7 @@ namespace Content::History::Component
         Q_OBJECT
 
     public:
-        explicit RecordHistoryItemWidget(const Record& record, bool isInteractive, QWidget *parent = nullptr);
+        explicit RecordHistoryItemWidget(const Content::Records::Record& record, bool isInteractive, QWidget *parent = nullptr);
         ~RecordHistoryItemWidget();
 
         /**
@@ -31,7 +31,7 @@ namespace Content::History::Component
         /**
          * Returns the Record which this object was initialized with
         */
-        Record record() const;
+        const Content::Records::Record& record() const;
 
     protected:
         void paintEvent(QPaintEvent *event) override;
@@ -51,7 +51,7 @@ namespace Content::History::Component
         /**
          * The Record this object is initialized with
         */
-        Record m_record;
+        Content::Records::Record m_record;
 
         /**
          * Flag which indicates whether this QWidget should be affected by the user through the mouse pointer

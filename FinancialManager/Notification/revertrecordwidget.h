@@ -22,7 +22,7 @@ namespace Notification
         Q_OBJECT
 
     public:
-        explicit RevertRecordWidget(const Record& record, std::shared_ptr<User> user, QWidget *parent = nullptr);
+        explicit RevertRecordWidget(const Content::Records::Record& record, std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~RevertRecordWidget();
 
     private:
@@ -40,7 +40,7 @@ namespace Notification
         /**
          * The new Record which needs to be persisted
         */
-        Record m_record;
+        Content::Records::Record m_record;
         /**
          * The current user which persists the new Record
         */

@@ -4,7 +4,7 @@
 
 namespace Notification
 {
-    RevertRecordWidget::RevertRecordWidget(const Record& record, std::shared_ptr<User> user, QWidget *parent) :
+    RevertRecordWidget::RevertRecordWidget(const Content::Records::Record& record, std::shared_ptr<User> user, QWidget *parent) :
         QFrame(parent),
         NotificationBase(this, parent),
         ui(new Ui::RevertRecordWidget),
@@ -31,7 +31,7 @@ namespace Notification
         NotificationBase::initializeUi();
 
         //Set the text of the amount QLabel
-        setLabelNegativeState(ui->m_amount_lbl, m_record.Amount);
+        setLabelNegativeState(ui->m_amount_lbl, m_record.value());
 
         connect(m_timer, &QTimer::timeout, [=]
         {

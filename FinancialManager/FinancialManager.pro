@@ -21,9 +21,11 @@ SOURCES += \
     Content/History/Components/recordhistoryitemwidget.cpp \
     Content/History/recordshistorywidget.cpp \
     Content/Pockets/Components/pocketlistitemwidget.cpp \
+    Content/Pockets/pocket.cpp \
     Content/Pockets/pocketswidget.cpp \
+    Content/Records/newrecordwidget.cpp \
+    Content/Records/record.cpp \
     Content/contentwidget.cpp \
-    Content/newrecordwidget.cpp \
     Content/overviewwidget.cpp \
     Content/profilewidget.cpp \
     Notification/notificationbase.cpp \
@@ -48,9 +50,11 @@ HEADERS += \
     Content/History/Components/recordhistoryitemwidget.h \
     Content/History/recordshistorywidget.h \
     Content/Pockets/Components/pocketlistitemwidget.h \
+    Content/Pockets/pocket.h \
     Content/Pockets/pocketswidget.h \
+    Content/Records/newrecordwidget.h \
+    Content/Records/record.h \
     Content/contentwidget.h \
-    Content/newrecordwidget.h \
     Content/overviewwidget.h \
     Content/profilewidget.h \
     Core/defines.h \
@@ -78,8 +82,8 @@ FORMS += \
     Content/History/recordshistorywidget.ui \
     Content/Pockets/Components/pocketlistitemwidget.ui \
     Content/Pockets/pocketswidget.ui \
+    Content/Records/newrecordwidget.ui \
     Content/contentwidget.ui \
-    Content/newrecordwidget.ui \
     Content/overviewwidget.ui \
     Content/profilewidget.ui \
     Notification/notificationwidget.ui \

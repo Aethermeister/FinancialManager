@@ -6,7 +6,7 @@
 #include <QDateTime>
 #include <QTimer>
 
-namespace Content
+namespace Content::Records
 {
     NewRecordWidget::NewRecordWidget(std::shared_ptr<User> user, QWidget *parent) :
         QWidget(parent),

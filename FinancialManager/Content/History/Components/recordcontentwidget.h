@@ -26,7 +26,7 @@ namespace Content::History::Component
          * Externally callable initialization method
          * Sets the state of the ui according to the parameter given Record
         */
-        void initializeUi(const Record &selectedRecord);
+        void initializeUi(const Content::Records::Record &selectedRecord);
 
     private:
         Ui::RecordContentWidget *ui;

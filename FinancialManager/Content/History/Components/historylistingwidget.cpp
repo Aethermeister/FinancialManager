@@ -129,13 +129,13 @@ namespace Content::History::Component
         ui->m_historyListing_layout->addWidget(nothingToShow_label);
     }
 
-    void HistoryListingWidget::slot_newRecordAdded(int index, const Record &record)
+    void HistoryListingWidget::slot_newRecordAdded(int index, const Content::Records::Record &record)
     {
         const auto historyItem = new Component::RecordHistoryItemWidget(record, false, this);
         ui->m_historyListing_layout->insertWidget(index, historyItem);
     }
 
-    void HistoryListingWidget::slot_recordDeleted(const Record &record)
+    void HistoryListingWidget::slot_recordDeleted(const Content::Records::Record &record)
     {
         //Check whether there is a selected Record item and whether that item is the one being deleted
         if(m_activeRecordItemWidget)

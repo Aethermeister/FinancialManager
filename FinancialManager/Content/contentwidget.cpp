@@ -3,7 +3,7 @@
 #include "Core/defines.h"
 #include "overviewwidget.h"
 #include "Pockets/pocketswidget.h"
-#include "newrecordwidget.h"
+#include "Records/newrecordwidget.h"
 #include "History/recordshistorywidget.h"
 #include "profilewidget.h"
 #include "Notification/notificationbase.h"
@@ -110,7 +110,7 @@ namespace Content
         deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new NewRecordWidget and add it to the container widget
-        NewRecordWidget* newRecordWidget = new NewRecordWidget(m_user, ui->m_container_widget);
+        Records::NewRecordWidget* newRecordWidget = new Records::NewRecordWidget(m_user, ui->m_container_widget);
         ui->m_container_layout->addWidget(newRecordWidget);
     }
 

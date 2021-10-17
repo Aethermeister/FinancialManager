@@ -40,7 +40,7 @@ namespace Content::History
          * Wraps the specific filtering methods
          * and returns their summarized results
         */
-        bool filterRecord(Record record, Component::FilterData filterData);
+        bool filterRecord(const Content::Records::Record& record, const Component::FilterData& filterData);
         /**
          * Tests the parameter given amount value against the parameter given amount filter
         */
@@ -65,7 +65,7 @@ namespace Content::History
          * Called when the user sets a filter
          * Adjusts the visibility of the Record items according to the filter
         */
-        void slot_filterRecordsHistory(Component::FilterData filterData);
+        void slot_filterRecordsHistory(const Component::FilterData& filterData);
 
         /**
          * Called when the user clicks  the Delete Record button when one is selected

@@ -68,12 +68,12 @@ namespace Content::History::Component
          * Called when the user creates a new Record and the User object emits the corresponding signal
          * Creates a Record History Item Widget using the parameter given Record and inserts it in the index defined position
         */
-        void slot_newRecordAdded(int index, const Record &record);
+        void slot_newRecordAdded(int index, const Content::Records::Record &record);
         /**
          * Called when the user deletes a Record and the User object emits the corresponding signal
          * Deletes the Record History Item Widget created with the parameter given Record
         */
-        void slot_recordDeleted(const Record &record);
+        void slot_recordDeleted(const Content::Records::Record &record);
     };
 }
 

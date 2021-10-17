@@ -38,14 +38,14 @@ namespace Content::History
         connect(ui->m_recordContent_widget, &Component::RecordContentWidget::sig_deleteRecord, this, &RecordsHistoryWidget::slot_deleteSelectedRecord);
     }
 
-    bool RecordsHistoryWidget::filterRecord(Record record, Component::FilterData filterData)
+    bool RecordsHistoryWidget::filterRecord(const Content::Records::Record& record, const Component::FilterData& filterData)
     {
         //Call the specific filtering methods and store their results locally
-        const auto isAmountOk = filterAmount(record.Amount, filterData.AmountFilter);
-        const auto isDateOk = filterDate(record.Date, filterData.DateFilter);
-        const auto isTimeOk = isDateOk ? filterTime(record.Time, filterData.TimeFilter) : false;
-        const auto isItemOk = record.Item.contains(filterData.ItemFilter, Qt::CaseInsensitive);
-        const auto isLocationOk = record.Location.contains(filterData.LocationFilter, Qt::CaseInsensitive);
+        const auto isAmountOk = filterAmount(record.value(), filterData.AmountFilter);
+        const auto isDateOk = filterDate(record.date(), filterData.DateFilter);
+        const auto isTimeOk = isDateOk ? filterTime(record.time(), filterData.TimeFilter) : false;
+        const auto isItemOk = record.item().contains(filterData.ItemFilter, Qt::CaseInsensitive);
+        const auto isLocationOk = record.location().contains(filterData.LocationFilter, Qt::CaseInsensitive);
 
         //Return the summarized filter result
         //True: The corresponding Record item is visible
@@ -132,7 +132,7 @@ namespace Content::History
         return (isFromTimeOk && isToTimeOk);
     }
 
-    void RecordsHistoryWidget::slot_filterRecordsHistory(Component::FilterData filterData)
+    void RecordsHistoryWidget::slot_filterRecordsHistory(const Component::FilterData &filterData)
     {
         //Iterate over the existing Record items and run the filter on them
         const auto recordItems = ui->m_historyListing_widget->recordItemWidgets();

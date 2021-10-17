@@ -8,7 +8,7 @@ namespace Ui {
 class NewRecordWidget;
 }
 
-namespace Content
+namespace Content::Records
 {
     /**
      * Ui class which provides interactable interface for the user to create new Records

@@ -31,9 +31,9 @@ namespace Content::Pockets
 
         //Populate the type combobox with the Pocket types
         QStringList pocketTypes;
-        for(int it = Pocket::PocketType::CASH; it != Pocket::PocketType::END_OF_ENUM; it++)
+        for(int it = Content::Pockets::PocketType::CASH; it != Content::Pockets::PocketType::END_OF_ENUM; it++)
         {
-            pocketTypes << Pocket::pocketTypeToString(static_cast<Pocket::PocketType>(it));
+            pocketTypes << Pocket::pocketTypeToString(static_cast<Content::Pockets::PocketType>(it));
         }
         ui->m_pocketType_comboBox->addItems(pocketTypes);
         ui->m_pocketType_comboBox->setCurrentIndex(-1);
@@ -106,7 +106,7 @@ namespace Content::Pockets
         //Set error style if the name already exists
         for(auto& pocket : m_user->pockets())
         {
-            if(pocket.Name == pocketName)
+            if(pocket.name() == pocketName)
             {
                 setWidgetErrorState(ui->m_newPocketName_lineEdit, true);
                 showInformation(ui->m_information_lbl, "Pocket with the same name already exists");

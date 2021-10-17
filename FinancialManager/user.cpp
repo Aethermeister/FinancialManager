@@ -1,12 +1,6 @@
 #include "user.h"
 #include "Core/defines.h"
 
-const QMap<QString, Pocket::PocketType> Pocket::TypeNameToPocketType
-{
-    {"Cash", Pocket::PocketType::CASH},
-    {"Card", Pocket::PocketType::CARD}
-};
-
 User::User(const QString &username, const QString &password, const QString &id, QObject *parent) :
     QObject(parent), m_username(username), m_password(password), m_id(id)
 {
@@ -33,19 +27,19 @@ User::~User()
     }
 }
 
-void User::addNewPocket(Pocket &newPocket)
+void User::addNewPocket(Content::Pockets::Pocket &newPocket)
 {
     m_pockets.emplace_back(std::move(newPocket));
 }
 
-void User::persistNewRecord(const Record& newRecord)
+void User::persistNewRecord(const Content::Records::Record& newRecord)
 {
     //Update the completer source lists
-    updateCompleterSource(newRecord.Location, newRecord.Item);
+    updateCompleterSource(newRecord.location(), newRecord.item());
 
     //Search for the index where the new Record should be inserted
     //and store the new Record in memory at the correct position
-    const auto indexOfNewRecord = searchForNewRecordPosition(newRecord.Date, newRecord.Time);
+    const auto indexOfNewRecord = searchForNewRecordPosition(newRecord.date(), newRecord.time());
     m_records.insert(indexOfNewRecord, newRecord);
 
     emit sig_recordAdded(indexOfNewRecord, newRecord);
@@ -92,18 +86,18 @@ void User::setMarkedForDeletion(bool marked)
     m_isMarkedForDeletion = marked;
 }
 
-const std::vector<Pocket>& User::pockets()
+const std::vector<Content::Pockets::Pocket>& User::pockets()
 {
     return m_pockets;
 }
 
-void User::deleteRecord(const Record &record)
+void User::deleteRecord(const Content::Records::Record &record)
 {
     m_records.removeOne(record);
     emit sig_recordDeleted(record);
 }
 
-QList<Record> User::records()
+QList<Content::Records::Record> User::records()
 {
     return m_records;
 }
@@ -132,7 +126,7 @@ void User::readPocketsFile()
         const auto pocketObject = pocketData.toObject();
 
         const auto name = pocketObject.value("name").toString();
-        const auto type = Pocket::stringToPocketType(pocketObject.value("type").toString());
+        const auto type = Content::Pockets::Pocket::stringToPocketType(pocketObject.value("type").toString());
         const auto initialValue = pocketObject.value("initialValue").toInt();
         const auto value = pocketObject.value("value").toInt();
         const auto creationDate = QDateTime::fromString(pocketObject.value("creationDate").toString());
@@ -187,11 +181,11 @@ void User::persistPocketsData() const
     {
         QJsonObject pocketObject
         {
-            {"name", pocket.Name},
-            {"type", Pocket::pocketTypeToString(pocket.Type)},
-            {"initialValue", pocket.InitialValue},
-            {"value", pocket.Value},
-            {"creationDate", pocket.CreationDate.toString()}
+            {"name", pocket.name()},
+            {"type", Content::Pockets::Pocket::pocketTypeToString(pocket.type())},
+            {"initialValue", pocket.initialValue()},
+            {"value", pocket.value()},
+            {"creationDate", pocket.creationDate().toString()}
         };
 
         pocketsArray.append(pocketObject);
@@ -209,16 +203,16 @@ void User::persistRecordsData() const
 
     //Iterate over the Records list and create a json object for each record
     //Reverse iterator is used so the order of the Records remains during parsing the file
-    QList<Record>::const_reverse_iterator record;
+    QList<Content::Records::Record>::const_reverse_iterator record;
     for(record = m_records.crbegin(); record != m_records.crend(); ++record)
     {
         QJsonObject recordObject
         {
-            {"amount", record->Amount},
-            {"date", record->Date.toString()},
-            {"time", record->Time.toString()},
-            {"location", record->Location},
-            {"item", record->Item}
+            {"amount", record->value()},
+            {"date", record->date().toString()},
+            {"time", record->time().toString()},
+            {"location", record->location()},
+            {"item", record->item()}
         };
 
         recordsArray.append(recordObject);
@@ -237,13 +231,13 @@ int User::searchForNewRecordPosition(const QDate &searchedDate, const QTime &sea
     for(auto& record : m_records)
     {
         //Since the Records are stored in chronological order check whether the new Record's date is greater than the tested one
-        if(searchedDate > record.Date)
+        if(searchedDate > record.date())
         {
             break;
         }
-        else if(searchedDate == record.Date) //If the new Record is created on a day when there are already Records check the time
+        else if(searchedDate == record.date()) //If the new Record is created on a day when there are already Records check the time
         {
-            if(searchedTime >= record.Time)
+            if(searchedTime >= record.time())
             {
                 break;
             }

@@ -8,7 +8,7 @@
 
 namespace Content::History::Component
 {
-    RecordHistoryItemWidget::RecordHistoryItemWidget(const Record &record, bool isInteractive, QWidget *parent) :
+    RecordHistoryItemWidget::RecordHistoryItemWidget(const Content::Records::Record &record, bool isInteractive, QWidget *parent) :
         QWidget(parent),
         ui(new Ui::RecordHistoryItemWidget),
         m_record(record),
@@ -29,7 +29,7 @@ namespace Content::History::Component
         m_isChecked = checked;
     }
 
-    Record RecordHistoryItemWidget::record() const
+    const Content::Records::Record& RecordHistoryItemWidget::record() const
     {
         return m_record;
     }
@@ -139,14 +139,14 @@ namespace Content::History::Component
     void RecordHistoryItemWidget::initializeUi()
     {
         //Set the text of the amount QLabel
-        setLabelNegativeState(ui->m_amount_lbl, m_record.Amount);
+        setLabelNegativeState(ui->m_amount_lbl, m_record.value());
 
         //Show the creation date of the corresponding Record with the format below
-        ui->m_date_lbl->setText(m_record.Date.toString("yyyy.MM.dd."));
+        ui->m_date_lbl->setText(m_record.date().toString("yyyy.MM.dd."));
 
         //Elide the item text so it fitst the ui size
         const auto fontMetrics = ui->m_item_lbl->fontMetrics();
-        const auto item = fontMetrics.elidedText(m_record.Item, Qt::ElideRight, width() - 100);
+        const auto item = fontMetrics.elidedText(m_record.item(), Qt::ElideRight, width() - 100);
         ui->m_item_lbl->setText(item);
     }
 }
