@@ -1,13 +1,21 @@
 #include "user.h"
 #include "Core/defines.h"
 
+const QMap<QString, Pocket::PocketType> Pocket::TypeNameToPocketType
+{
+    {"Cash", Pocket::PocketType::CASH},
+    {"Card", Pocket::PocketType::CARD}
+};
+
 User::User(const QString &username, const QString &password, const QString &id, QObject *parent) :
     QObject(parent), m_username(username), m_password(password), m_id(id)
 {
     m_userFolder = APPLICATIONFOLDER() + "/" + m_id;
+    m_userPocketsFile = m_userFolder + "/pockets.json";
     m_userRecordsFile = m_userFolder + "/records.json";
 
     checkUserFiles();
+    readPocketsFile();
     readRecordsFile();
 }
 
@@ -20,8 +28,14 @@ User::~User()
     }
     else //Otherwise save the records data to the corresponding file
     {
+        persistPocketsData();
         persistRecordsData();
     }
+}
+
+void User::addNewPocket(Pocket &newPocket)
+{
+    m_pockets.emplace_back(std::move(newPocket));
 }
 
 void User::persistNewRecord(const Record& newRecord)
@@ -78,6 +92,11 @@ void User::setMarkedForDeletion(bool marked)
     m_isMarkedForDeletion = marked;
 }
 
+const std::vector<Pocket>& User::pockets()
+{
+    return m_pockets;
+}
+
 void User::deleteRecord(const Record &record)
 {
     m_records.removeOne(record);
@@ -99,6 +118,27 @@ void User::checkUserFiles() const
     QJsonArray defaultArray;
     QJsonDocument defaultDocument = QJsonDocument(defaultArray);
     checkFileExistence(m_userRecordsFile, defaultDocument);
+}
+
+void User::readPocketsFile()
+{
+    //Get the raw content of the Pockets file
+    const auto pocketsDocument = readJSONFile(m_userPocketsFile);
+    const auto pocketsRootArray = pocketsDocument.array();
+
+    //Parse the Pocket data one by one
+    for(const auto& pocketData : pocketsRootArray)
+    {
+        const auto pocketObject = pocketData.toObject();
+
+        const auto name = pocketObject.value("name").toString();
+        const auto type = Pocket::stringToPocketType(pocketObject.value("type").toString());
+        const auto initialValue = pocketObject.value("initialValue").toInt();
+        const auto value = pocketObject.value("value").toInt();
+        const auto creationDate = QDateTime::fromString(pocketObject.value("creationDate").toString());
+
+        m_pockets.emplace_back(name, type, initialValue, value, creationDate);
+    }
 }
 
 void User::readRecordsFile()
@@ -137,11 +177,38 @@ void User::updateCompleterSource(const QString &location, const QString &item)
     m_items.prepend(item);
 }
 
+void User::persistPocketsData() const
+{
+    //Create an array from the actual Pockets list
+    QJsonArray pocketsArray;
+
+    //Iterate over the Pockets list and create a json object for each pocket
+    for(const auto& pocket : m_pockets)
+    {
+        QJsonObject pocketObject
+        {
+            {"name", pocket.Name},
+            {"type", Pocket::pocketTypeToString(pocket.Type)},
+            {"initialValue", pocket.InitialValue},
+            {"value", pocket.Value},
+            {"creationDate", pocket.CreationDate.toString()}
+        };
+
+        pocketsArray.append(pocketObject);
+    }
+
+    //Save the Pockets to the Pockets file in the AppData folder
+    const auto pocketsDocument = QJsonDocument(pocketsArray);
+    writeJSONFile(m_userPocketsFile, pocketsDocument);
+}
+
 void User::persistRecordsData() const
 {
     //Create an array from the actual Records list
     QJsonArray recordsArray;
 
+    //Iterate over the Records list and create a json object for each record
+    //Reverse iterator is used so the order of the Records remains during parsing the file
     QList<Record>::const_reverse_iterator record;
     for(record = m_records.crbegin(); record != m_records.crend(); ++record)
     {

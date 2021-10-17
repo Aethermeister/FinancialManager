@@ -1,12 +1,132 @@
 #ifndef USER_H
 #define USER_H
 
+#include <QDebug>
 #include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QDate>
 #include <QTime>
 #include <QCompleter>
+
+/**
+ * Struct for the Pockets
+ * The user manages a list of this struct
+ * This struct wraps the Pocket related informations
+*/
+struct Pocket
+{
+    /**
+     * Enum holding the possible Pocket types
+    */
+    enum PocketType
+    {
+        CASH,
+        CARD,
+
+        END_OF_ENUM
+    };
+
+    /**
+     * Map of PocketTypes and their names in QString
+     * Used to convert PocketType to its QString name and vice versa
+    */
+    static const QMap<QString, Pocket::PocketType> TypeNameToPocketType;
+
+public:
+    /**
+     * Constructor to create a new Pocket
+    */
+    Pocket(const QString& name, const QString& pocketTypeString, int value) :
+        Name(name),
+        Type(stringToPocketType(pocketTypeString)),
+        InitialValue(value),
+        Value(value),
+        CreationDate(QDateTime::currentDateTime())
+    {
+        qDebug() << "Pocket Constructor";
+    }
+
+    /**
+     * Constructor to create a new Pocket for an already stored Pocket
+    */
+    Pocket(const QString& name, const PocketType& type, int initialValue, int value, const QDateTime& creationDate) :
+        Name(name),
+        Type(type),
+        InitialValue(initialValue),
+        Value(value),
+        CreationDate(creationDate)
+    {
+        qDebug() << "Pocket Constructor";
+    }
+
+    ~Pocket()
+    {
+        qDebug() << "Pocket Destructor";
+    }
+
+    Pocket(const Pocket& pocket) :
+        Name(pocket.Name),
+        Type(pocket.Type),
+        InitialValue(pocket.InitialValue),
+        Value(pocket.Value),
+        CreationDate(pocket.CreationDate)
+    {
+        qDebug() << "Pocket Copy Constructor";
+    }
+
+    Pocket(Pocket&& pocket) :
+        Name(std::move(pocket.Name)),
+        Type(pocket.Type),
+        InitialValue(pocket.InitialValue),
+        Value(pocket.Value),
+        CreationDate(std::move(pocket.CreationDate))
+    {
+        qDebug() << "Pocket Move Constructor";
+    }
+
+    bool operator==(const Pocket& pocket)
+    {
+        return Name == pocket.Name;
+    }
+
+    /**
+     * Returns the name of the parameter given Pocket type
+    */
+    static const QString pocketTypeToString(const PocketType& pocketType)
+    {
+        return TypeNameToPocketType.key(pocketType);
+    }
+
+    /**
+     * Returns the type of the parameter given Pocket type string
+    */
+    static const PocketType stringToPocketType(const QString& pocketTypeString)
+    {
+        return TypeNameToPocketType[pocketTypeString];
+    }
+
+    /**
+     * Name of the Pocket
+    */
+    QString Name;
+    /**
+     * Type of the Pocket
+    */
+    PocketType Type;
+    /**
+     * Initial value of the Pocket
+    */
+    int InitialValue;
+    /**
+     * Current value of the Pocket
+    */
+    int Value;
+    /**
+     * Date of the Pocket creation
+    */
+    QDateTime CreationDate;
+};
 
 /**
  * Struct for the Records
@@ -59,6 +179,12 @@ public:
     ~User();
 
     /**
+     * Stores the parameter given Pocket in the Pocket list
+     * This operation stores the new Pocket only in memory
+    */
+    void addNewPocket(Pocket& newPocket);
+
+    /**
      * Stores the parameter given Record in the Record list
      * This operation stores the new Record only in memory
     */
@@ -102,6 +228,11 @@ public:
     void setMarkedForDeletion(bool marked);
 
     /**
+     * Returns the list of Pockets
+    */
+    const std::vector<Pocket>& pockets();
+
+    /**
      * Removes the parameter given Record from the list of Records
     */
     void deleteRecord(const Record &record);
@@ -117,6 +248,13 @@ private:
      * and creates it if it does not exist
     */
     void checkUserFiles() const;
+
+    /**
+     * Read the User pockets file and parse the contained data
+     * Creates the list of Pockets from the parsed data
+    */
+    void readPocketsFile();
+
     /**
      * Read the User records file and parse the contained data
      * Creates the list of Records from the parsed data
@@ -127,6 +265,11 @@ private:
      * The lists are appended with the parameter given values
     */
     void updateCompleterSource(const QString& location, const QString& item);
+
+    /**
+     * Saves the actual Pockets list to the Pockets file in the User AppData folder
+    */
+    void persistPocketsData() const;
 
     /**
      * Saves the actual Records list to the Records file in the User AppData folder
@@ -162,13 +305,22 @@ private:
     bool m_isMarkedForDeletion = false;
 
     /**
-     * Path to the user specific folder in the AppData
+     * Path to the user specific folder
     */
     QString m_userFolder;
     /**
-     * Path to the user specific records file in the AppData
+     * Path to the user specific pockets file
+    */
+    QString m_userPocketsFile;
+    /**
+     * Path to the user specific records file
     */
     QString m_userRecordsFile;
+
+    /**
+     * List of the user's pockets
+    */
+    std::vector<Pocket> m_pockets;
 
     /**
      * List of the user's records

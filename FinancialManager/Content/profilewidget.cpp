@@ -60,9 +60,9 @@ namespace Content
         //Reset the error indicators
         ui->m_passwordInformation_lbl->setVisible(false);
 
-        setLineEditErrorState(ui->m_oldPassword_lineEdit, false);
-        setLineEditErrorState(ui->m_newPassword_lineEdit, false);
-        setLineEditErrorState(ui->m_verifyNewPassword_lineEdit, false);
+        setWidgetErrorState(ui->m_oldPassword_lineEdit, false);
+        setWidgetErrorState(ui->m_newPassword_lineEdit, false);
+        setWidgetErrorState(ui->m_verifyNewPassword_lineEdit, false);
 
         //Get the passwords from the ui and run several validations
         const auto oldPassword = ui->m_oldPassword_lineEdit->text();
@@ -76,7 +76,7 @@ namespace Content
         //and show error if they are not the same
         if(oldBase64Password != m_user->password())
         {
-            setLineEditErrorState(ui->m_oldPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_oldPassword_lineEdit, true);
 
             showInformation(ui->m_passwordInformation_lbl, "Incorrect old password");
 
@@ -87,7 +87,7 @@ namespace Content
         //and show error if they are the same
         if(newBase64Password == m_user->password())
         {
-            setLineEditErrorState(ui->m_newPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_newPassword_lineEdit, true);
 
             showInformation(ui->m_passwordInformation_lbl, "New password cannot be the same as the old one");
 
@@ -98,7 +98,7 @@ namespace Content
         //if it does not meet the minimum requirements
         if(newPassword.trimmed().size() < 6)
         {
-            setLineEditErrorState(ui->m_newPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_newPassword_lineEdit, true);
 
             showInformation(ui->m_passwordInformation_lbl, "Password has to contain at least 6 characters");
 
@@ -109,8 +109,8 @@ namespace Content
         //and show error it they differ
         if(newPassword != verifyNewPassword)
         {
-            setLineEditErrorState(ui->m_newPassword_lineEdit, true);
-            setLineEditErrorState(ui->m_verifyNewPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_newPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_verifyNewPassword_lineEdit, true);
 
             showInformation(ui->m_passwordInformation_lbl, "New passwords do not match");
 

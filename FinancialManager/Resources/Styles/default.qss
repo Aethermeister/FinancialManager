@@ -177,7 +177,7 @@ QCheckBox:disabled
     color: gray;
 }
 
-QLineEdit
+QLineEdit, QComboBox
 {
     color: white;
     border: none;
@@ -185,12 +185,14 @@ QLineEdit
     height: 30px;
 }
 
-QLineEdit:focus
+QLineEdit:focus,
+QComboBox:focus
 {
     border-bottom : 1px solid white;
 }
 
-QLineEdit[error="true"]
+QLineEdit[error="true"],
+QComboBox[error="true"]
 {
     border-bottom : 1px solid red;
 }

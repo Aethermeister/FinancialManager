@@ -8,7 +8,7 @@
 
 namespace Content::History::Component
 {
-    RecordHistoryItemWidget::RecordHistoryItemWidget(Record record, bool isInteractive, QWidget *parent) :
+    RecordHistoryItemWidget::RecordHistoryItemWidget(const Record &record, bool isInteractive, QWidget *parent) :
         QWidget(parent),
         ui(new Ui::RecordHistoryItemWidget),
         m_record(record),

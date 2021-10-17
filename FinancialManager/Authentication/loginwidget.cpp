@@ -76,8 +76,8 @@ namespace Authentication
         //Set the ui to the default state so there is no error indication
         ui->m_information_lbl->setVisible(false);
 
-        setLineEditErrorState(ui->m_username_lineEdit, false);
-        setLineEditErrorState(ui->m_password_lineEdit, false);
+        setWidgetErrorState(ui->m_username_lineEdit, false);
+        setWidgetErrorState(ui->m_password_lineEdit, false);
 
         const auto username = ui->m_username_lineEdit->text();
         const auto password = ui->m_password_lineEdit->text();
@@ -85,7 +85,7 @@ namespace Authentication
         //Check the given username and show error if it is not inputted
         if(username.trimmed().size() == 0)
         {
-            setLineEditErrorState(ui->m_username_lineEdit, true);
+            setWidgetErrorState(ui->m_username_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Username is empty");
 
@@ -95,7 +95,7 @@ namespace Authentication
         //Check the given password and show error if it is not inputted
         if(password.trimmed().size() == 0)
         {
-            setLineEditErrorState(ui->m_password_lineEdit, true);
+            setWidgetErrorState(ui->m_password_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Password is empty");
 
@@ -106,8 +106,8 @@ namespace Authentication
         //Check whether the given user exists
         if(!checkForExistingUsername(username, password, &id))
         {
-            setLineEditErrorState(ui->m_username_lineEdit, true);
-            setLineEditErrorState(ui->m_password_lineEdit, true);
+            setWidgetErrorState(ui->m_username_lineEdit, true);
+            setWidgetErrorState(ui->m_password_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Incorrect username and/or password");
 

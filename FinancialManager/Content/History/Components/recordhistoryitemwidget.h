@@ -20,7 +20,7 @@ namespace Content::History::Component
         Q_OBJECT
 
     public:
-        explicit RecordHistoryItemWidget(Record record, bool isInteractive, QWidget *parent = nullptr);
+        explicit RecordHistoryItemWidget(const Record& record, bool isInteractive, QWidget *parent = nullptr);
         ~RecordHistoryItemWidget();
 
         /**

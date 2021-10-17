@@ -76,6 +76,19 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="m_pockets_btn">
+        <property name="text">
+         <string>Pockets</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="type" stdset="0">
+         <string>controlButton</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="m_newRecord_btn">
         <property name="text">
          <string>New Record</string>

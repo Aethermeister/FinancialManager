@@ -64,7 +64,7 @@ namespace Content::History::Component
         }
 
         //Set the state of the corresponding QLineEdit
-        setLineEditErrorState(amount_lineEdit, !*ok);
+        setWidgetErrorState(amount_lineEdit, !*ok);
 
         return amount;
     }
@@ -83,9 +83,9 @@ namespace Content::History::Component
         {
             *ok = true;
 
-            setLineEditErrorState(year_lineEdit, !*ok);
-            setLineEditErrorState(month_lineEdit, !*ok);
-            setLineEditErrorState(day_lineEdit, !*ok);
+            setWidgetErrorState(year_lineEdit, !*ok);
+            setWidgetErrorState(month_lineEdit, !*ok);
+            setWidgetErrorState(day_lineEdit, !*ok);
 
             return QDate();
         }
@@ -100,9 +100,9 @@ namespace Content::History::Component
         //and set the ui error indication accordingly
         *ok = date.isValid();
 
-        setLineEditErrorState(year_lineEdit, !*ok);
-        setLineEditErrorState(month_lineEdit, !*ok);
-        setLineEditErrorState(day_lineEdit, !*ok);
+        setWidgetErrorState(year_lineEdit, !*ok);
+        setWidgetErrorState(month_lineEdit, !*ok);
+        setWidgetErrorState(day_lineEdit, !*ok);
 
         if(*ok)
         {
@@ -124,8 +124,8 @@ namespace Content::History::Component
         {
             *ok = true;
 
-            setLineEditErrorState(hours_lineEdit, !*ok);
-            setLineEditErrorState(minutes_lineEdit, !*ok);
+            setWidgetErrorState(hours_lineEdit, !*ok);
+            setWidgetErrorState(minutes_lineEdit, !*ok);
 
             return QTime();
         }
@@ -143,8 +143,8 @@ namespace Content::History::Component
         const auto time = QTime(hours, minutes);
         *ok = isHoursOk && isMinutesOk && time.isValid();
 
-        setLineEditErrorState(hours_lineEdit, !*ok);
-        setLineEditErrorState(minutes_lineEdit, !*ok);
+        setWidgetErrorState(hours_lineEdit, !*ok);
+        setWidgetErrorState(minutes_lineEdit, !*ok);
 
         if(*ok)
         {

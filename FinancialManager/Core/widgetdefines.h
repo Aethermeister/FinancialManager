@@ -22,11 +22,11 @@ inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayo
 inline void updateWidgetStyle(QWidget* widget);
 
 /**
- * Sets the error property for the parameter given QLineEdit
- * After the new property value is set updates the QLineEdit style
+ * Sets the error property for the parameter given QWidget
+ * After the new property value is set updates the QWidget style
  * so the ui changes are applied
 */
-inline void setLineEditErrorState(QLineEdit* lineEdit, bool error);
+inline void setWidgetErrorState(QWidget* widget, bool error);
 /**
  * Sets the isNegative property for the parameter given QLabel
  * After the new property value is set updates the QLabel style
@@ -64,13 +64,13 @@ inline void updateWidgetStyle(QWidget* widget)
     widget->style()->polish(widget);
 }
 
-inline void setLineEditErrorState(QLineEdit* lineEdit, bool error)
+inline void setWidgetErrorState(QWidget* widget, bool error)
 {
-    lineEdit->setProperty("error", error);
+    widget->setProperty("error", error);
 
-    //Update the style of the QLineEdit
+    //Update the style of the QWidget
     //so the dynamic property dependent changes are applied
-    updateWidgetStyle(lineEdit);
+    updateWidgetStyle(widget);
 }
 
 inline void setLabelNegativeState(QLabel* label, int amount)

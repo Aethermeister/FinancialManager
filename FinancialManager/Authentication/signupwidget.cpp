@@ -45,9 +45,9 @@ namespace Authentication
         //Set the ui to the default state so there is no error indication
         ui->m_information_lbl->setVisible(false);
 
-        setLineEditErrorState(ui->m_username_lineEdit, false);
-        setLineEditErrorState(ui->m_password_lineEdit, false);
-        setLineEditErrorState(ui->m_verifyPassword_lineEdit, false);
+        setWidgetErrorState(ui->m_username_lineEdit, false);
+        setWidgetErrorState(ui->m_password_lineEdit, false);
+        setWidgetErrorState(ui->m_verifyPassword_lineEdit, false);
 
         const auto username = ui->m_username_lineEdit->text();
         const auto password = ui->m_password_lineEdit->text();
@@ -56,7 +56,7 @@ namespace Authentication
         //Check the given username and show error if it is not inputted
         if(username.trimmed().size() == 0)
         {
-            setLineEditErrorState(ui->m_username_lineEdit, true);
+            setWidgetErrorState(ui->m_username_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Username cannot be empty");
 
@@ -67,7 +67,7 @@ namespace Authentication
         //if it does not meet the minimum requirement
         if(password.trimmed().size() < 6)
         {
-            setLineEditErrorState(ui->m_password_lineEdit, true);
+            setWidgetErrorState(ui->m_password_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Password has to contain at least 6 characters");
 
@@ -78,8 +78,8 @@ namespace Authentication
         //and show error it they differ
         if(password != verifiedPassword)
         {
-            setLineEditErrorState(ui->m_password_lineEdit, true);
-            setLineEditErrorState(ui->m_verifyPassword_lineEdit, true);
+            setWidgetErrorState(ui->m_password_lineEdit, true);
+            setWidgetErrorState(ui->m_verifyPassword_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Passwords do not match");
 
@@ -90,7 +90,7 @@ namespace Authentication
         //and show error if there is such user
         if(checkForExistingUsername(username))
         {
-            setLineEditErrorState(ui->m_username_lineEdit, true);
+            setWidgetErrorState(ui->m_username_lineEdit, true);
 
             showInformation(ui->m_information_lbl, "Username is already used");
 

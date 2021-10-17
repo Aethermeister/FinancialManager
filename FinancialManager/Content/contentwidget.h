@@ -49,6 +49,12 @@ namespace Content
          * Shows the OverviewWidget ui in the content area
         */
         void showOverviewWidget();
+
+        /**
+         * Shows the PocketsWidget ui in the content area
+        */
+        void showPocketsWidget();
+
         /**
          * Shows the NewRecordWidget ui in the content area
         */

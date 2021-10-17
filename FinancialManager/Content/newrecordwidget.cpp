@@ -68,19 +68,19 @@ namespace Content
         const auto amountString = ui->m_amount_lineEdit->text();
         bool amountOk = false;
         const auto amount = amountString.toInt(&amountOk);
-        setLineEditErrorState(ui->m_amount_lineEdit, !amountOk);
+        setWidgetErrorState(ui->m_amount_lineEdit, !amountOk);
 
         //Get the item value from the ui and check whether it is a NOT empty QString
         //Set error style in case of error
         const auto item = ui->m_item_lineEdit->text();
         const auto itemOk = !item.isEmpty();
-        setLineEditErrorState(ui->m_item_lineEdit, !itemOk);
+        setWidgetErrorState(ui->m_item_lineEdit, !itemOk);
 
         //Get the location value from the ui and check whether it is a NOT empty QString
         //Set error style in case of error
         const auto location = ui->m_location_lineEdit->text();
         const auto locationOk = !location.isEmpty();
-        setLineEditErrorState(ui->m_location_lineEdit, !locationOk);
+        setWidgetErrorState(ui->m_location_lineEdit, !locationOk);
 
         //Get the year value and check whether it is an integer between 1997 and 2100
         //Set error style in case of error
@@ -88,7 +88,7 @@ namespace Content
         bool yearOk = false;
         const auto year = yearString.toInt(&yearOk);
         yearOk = (yearOk && year >= 1997 && year <= 2100);
-        setLineEditErrorState(ui->m_year_lineEdit, !yearOk);
+        setWidgetErrorState(ui->m_year_lineEdit, !yearOk);
 
         //Get the month value and check whether it is an integer between 1 and 12
         //Set error style in case of error
@@ -96,7 +96,7 @@ namespace Content
         bool monthOk = false;
         const auto month = monthString.toInt(&monthOk);
         monthOk = (monthOk && month >= 01 && month <= 12);
-        setLineEditErrorState(ui->m_month_lineEdit, !monthOk);
+        setWidgetErrorState(ui->m_month_lineEdit, !monthOk);
 
         //Get the day value and check whether it is an integer between 1 and 31
         //Set error style in case of error
@@ -104,7 +104,7 @@ namespace Content
         bool dayOk = false;
         const auto day = dayString.toInt(&dayOk);
         dayOk = (dayOk && day >= 01 && day <= 31);
-        setLineEditErrorState(ui->m_day_lineEdit, !dayOk);
+        setWidgetErrorState(ui->m_day_lineEdit, !dayOk);
 
         //Get the hours value and check whether it is an integer between 0 and 23
         //Set error style in case of error
@@ -112,7 +112,7 @@ namespace Content
         bool hoursOk = false;
         const auto hours = hoursString.toInt(&hoursOk);
         hoursOk = (hoursOk && hours >= 00 && hours <= 23);
-        setLineEditErrorState(ui->m_hours_lineEdit, !hoursOk);
+        setWidgetErrorState(ui->m_hours_lineEdit, !hoursOk);
 
         //Get the minutes value and check whether it is an integer between 0 and 59
         //Set error style in case of error
@@ -120,7 +120,7 @@ namespace Content
         bool minutesOk = false;
         const auto minutes = minutesString.toInt(&minutesOk);
         minutesOk = (minutesOk && minutes >= 00 && minutes <= 59);
-        setLineEditErrorState(ui->m_minutes_lineEdit, !minutesOk);
+        setWidgetErrorState(ui->m_minutes_lineEdit, !minutesOk);
 
         //If the user given values are correct so far proceed with additional validation
         if(amountOk && itemOk && locationOk &&
@@ -131,16 +131,16 @@ namespace Content
             //Set error style in case of error
             const auto date = QDate(year, month, day);
             const auto isDateValid = date.isValid();
-            setLineEditErrorState(ui->m_year_lineEdit, !isDateValid);
-            setLineEditErrorState(ui->m_month_lineEdit, !isDateValid);
-            setLineEditErrorState(ui->m_day_lineEdit, !isDateValid);
+            setWidgetErrorState(ui->m_year_lineEdit, !isDateValid);
+            setWidgetErrorState(ui->m_month_lineEdit, !isDateValid);
+            setWidgetErrorState(ui->m_day_lineEdit, !isDateValid);
 
             //Check whether the given time value is valid
             //Set error style in case of error
             const auto time = QTime(hours, minutes);
             const auto isTimeValid = time.isValid();
-            setLineEditErrorState(ui->m_hours_lineEdit, !isTimeValid);
-            setLineEditErrorState(ui->m_minutes_lineEdit, !isTimeValid);
+            setWidgetErrorState(ui->m_hours_lineEdit, !isTimeValid);
+            setWidgetErrorState(ui->m_minutes_lineEdit, !isTimeValid);
 
             //If the date and time values are correct create a RevertRecordWidget
             //which will schedule the Record persistence

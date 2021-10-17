@@ -5,5 +5,7 @@
         <file>Images/profile.png</file>
         <file>Images/filter.png</file>
         <file>Images/settings.png</file>
+        <file>Images/card.png</file>
+        <file>Images/cash.png</file>
     </qresource>
 </RCC>
