@@ -26,8 +26,8 @@ namespace Content::History::Component
         //Connect every QLineEdits' editingFinished signal to the slot_validateFilter slot
         //So every filter change will run the filter value validation and on success emit the sig_filterHistory signal
 
-        connect(ui->m_fromAmount_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
-        connect(ui->m_toAmount_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
+        connect(ui->m_fromValue_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
+        connect(ui->m_toValue_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
 
         connect(ui->m_item_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
         connect(ui->m_location_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
@@ -47,26 +47,26 @@ namespace Content::History::Component
         connect(ui->m_toMinutes_lineEdit, &QLineEdit::editingFinished, this, &HistoryFilterWidget::slot_validateFilter);
     }
 
-    QString HistoryFilterWidget::validateAmountFilter(QLineEdit *amount_lineEdit, bool *ok) const
+    QString HistoryFilterWidget::validateValueFilter(QLineEdit *value_lineEdit, bool *ok) const
     {
         //Set the ok to true so when there is no actual filter value it is indicated normally but is ignored afterwards
         *ok = true;
-        auto amount = amount_lineEdit->text();
+        auto value = value_lineEdit->text();
         //Check whether there is an available filter value
-        if(!amount.isEmpty())
+        if(!value.isEmpty())
         {
             //Check whether the filter value is an integer
-            amount.toInt(ok);
+            value.toInt(ok);
             if(!*ok)
             {
-                amount = QString();
+                value = QString();
             }
         }
 
         //Set the state of the corresponding QLineEdit
-        setWidgetErrorState(amount_lineEdit, !*ok);
+        setWidgetErrorState(value_lineEdit, !*ok);
 
-        return amount;
+        return value;
     }
 
     QDate HistoryFilterWidget::validateDateFilter(QLineEdit *year_lineEdit, QLineEdit *month_lineEdit, QLineEdit *day_lineEdit, bool *ok) const
@@ -155,11 +155,11 @@ namespace Content::History::Component
 
     void HistoryFilterWidget::slot_validateFilter()
     {
-        //Get the Amount filter values and the validation flags
-        bool isFromAmountOk = true;
-        const auto fromAmount = validateAmountFilter(ui->m_fromAmount_lineEdit, &isFromAmountOk);
-        bool isToAmountOk = true;
-        const auto toAmount = validateAmountFilter(ui->m_toAmount_lineEdit, &isToAmountOk);
+        //Get the Value filter values and the validation flags
+        bool isFromValueOk = true;
+        const auto fromValue = validateValueFilter(ui->m_fromValue_lineEdit, &isFromValueOk);
+        bool isToValueOk = true;
+        const auto toValue = validateValueFilter(ui->m_toValue_lineEdit, &isToValueOk);
 
         //The item and location filter values do not need any complex validation
         //These values are used in raw QString format
@@ -180,10 +180,10 @@ namespace Content::History::Component
 
         //If the validation flags are all true (validation successful)
         //Create a FilterData struct value and send it via signal to the RecordsHistoryWidget ui class
-        if(isToAmountOk && isToDateOk && isToTimeOk &&
-                isFromAmountOk && isFromDateOk && isFromTimeOk)
+        if(isToValueOk && isToDateOk && isToTimeOk &&
+                isFromValueOk && isFromDateOk && isFromTimeOk)
         {
-            emit sig_filterHistory(FilterData(qMakePair(fromAmount, toAmount), qMakePair(fromDate, toDate),
+            emit sig_filterHistory(FilterData(qMakePair(fromValue, toValue), qMakePair(fromDate, toDate),
                                               qMakePair(fromTime, toTime), std::move(item), std::move(location)));
         }
 

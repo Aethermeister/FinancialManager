@@ -138,8 +138,8 @@ namespace Content::History::Component
 
     void RecordHistoryItemWidget::initializeUi()
     {
-        //Set the text of the amount QLabel
-        setLabelNegativeState(ui->m_amount_lbl, m_record.value());
+        //Set the text of the value QLabel
+        setLabelNegativeState(ui->m_value_lbl, m_record.value());
 
         //Show the creation date of the corresponding Record with the format below
         ui->m_date_lbl->setText(m_record.date().toString("yyyy.MM.dd."));

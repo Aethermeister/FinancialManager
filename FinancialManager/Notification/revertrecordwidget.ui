@@ -27,7 +27,7 @@
     <number>15</number>
    </property>
    <item row="1" column="0" colspan="2">
-    <widget class="QLabel" name="m_amount_lbl">
+    <widget class="QLabel" name="m_value_lbl">
      <property name="font">
       <font>
        <pointsize>11</pointsize>

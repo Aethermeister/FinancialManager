@@ -63,12 +63,12 @@ namespace Content::Records
 
     void NewRecordWidget::slot_submit()
     {
-        //Get the amount value from the ui and check whether it is a valid integer
+        //Get the value from the ui and check whether it is a valid integer
         //Set error style in case of error
-        const auto amountString = ui->m_amount_lineEdit->text();
-        bool amountOk = false;
-        const auto amount = amountString.toInt(&amountOk);
-        setWidgetErrorState(ui->m_amount_lineEdit, !amountOk);
+        const auto valueString = ui->m_value_lineEdit->text();
+        bool valueOk = false;
+        const auto value = valueString.toInt(&valueOk);
+        setWidgetErrorState(ui->m_value_lineEdit, !valueOk);
 
         //Get the item value from the ui and check whether it is a NOT empty QString
         //Set error style in case of error
@@ -123,7 +123,7 @@ namespace Content::Records
         setWidgetErrorState(ui->m_minutes_lineEdit, !minutesOk);
 
         //If the user given values are correct so far proceed with additional validation
-        if(amountOk && itemOk && locationOk &&
+        if(valueOk && itemOk && locationOk &&
                 yearOk && monthOk && dayOk &&
                 hoursOk && minutesOk)
         {
@@ -147,7 +147,7 @@ namespace Content::Records
             if(isDateValid && isTimeValid)
             {
                 Notification::RevertRecordWidget* revertRecordWidget =
-                        new Notification::RevertRecordWidget({amount, date, time, location, item}, m_user, parentWidget()->parentWidget());
+                        new Notification::RevertRecordWidget({value, date, time, location, item}, m_user, parentWidget()->parentWidget());
 
                 revertRecordWidget->show();
 

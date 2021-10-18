@@ -41,7 +41,7 @@ namespace Content::History
     bool RecordsHistoryWidget::filterRecord(const Content::Records::Record& record, const Component::FilterData& filterData)
     {
         //Call the specific filtering methods and store their results locally
-        const auto isAmountOk = filterAmount(record.value(), filterData.AmountFilter);
+        const auto isValueOk = filterValue(record.value(), filterData.ValueFilter);
         const auto isDateOk = filterDate(record.date(), filterData.DateFilter);
         const auto isTimeOk = isDateOk ? filterTime(record.time(), filterData.TimeFilter) : false;
         const auto isItemOk = record.item().contains(filterData.ItemFilter, Qt::CaseInsensitive);
@@ -49,35 +49,35 @@ namespace Content::History
 
         //Return the summarized filter result
         //True: The corresponding Record item is visible
-        return (isAmountOk && isDateOk && isTimeOk && isItemOk && isLocationOk);
+        return (isValueOk && isDateOk && isTimeOk && isItemOk && isLocationOk);
     }
 
-    bool RecordsHistoryWidget::filterAmount(int amount, QPair<QString, QString> amountFilter)
+    bool RecordsHistoryWidget::filterValue(int value, QPair<QString, QString> valueFilter)
     {
-        //Check the min/from amount filter value
+        //Check the min/from value filter value
         //Check whether the filter value is an empty QString
         //Empty QString means that the filter was not set and should be ignored
-        bool isFromAmountOk = true;
-        if(!amountFilter.first.isEmpty())
+        bool isFromValueOk = true;
+        if(!valueFilter.first.isEmpty())
         {
-            //Test the Record amount value agains the min/from filter
-            const auto fromAmount = amountFilter.first.toInt();
-            isFromAmountOk = amount >= fromAmount;
+            //Test the Record value agains the min/from filter
+            const auto fromValue = valueFilter.first.toInt();
+            isFromValueOk = value >= fromValue;
         }
 
-        //Check the max/to amount filter value
+        //Check the max/to value filter value
         //Check whether the filter value is an empty QString
         //Empty QString means that the filter was not set and should be ignored
-        bool isToAmountOk = true;
-        if(!amountFilter.second.isEmpty())
+        bool isToValueOk = true;
+        if(!valueFilter.second.isEmpty())
         {
-            //Test the Record amount value agains the max/to filter
-            const auto toAmount = amountFilter.second.toInt();
-            isToAmountOk = amount <= toAmount;
+            //Test the Record value agains the max/to filter
+            const auto toValue = valueFilter.second.toInt();
+            isToValueOk = value <= toValue;
         }
 
-        //Return the summarized amount filter result
-        return (isFromAmountOk && isToAmountOk);
+        //Return the summarized value filter result
+        return (isFromValueOk && isToValueOk);
     }
 
     bool RecordsHistoryWidget::filterDate(QDate date, QPair<QDate, QDate> dateFilter)

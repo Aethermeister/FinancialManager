@@ -32,7 +32,7 @@ inline void setWidgetErrorState(QWidget* widget, bool error);
  * After the new property value is set updates the QLabel style
  * so the ui changes are applied
 */
-inline void setLabelNegativeState(QLabel* label, int amount);
+inline void setLabelNegativeState(QLabel* label, int value);
 /**
  * Sets the parameter given property
  * and updates the given QWidget
@@ -73,20 +73,20 @@ inline void setWidgetErrorState(QWidget* widget, bool error)
     updateWidgetStyle(widget);
 }
 
-inline void setLabelNegativeState(QLabel* label, int amount)
+inline void setLabelNegativeState(QLabel* label, int value)
 {
-    auto amountString = QString::number(amount);
+    auto valueString = QString::number(value);
 
-    //Check whether the amount value is negative or not
+    //Check whether the value is negative or not
     //and change the style accordingly
-    const bool isAmountNegative = amount < 0;
-    if(!isAmountNegative)
+    const bool isValueNegative = value < 0;
+    if(!isValueNegative)
     {
-        amountString = "+" + amountString;
+        valueString = "+" + valueString;
     }
-    label->setText(amountString);
+    label->setText(valueString);
 
-    label->setProperty("isNegative", isAmountNegative);
+    label->setProperty("isNegative", isValueNegative);
 
     //Update the style of the QLabel
     //so the dynamic property dependent changes are applied

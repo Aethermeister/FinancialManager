@@ -20,20 +20,20 @@ namespace Content::History::Component
     struct FilterData
     {
     public:
-        FilterData(QPair<QString, QString> amountFilter, QPair<QDate, QDate> dateFilter, QPair<QTime, QTime> timeFilter,
+        FilterData(QPair<QString, QString> valueFilter, QPair<QDate, QDate> dateFilter, QPair<QTime, QTime> timeFilter,
                    const QString &itemFilter, const QString &locationFilter) :
-            AmountFilter(amountFilter), DateFilter(dateFilter), TimeFilter(timeFilter),
+            ValueFilter(valueFilter), DateFilter(dateFilter), TimeFilter(timeFilter),
             ItemFilter(itemFilter), LocationFilter(locationFilter)
         {
 
         }
 
         /**
-         * This QPair holds the min and max (QString) Amount values in between the Records should be listed
-         * Note that QString is used for the amount so it can be easily determined whether there is an inputed value
-         * Given Record Amount value is tested against both first and second QPair values
+         * This QPair holds the min and max (QString) values in between the Records should be listed
+         * Note that QString is used for the value so it can be easily determined whether there is an inputed value
+         * Given Record value is tested against both first and second QPair values
         */
-        QPair<QString, QString> AmountFilter;
+        QPair<QString, QString> ValueFilter;
         /**
          * This QPair holds the min and max (QDate) Date values in between the Records should be listed
          * Given record Date value is tested against bothe first and second QPair values
@@ -78,10 +78,10 @@ namespace Content::History::Component
         void initializeConnections() const;
 
         /**
-         * Validates the Amount filter value of the parameter given QLineEdit
+         * Validates the value filter value of the parameter given QLineEdit
          * and sets the parameter given bool pointer according to the validation result
         */
-        QString validateAmountFilter(QLineEdit *amount_lineEdit, bool *ok) const;
+        QString validateValueFilter(QLineEdit *value_lineEdit, bool *ok) const;
         /**
          * Validates the Date filter value of the parameter given QLineEdit
          * and sets the parameter given bool pointer according to the validation result

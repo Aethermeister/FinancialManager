@@ -30,8 +30,8 @@ namespace Notification
         //Initialize the base ui
         NotificationBase::initializeUi();
 
-        //Set the text of the amount QLabel
-        setLabelNegativeState(ui->m_amount_lbl, m_record.value());
+        //Set the text of the value QLabel
+        setLabelNegativeState(ui->m_value_lbl, m_record.value());
 
         connect(m_timer, &QTimer::timeout, [=]
         {

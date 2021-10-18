@@ -257,7 +257,7 @@
            <number>15</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="m_amount_lineEdit">
+           <widget class="QLineEdit" name="m_value_lineEdit">
             <property name="text">
              <string/>
             </property>
@@ -265,7 +265,7 @@
              <set>Qt::AlignCenter</set>
             </property>
             <property name="placeholderText">
-             <string>Amount</string>
+             <string>Value</string>
             </property>
            </widget>
           </item>
@@ -637,7 +637,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>m_amount_lineEdit</tabstop>
+  <tabstop>m_value_lineEdit</tabstop>
   <tabstop>m_item_lineEdit</tabstop>
   <tabstop>m_location_lineEdit</tabstop>
   <tabstop>m_year_lineEdit</tabstop>

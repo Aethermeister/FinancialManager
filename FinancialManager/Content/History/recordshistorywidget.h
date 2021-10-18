@@ -42,9 +42,9 @@ namespace Content::History
         */
         bool filterRecord(const Content::Records::Record& record, const Component::FilterData& filterData);
         /**
-         * Tests the parameter given amount value against the parameter given amount filter
+         * Tests the parameter given value against the parameter given value filter
         */
-        bool filterAmount(int amount, QPair<QString, QString> amountFilter);
+        bool filterValue(int value, QPair<QString, QString> valueFilter);
         /**
          * Tests the parameter given date value against the parameter given date filter
         */

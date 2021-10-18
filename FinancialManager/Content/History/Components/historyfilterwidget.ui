@@ -64,7 +64,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="m_toAmount_lineEdit">
+       <widget class="QLineEdit" name="m_toValue_lineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -96,7 +96,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="m_fromAmount_lineEdit">
+       <widget class="QLineEdit" name="m_fromValue_lineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -931,8 +931,8 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <tabstops>
-  <tabstop>m_fromAmount_lineEdit</tabstop>
-  <tabstop>m_toAmount_lineEdit</tabstop>
+  <tabstop>m_fromValue_lineEdit</tabstop>
+  <tabstop>m_toValue_lineEdit</tabstop>
   <tabstop>m_item_lineEdit</tabstop>
   <tabstop>m_location_lineEdit</tabstop>
   <tabstop>m_fromYear_lineEdit</tabstop>

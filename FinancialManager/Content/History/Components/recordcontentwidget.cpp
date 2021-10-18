@@ -21,7 +21,7 @@ namespace Content::History::Component
     void RecordContentWidget::initializeUi(const Content::Records::Record &selectedRecord)
     {
         //Set the ui so the details of the parameter given Record are listed
-        setLabelNegativeState(ui->m_amount_lbl, selectedRecord.value());
+        setLabelNegativeState(ui->m_value_lbl, selectedRecord.value());
         ui->m_item_lbl->setText(selectedRecord.item());
         ui->m_location_lbl->setText(selectedRecord.location());
         ui->m_date_lbl->setText(selectedRecord.date().toString("yyyy. MMMM dd. (dddd)"));

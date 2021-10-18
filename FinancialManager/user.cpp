@@ -146,7 +146,7 @@ void User::readRecordsFile()
     {
         const auto recordObject = recordData.toObject();
 
-        const auto amount = recordObject.value("amount").toInt();
+        const auto value = recordObject.value("value").toInt();
         const auto date = QDate::fromString(recordObject.value("date").toString());
         const auto time = QTime::fromString(recordObject.value("time").toString());
         const auto location = recordObject.value("location").toString();
@@ -156,7 +156,7 @@ void User::readRecordsFile()
         updateCompleterSource(location, item);
 
         //Put the Record to the beginning of the list so the latest Record will be the first element
-        m_records.prepend({amount, date, time, location, item});
+        m_records.prepend({value, date, time, location, item});
     }
 }
 
@@ -208,7 +208,7 @@ void User::persistRecordsData() const
     {
         QJsonObject recordObject
         {
-            {"amount", record->value()},
+            {"value", record->value()},
             {"date", record->date().toString()},
             {"time", record->time().toString()},
             {"location", record->location()},

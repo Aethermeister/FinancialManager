@@ -17,7 +17,7 @@ namespace Content::Pockets
     Pocket::Pocket(const QString &name, const PocketType &type, int initialValue, int value, const QDateTime &creationDate) :
         m_name(name),
         m_type(type),
-        m_initialValue(value),
+        m_initialValue(initialValue),
         m_value(value),
         m_creationDate(creationDate)
     {
