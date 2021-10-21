@@ -28,6 +28,7 @@ namespace Content::Pockets
         ui->m_pocketType_comboBox->setEditable(true);
         ui->m_pocketType_comboBox->lineEdit()->setReadOnly(true);
         ui->m_pocketType_comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
+        ui->m_pocketType_comboBox->lineEdit()->setPlaceholderText("Select Pocket Type");
 
         //Populate the type combobox with the Pocket types
         QStringList pocketTypes;

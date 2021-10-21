@@ -21,27 +21,6 @@ namespace Content::Pockets
         m_value(value),
         m_creationDate(creationDate)
     {
-        qDebug() << "Pocket Constructor";
-    }
-
-    Pocket::Pocket(const Pocket &pocket) :
-        m_name(pocket.m_name),
-        m_type(pocket.m_type),
-        m_initialValue(pocket.m_initialValue),
-        m_value(pocket.m_value),
-        m_creationDate(pocket.m_creationDate)
-    {
-        qDebug() << "Pocket Copy Constructor";
-    }
-
-    Pocket::Pocket(Pocket &&pocket) :
-        m_name(std::move(pocket.m_name)),
-        m_type(pocket.m_type),
-        m_initialValue(pocket.m_initialValue),
-        m_value(pocket.m_value),
-        m_creationDate(std::move(pocket.m_creationDate))
-    {
-        qDebug() << "Pocket Move Constructor";
     }
 
     bool Pocket::operator==(const Pocket &pocket)
@@ -85,8 +64,23 @@ namespace Content::Pockets
         return m_value;
     }
 
+    void Pocket::setValue(int newValue)
+    {
+        m_value = newValue;
+    }
+
     const QDateTime &Pocket::creationDate() const
     {
         return m_creationDate;
+    }
+
+    int Pocket::recordCount() const
+    {
+        return m_recordCount;
+    }
+
+    void Pocket::setRecordCount(int newRecordCount)
+    {
+        m_recordCount = newRecordCount;
     }
 }

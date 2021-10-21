@@ -29,8 +29,8 @@ namespace Content::Pockets
        Pocket(const QString& name, const QString& pocketTypeString, int value);
        Pocket(const QString& name, const PocketType& type, int initialValue, int value, const QDateTime& creationDate);
 
-       Pocket(const Pocket& pocket);
-       Pocket(Pocket&& pocket);
+       Pocket(const Pocket& pocket) = default;
+       Pocket(Pocket&& pocket) = default;
 
        bool operator==(const Pocket& pocket);
 
@@ -38,21 +38,48 @@ namespace Content::Pockets
         * Returns the name of the parameter given Pocket type
        */
        static const QString pocketTypeToString(const PocketType& pocketType);
-
        /**
         * Returns the type of the parameter given Pocket type string
        */
        static const PocketType stringToPocketType(const QString& pocketTypeString);
 
+       /**
+        * Returns the name of the Pocket
+        */
        const QString &name() const;
 
+       /**
+        * Returns the type of the Pocket
+        */
        PocketType type() const;
 
+       /**
+        * Returns the initial value of the Pocket
+        */
        int initialValue() const;
 
+       /**
+        * Returns the overall value of the Pocket
+        */
        int value() const;
+       /**
+        * Set the overall value of the Pocket
+        */
+       void setValue(int newValue);
 
+       /**
+        * Returns the creation date of the Pocket
+        */
        const QDateTime &creationDate() const;
+
+       /**
+        * Returns how many Record is linked to this Pocket
+        */
+       int recordCount() const;
+       /**
+        * Set how many Records is linked to this Pocket
+        */
+       void setRecordCount(int newRecordCount);
 
     private:
         /**
@@ -81,6 +108,11 @@ namespace Content::Pockets
          * Date of the Pocket creation
         */
         QDateTime m_creationDate;
+
+        /**
+         * Actual count of records linked to this Pocket
+        */
+        int m_recordCount = 0;
     };
 }
 

@@ -34,6 +34,16 @@ void User::addNewPocket(Content::Pockets::Pocket &newPocket)
 
 void User::persistNewRecord(const Content::Records::Record& newRecord)
 {
+    //Find the Record's Pocket
+    auto foundPocket = std::find_if(m_pockets.begin(), m_pockets.end(), [=](const Content::Pockets::Pocket& pocket)
+    {
+        return pocket.name() == newRecord.pocketName();
+    });
+
+    //Adjust the Pocket values
+    foundPocket->setRecordCount(foundPocket->recordCount() + 1);
+    foundPocket->setValue(foundPocket->value() + newRecord.value());
+
     //Update the completer source lists
     updateCompleterSource(newRecord.location(), newRecord.item());
 
@@ -93,6 +103,16 @@ const std::vector<Content::Pockets::Pocket>& User::pockets()
 
 void User::deleteRecord(const Content::Records::Record &record)
 {
+    //Find the Record's Pocket
+    auto foundPocket = std::find_if(m_pockets.begin(), m_pockets.end(), [=](const Content::Pockets::Pocket& pocket)
+    {
+        return pocket.name() == record.pocketName();
+    });
+
+    //Adjust the Pocket values
+    foundPocket->setRecordCount(foundPocket->recordCount() - 1);
+    foundPocket->setValue(foundPocket->value() - record.value());
+
     m_records.removeOne(record);
     emit sig_recordDeleted(record);
 }
@@ -151,12 +171,13 @@ void User::readRecordsFile()
         const auto time = QTime::fromString(recordObject.value("time").toString());
         const auto location = recordObject.value("location").toString();
         const auto item = recordObject.value("item").toString();
+        const auto pocket = recordObject.value("pocket").toString();
 
         //Update the completer source lists
         updateCompleterSource(location, item);
 
         //Put the Record to the beginning of the list so the latest Record will be the first element
-        m_records.prepend({value, date, time, location, item});
+        m_records.prepend({value, date, time, location, item, pocket});
     }
 }
 
@@ -185,7 +206,8 @@ void User::persistPocketsData() const
             {"type", Content::Pockets::Pocket::pocketTypeToString(pocket.type())},
             {"initialValue", pocket.initialValue()},
             {"value", pocket.value()},
-            {"creationDate", pocket.creationDate().toString()}
+            {"creationDate", pocket.creationDate().toString()},
+            {"recordCount", pocket.recordCount()}
         };
 
         pocketsArray.append(pocketObject);
@@ -212,7 +234,8 @@ void User::persistRecordsData() const
             {"date", record->date().toString()},
             {"time", record->time().toString()},
             {"location", record->location()},
-            {"item", record->item()}
+            {"item", record->item()},
+            {"pocket", record->pocketName()}
         };
 
         recordsArray.append(recordObject);

@@ -249,6 +249,25 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>The Pocket this Record is linked to</string>
+            </property>
+            <property name="text">
+             <string>?</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="0" column="0">
@@ -294,6 +313,9 @@
              <string>Location</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="m_pockets_comboBox"/>
           </item>
          </layout>
         </item>

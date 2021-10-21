@@ -39,6 +39,22 @@ namespace Content::Records
         //using the User extracted location and item data source
         ui->m_location_lineEdit->setCompleter(m_user->locationsCompleter());
         ui->m_item_lineEdit->setCompleter(m_user->itemsCompleter());
+
+        //Setup the pockets combobox
+        ui->m_pockets_comboBox->setEditable(true);
+        ui->m_pockets_comboBox->lineEdit()->setReadOnly(true);
+        ui->m_pockets_comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
+        ui->m_pockets_comboBox->lineEdit()->setPlaceholderText("Select Pocket");
+
+        //Populate the pockets combobox
+        QStringList pockets;
+        for(const auto& pocket : m_user->pockets())
+        {
+            pockets << pocket.name();
+        }
+
+        ui->m_pockets_comboBox->addItems(pockets);
+        ui->m_pockets_comboBox->setCurrentIndex(-1);
     }
 
     void NewRecordWidget::initializeDateTimeSettings()
@@ -82,6 +98,12 @@ namespace Content::Records
         const auto locationOk = !location.isEmpty();
         setWidgetErrorState(ui->m_location_lineEdit, !locationOk);
 
+        //Get the pocket name value from the ui and check whether it is a NOT empty QString
+        //Set error style in case of error
+        const auto pocketName = ui->m_pockets_comboBox->currentText();
+        const auto pocketNameOk = !pocketName.isEmpty();
+        setWidgetErrorState(ui->m_pockets_comboBox, !pocketNameOk);
+
         //Get the year value and check whether it is an integer between 1997 and 2100
         //Set error style in case of error
         const auto yearString = ui->m_year_lineEdit->text();
@@ -123,9 +145,8 @@ namespace Content::Records
         setWidgetErrorState(ui->m_minutes_lineEdit, !minutesOk);
 
         //If the user given values are correct so far proceed with additional validation
-        if(valueOk && itemOk && locationOk &&
-                yearOk && monthOk && dayOk &&
-                hoursOk && minutesOk)
+        if(valueOk && itemOk && locationOk && pocketNameOk &&
+                yearOk && monthOk && dayOk && hoursOk && minutesOk)
         {
             //Check whether the given date value is valid
             //Set error style in case of error
@@ -147,7 +168,7 @@ namespace Content::Records
             if(isDateValid && isTimeValid)
             {
                 Notification::RevertRecordWidget* revertRecordWidget =
-                        new Notification::RevertRecordWidget({value, date, time, location, item}, m_user, parentWidget()->parentWidget());
+                        new Notification::RevertRecordWidget({value, date, time, location, item, pocketName}, m_user, parentWidget()->parentWidget());
 
                 revertRecordWidget->show();
 

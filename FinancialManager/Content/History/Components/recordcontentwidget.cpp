@@ -24,6 +24,8 @@ namespace Content::History::Component
         setLabelNegativeState(ui->m_value_lbl, selectedRecord.value());
         ui->m_item_lbl->setText(selectedRecord.item());
         ui->m_location_lbl->setText(selectedRecord.location());
+        ui->m_pocket_lbl->setText(selectedRecord.pocketName());
+
         ui->m_date_lbl->setText(selectedRecord.date().toString("yyyy. MMMM dd. (dddd)"));
         ui->m_time_lbl->setText(selectedRecord.time().toString("HH:mm"));
     }
