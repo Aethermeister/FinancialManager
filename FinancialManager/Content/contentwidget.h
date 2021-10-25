@@ -23,6 +23,11 @@ namespace Content
         explicit ContentWidget(std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~ContentWidget();
 
+        /**
+         * Returns the instance of the only ContentWidget
+        */
+        static ContentWidget* instance();
+
     public slots:
         /**
          * Q_SLOT of the showProfileWidget method to make it public
@@ -69,6 +74,11 @@ namespace Content
          * Shows the ProfileWidget ui in the content area
         */
         void showProfileWidget();
+
+        /**
+         * Instance of the only ContentWidget
+        */
+        static ContentWidget* s_instance;
 
         /**
          * The current user

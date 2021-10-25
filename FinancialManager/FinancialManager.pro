@@ -20,6 +20,8 @@ SOURCES += \
     Content/History/Components/recordcontentwidget.cpp \
     Content/History/Components/recordhistoryitemwidget.cpp \
     Content/History/recordshistorywidget.cpp \
+    Content/Pockets/Components/pocketdeletiondialog.cpp \
+    Content/Pockets/Components/pocketlistingwidget.cpp \
     Content/Pockets/Components/pocketlistitemwidget.cpp \
     Content/Pockets/pocket.cpp \
     Content/Pockets/pocketswidget.cpp \
@@ -49,6 +51,8 @@ HEADERS += \
     Content/History/Components/recordcontentwidget.h \
     Content/History/Components/recordhistoryitemwidget.h \
     Content/History/recordshistorywidget.h \
+    Content/Pockets/Components/pocketdeletiondialog.h \
+    Content/Pockets/Components/pocketlistingwidget.h \
     Content/Pockets/Components/pocketlistitemwidget.h \
     Content/Pockets/pocket.h \
     Content/Pockets/pocketswidget.h \
@@ -80,6 +84,8 @@ FORMS += \
     Content/History/Components/recordcontentwidget.ui \
     Content/History/Components/recordhistoryitemwidget.ui \
     Content/History/recordshistorywidget.ui \
+    Content/Pockets/Components/pocketdeletiondialog.ui \
+    Content/Pockets/Components/pocketlistingwidget.ui \
     Content/Pockets/Components/pocketlistitemwidget.ui \
     Content/Pockets/pocketswidget.ui \
     Content/Records/newrecordwidget.ui \

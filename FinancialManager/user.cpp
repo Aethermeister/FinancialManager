@@ -29,21 +29,29 @@ User::~User()
 
 void User::addNewPocket(Content::Pockets::Pocket &newPocket)
 {
-    m_pockets.emplace_back(std::move(newPocket));
+    m_pockets.push_back(std::move(newPocket));
+}
+
+void User::deletePocket(const Content::Pockets::Pocket &deletedPocket)
+{
+    //Removing records is only possible if the container vector is not empty
+    if(!m_records.empty())
+    {
+        //Remove the records which are linked to the parameter given Pocket
+        m_records.erase(
+            std::remove_if(m_records.begin(), m_records.end(),[=](const Content::Records::Record& record)
+            {
+                return record.pocketName() == deletedPocket.name();
+            })
+        );
+    }
+
+    //Remove the pocket itself
+    m_pockets.erase(std::find(m_pockets.begin(), m_pockets.end(), deletedPocket));
 }
 
 void User::persistNewRecord(const Content::Records::Record& newRecord)
 {
-    //Find the Record's Pocket
-    auto foundPocket = std::find_if(m_pockets.begin(), m_pockets.end(), [=](const Content::Pockets::Pocket& pocket)
-    {
-        return pocket.name() == newRecord.pocketName();
-    });
-
-    //Adjust the Pocket values
-    foundPocket->setRecordCount(foundPocket->recordCount() + 1);
-    foundPocket->setValue(foundPocket->value() + newRecord.value());
-
     //Update the completer source lists
     updateCompleterSource(newRecord.location(), newRecord.item());
 
@@ -51,6 +59,22 @@ void User::persistNewRecord(const Content::Records::Record& newRecord)
     //and store the new Record in memory at the correct position
     const auto indexOfNewRecord = searchForNewRecordPosition(newRecord.date(), newRecord.time());
     m_records.insert(indexOfNewRecord, newRecord);
+
+    //Find the Record's Pocket
+    auto foundPocket = std::find_if(m_pockets.begin(), m_pockets.end(), [=](const Content::Pockets::Pocket& pocket)
+    {
+        return pocket.name() == newRecord.pocketName();
+    });
+
+    //Adjust the Pocket values
+    foundPocket->setRecordsCount(foundPocket->recordsCount() + 1);
+    foundPocket->setValue(foundPocket->value() + newRecord.value());
+    //If the index is 0 than this new Record is the latest
+    //Update the Pocket last usage date with the Record's date
+    if(indexOfNewRecord == 0)
+    {
+        foundPocket->setLastUsedDate(newRecord.date());
+    }
 
     emit sig_recordAdded(indexOfNewRecord, newRecord);
 }
@@ -110,7 +134,7 @@ void User::deleteRecord(const Content::Records::Record &record)
     });
 
     //Adjust the Pocket values
-    foundPocket->setRecordCount(foundPocket->recordCount() - 1);
+    foundPocket->setRecordsCount(foundPocket->recordsCount() - 1);
     foundPocket->setValue(foundPocket->value() - record.value());
 
     m_records.removeOne(record);
@@ -150,8 +174,10 @@ void User::readPocketsFile()
         const auto initialValue = pocketObject.value("initialValue").toInt();
         const auto value = pocketObject.value("value").toInt();
         const auto creationDate = QDateTime::fromString(pocketObject.value("creationDate").toString());
+        const auto lastUsedDate = QDate::fromString(pocketObject.value("lastUsedDate").toString());
+        const auto recordsCount = pocketObject.value("recordsCount").toInt();
 
-        m_pockets.emplace_back(name, type, initialValue, value, creationDate);
+        m_pockets.emplace_back(name, type, initialValue, value, creationDate, lastUsedDate, recordsCount);
     }
 }
 
@@ -207,7 +233,8 @@ void User::persistPocketsData() const
             {"initialValue", pocket.initialValue()},
             {"value", pocket.value()},
             {"creationDate", pocket.creationDate().toString()},
-            {"recordCount", pocket.recordCount()}
+            {"lastUsedDate", pocket.lastUsedDate().toString()},
+            {"recordsCount", pocket.recordsCount()}
         };
 
         pocketsArray.append(pocketObject);

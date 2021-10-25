@@ -43,10 +43,6 @@ namespace Content::Pockets
          * The current user
         */
         std::shared_ptr<User> m_user;
-        /**
-         * Spacer item which is used to align the listed Pocket list items correctly
-        */
-        QSpacerItem* m_listSpacer = nullptr;
 
     private slots:
         /**

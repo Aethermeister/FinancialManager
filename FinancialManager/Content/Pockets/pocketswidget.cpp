@@ -50,34 +50,7 @@ namespace Content::Pockets
 
     void PocketsWidget::updatePocketList()
     {
-        //Get the already existing and listed PocketListItemWidgets
-        //and delete them
-        const auto& pocketItems = ui->m_pocketListing_widget->findChildren<Component::PocketListItemWidget*>();
-        for(const auto& pocketItem : pocketItems)
-        {
-            ui->m_pocketListing_layout->removeWidget(pocketItem);
-            pocketItem->deleteLater();
-        }
-
-        //If the PocketListItemWidgets were previously listed than the spacer item is NOT nullptr
-        //Delete the spacer item so the list area is totally empty
-        if(m_listSpacer)
-        {
-            ui->m_pocketListing_layout->removeItem(m_listSpacer);
-            delete m_listSpacer;
-        }
-
-        //Get the pockets and create a PocketListItemWidget for each
-        const auto& pockets = m_user->pockets();
-        for(const auto& pocket : pockets)
-        {
-            Component::PocketListItemWidget* pocketListItem = new Component::PocketListItemWidget(pocket, ui->m_pocketListing_widget);
-            ui->m_pocketListing_layout->addWidget(pocketListItem);
-        }
-
-        //Create a new spacer item which correctly aligns the PocketListItemWidgets
-        m_listSpacer = new QSpacerItem(10,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-        ui->m_pocketListing_layout->addItem(m_listSpacer);
+        ui->m_pocketListing_widget->initialize(m_user);
     }
 
     void PocketsWidget::slot_createNewPocket()
@@ -139,8 +112,8 @@ namespace Content::Pockets
         }
 
         //Create a new Pocket and update the user's list and the Ui
-        Pocket pock{pocketName, pockeType, pocketValue};
-        m_user->addNewPocket(pock);
+        Pocket pocket{pocketName, pockeType, pocketValue};
+        m_user->addNewPocket(pocket);
 
         updatePocketList();
     }

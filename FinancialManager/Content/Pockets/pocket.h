@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDateTime>
+#include <QDate>
 #include <QMap>
 
 namespace Content::Pockets
@@ -27,10 +28,13 @@ namespace Content::Pockets
     {
     public:
        Pocket(const QString& name, const QString& pocketTypeString, int value);
-       Pocket(const QString& name, const PocketType& type, int initialValue, int value, const QDateTime& creationDate);
+       Pocket(const QString& name, const PocketType& type, int initialValue, int value, const QDateTime& creationDate, const QDate &lastUsedDate, int recordsCount);
 
        Pocket(const Pocket& pocket) = default;
        Pocket(Pocket&& pocket) = default;
+
+       Pocket& operator=(const Pocket&) = default;
+       Pocket& operator=(Pocket&& other) = default;
 
        bool operator==(const Pocket& pocket);
 
@@ -73,13 +77,22 @@ namespace Content::Pockets
        const QDateTime &creationDate() const;
 
        /**
+        * Set the date of last usage of the Pocket
+        */
+       void setLastUsedDate(const QDate &newLastUsedDate);
+       /**
+        * Returns the date of the last usage
+        */
+       const QDate &lastUsedDate() const;
+
+       /**
         * Returns how many Record is linked to this Pocket
         */
-       int recordCount() const;
+       int recordsCount() const;
        /**
         * Set how many Records is linked to this Pocket
         */
-       void setRecordCount(int newRecordCount);
+       void setRecordsCount(int newRecordsCount);
 
     private:
         /**
@@ -110,9 +123,15 @@ namespace Content::Pockets
         QDateTime m_creationDate;
 
         /**
+         * Date of the last usage of this Pocket
+         * Date of the last created (Record creation date) Record which is linked to this Pocket
+        */
+        QDate m_lastUsedDate;
+
+        /**
          * Actual count of records linked to this Pocket
         */
-        int m_recordCount = 0;
+        int m_recordsCount = 0;
     };
 }
 

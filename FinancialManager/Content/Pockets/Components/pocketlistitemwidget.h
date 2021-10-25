@@ -19,7 +19,7 @@ namespace Content::Pockets::Component
         Q_OBJECT
 
     public:
-        explicit PocketListItemWidget(const Pocket& pocket, QWidget *parent = nullptr);
+        explicit PocketListItemWidget(std::shared_ptr<User> user, const Pocket& pocket, QWidget *parent = nullptr);
         ~PocketListItemWidget();
 
     private:
@@ -29,6 +29,16 @@ namespace Content::Pockets::Component
          * Sets the initial state of the Ui
         */
         void initializeUi();
+
+        /**
+         * Sets the common connections related to this class
+        */
+        void initializeConnections();
+
+        /**
+         * The current user
+        */
+        std::shared_ptr<User> m_user;
 
         /**
          * The Pocket this object is initialized with

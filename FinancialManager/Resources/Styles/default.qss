@@ -18,6 +18,11 @@ QWidget[type="controlWidget"]
     background-color: rgb(30, 30, 30);
 }
 
+Content--Pockets--Component--PocketListItemWidget
+{
+    background-color: rgb(45, 45, 45);
+}
+
 Content--History--Component--RecordHistoryItemWidget[state="normal"]
 {
     background-color: rgb(45, 45, 45);

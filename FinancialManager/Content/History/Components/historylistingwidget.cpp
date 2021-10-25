@@ -126,7 +126,7 @@ namespace Content::History::Component
         font.setBold(true);
         nothingToShow_label->setFont(font);
 
-        ui->m_historyListing_layout->addWidget(nothingToShow_label);
+        ui->m_historyListing_layout->insertWidget(0, nothingToShow_label);
     }
 
     void HistoryListingWidget::slot_newRecordAdded(int index, const Content::Records::Record &record)
@@ -159,6 +159,13 @@ namespace Content::History::Component
                 recordItem->deleteLater();
                 return;
             }
+        }
+
+        //If originally there was only one record than after deletion there is zero
+        //Since there is zero record show the no record message
+        if(recordItems.size() == 1)
+        {
+            showNoRecordMessage();
         }
     }
 }

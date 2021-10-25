@@ -11,15 +11,16 @@ namespace Content::Pockets
         m_value(value),
         m_creationDate(QDateTime::currentDateTime())
     {
-        qDebug() << "Pocket Constructor";
     }
 
-    Pocket::Pocket(const QString &name, const PocketType &type, int initialValue, int value, const QDateTime &creationDate) :
+    Pocket::Pocket(const QString &name, const PocketType &type, int initialValue, int value, const QDateTime &creationDate, const QDate &lastUsedDate, int recordsCount) :
         m_name(name),
         m_type(type),
         m_initialValue(initialValue),
         m_value(value),
-        m_creationDate(creationDate)
+        m_creationDate(creationDate),
+        m_lastUsedDate(lastUsedDate),
+        m_recordsCount(recordsCount)
     {
     }
 
@@ -74,13 +75,23 @@ namespace Content::Pockets
         return m_creationDate;
     }
 
-    int Pocket::recordCount() const
+    int Pocket::recordsCount() const
     {
-        return m_recordCount;
+        return m_recordsCount;
     }
 
-    void Pocket::setRecordCount(int newRecordCount)
+    void Pocket::setRecordsCount(int newRecordsCount)
     {
-        m_recordCount = newRecordCount;
+        m_recordsCount = newRecordsCount;
+    }
+
+    const QDate &Pocket::lastUsedDate() const
+    {
+        return m_lastUsedDate;
+    }
+
+    void Pocket::setLastUsedDate(const QDate &newLastUsedDate)
+    {
+        m_lastUsedDate = newLastUsedDate;
     }
 }

@@ -17,6 +17,9 @@ namespace Content
     {
         ui->setupUi(this);
 
+        //Set the instance so it points to 'this' object
+        s_instance = this;
+
         //Set the initial state of the widget
         initializeConnections();
         showOverviewWidget();
@@ -25,6 +28,13 @@ namespace Content
     ContentWidget::~ContentWidget()
     {
         delete ui;
+    }
+
+    ContentWidget *ContentWidget::s_instance = nullptr;
+
+    ContentWidget *ContentWidget::instance()
+    {
+        return s_instance;
     }
 
     void ContentWidget::slot_showProfileWidget()

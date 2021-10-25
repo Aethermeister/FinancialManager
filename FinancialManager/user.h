@@ -28,6 +28,12 @@ public:
     void addNewPocket(Content::Pockets::Pocket& newPocket);
 
     /**
+     * Removes the parameter given Pocket from the user's list
+     * and removes every corresponding Record as well
+    */
+    void deletePocket(const Content::Pockets::Pocket& deletedPocket);
+
+    /**
      * Stores the parameter given Record in the Record list
      * This operation stores the new Record only in memory
     */
