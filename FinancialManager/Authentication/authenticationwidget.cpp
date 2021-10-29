@@ -25,7 +25,7 @@ namespace Authentication
     void AuthenticationWidget::showLoginWidget()
     {
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_authenticationContainer_widget, ui->m_authenticationContainer_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_authenticationContainer_widget, ui->m_authenticationContainer_layout);
 
         //Create a new LoginWidget and add it to the container widget
         LoginWidget* loginWidget = new LoginWidget(ui->m_authenticationContainer_widget);
@@ -39,7 +39,7 @@ namespace Authentication
     void AuthenticationWidget::showSignUpWidget()
     {
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_authenticationContainer_widget, ui->m_authenticationContainer_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_authenticationContainer_widget, ui->m_authenticationContainer_layout);
 
         //Create a new SignUpWidget and add it to the container widget
         SignUpWidget* signUpWidget = new SignUpWidget(ui->m_authenticationContainer_widget);

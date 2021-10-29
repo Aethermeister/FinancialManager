@@ -5,6 +5,7 @@
 #include "Pockets/pocketswidget.h"
 #include "Records/newrecordwidget.h"
 #include "History/recordshistorywidget.h"
+#include "Statistics/statisticswidget.h"
 #include "profilewidget.h"
 #include "Notification/notificationbase.h"
 
@@ -55,6 +56,7 @@ namespace Content
         connect(ui->m_pockets_btn, &QPushButton::clicked, this, &ContentWidget::showPocketsWidget);
         connect(ui->m_newRecord_btn, &QPushButton::clicked, this, &ContentWidget::showNewRecordWidget);
         connect(ui->m_history_btn, &QPushButton::clicked, this, &ContentWidget::showHistoryWidget);
+        connect(ui->m_statistics_btn, &QPushButton::clicked, this, &ContentWidget::showStatisticsWidget);
 
         connect(ui->m_exit_btn, &QPushButton::clicked, &QApplication::quit);
     }
@@ -93,7 +95,7 @@ namespace Content
         adjustControlButtons();
 
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new OverviewWidget and add it to the container widget
         OverviewWidget* overviewWidget = new OverviewWidget(ui->m_container_widget);
@@ -105,7 +107,7 @@ namespace Content
         adjustControlButtons();
 
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new PocketsWidget and add it to the container widget
         Pockets::PocketsWidget* pocketWidget = new Pockets::PocketsWidget(m_user, ui->m_container_widget);
@@ -117,7 +119,7 @@ namespace Content
         adjustControlButtons();
 
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new NewRecordWidget and add it to the container widget
         Records::NewRecordWidget* newRecordWidget = new Records::NewRecordWidget(m_user, ui->m_container_widget);
@@ -129,11 +131,23 @@ namespace Content
         adjustControlButtons();
 
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new RecordsHistoryWidget and add it to the container widget
         History::RecordsHistoryWidget* historyWidget = new History::RecordsHistoryWidget(m_user, ui->m_container_widget);
         ui->m_container_layout->addWidget(historyWidget);
+    }
+
+    void ContentWidget::showStatisticsWidget()
+    {
+        adjustControlButtons();
+
+        //Delete the current widget from the container widget
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
+
+        //Create a new StatisticsWidget and add it to the container widget
+        Statistics::StatisticsWidget* statisticsWidget = new Statistics::StatisticsWidget(m_user, ui->m_container_widget);
+        ui->m_container_layout->addWidget(statisticsWidget);
     }
 
     void ContentWidget::showProfileWidget()
@@ -141,7 +155,7 @@ namespace Content
         adjustControlButtons();
 
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new ProfileWidget and add it to the container widget
         ProfileWidget* profileWidget = new ProfileWidget(m_user, ui->m_container_widget);

@@ -33,7 +33,7 @@ namespace Content::Pockets
         /**
          * Sets the common connections related to this class
         */
-        void initializeConnections();
+        void initializeConnections() const;
         /**
          * Lists the user's available Pockets
         */
@@ -47,7 +47,7 @@ namespace Content::Pockets
     private slots:
         /**
          * Called when the Create New Pocket QPushButton is clicked
-         * Starts the new Pcket validation and persisting procedure
+         * Starts the new Pocket validation and persisting procedure
         */
         void slot_createNewPocket();
     };

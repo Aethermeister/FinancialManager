@@ -43,7 +43,7 @@ namespace Content::Pockets
         updatePocketList();
     }
 
-    void PocketsWidget::initializeConnections()
+    void PocketsWidget::initializeConnections() const
     {
         connect(ui->m_createNewPocket_btn, &QPushButton::clicked, this, &PocketsWidget::slot_createNewPocket);
     }

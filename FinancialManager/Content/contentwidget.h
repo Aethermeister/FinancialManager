@@ -71,6 +71,11 @@ namespace Content
         void showHistoryWidget();
 
         /**
+         * Shows the StatisticsWidget ui in the content area
+        */
+        void showStatisticsWidget();
+
+        /**
          * Shows the ProfileWidget ui in the content area
         */
         void showProfileWidget();

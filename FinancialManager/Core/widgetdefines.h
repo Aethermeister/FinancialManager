@@ -11,12 +11,6 @@
 #include <QLabel>
 
 /**
- * Removes the child QWidget of the parameter given parentWidget and parentLayout
- * and deletes the removed QWidget
-*/
-inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayout);
-
-/**
  * Unpolishes and polishes the style of the parameter given QWidget
 */
 inline void updateWidgetStyle(QWidget* widget);
@@ -45,12 +39,18 @@ inline void setWidgetStyleByProperty(QWidget *widget, const QString &propertyNam
 inline void showInformation(QLabel* label, const QString& message);
 
 
+/**
+ * Removes the child T object of the parameter given parentWidget and parentLayout
+ * and deletes the removed T object
+*/
+template<typename T>
 inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayout)
 {
-    //Get the current QWidget child to the parameter given parentWidget
+    //Get the current T child of the parameter given parentWidget
     //and remove it from parameter given parentLayout if it is valid
     //and delete it
-    auto activeWidget = parentWidget->findChild<QWidget*>();
+    //To remove the object and delete it the T object has to be casted to QWidget
+    auto activeWidget = dynamic_cast<QWidget*>(parentWidget->findChild<T>());
     if(activeWidget)
     {
         parentLayout->removeWidget(activeWidget);

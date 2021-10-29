@@ -27,7 +27,7 @@ MainWindow::~MainWindow()
 void MainWindow::showAuthenticationWidget()
 {
     //Delete the current widget from the container widget
-    deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+    deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
     //Create a new AuthenticationWidget and add it to the container widget
     Authentication::AuthenticationWidget* authenticationWidget = new Authentication::AuthenticationWidget(ui->m_container_widget);
@@ -42,7 +42,7 @@ void MainWindow::showAuthenticationWidget()
 void MainWindow::showMainContentWidget(const QString& username, const QString& password, const QString& id)
 {
     //Delete the current widget from the container widget
-    deleteActiveContentWidget(ui->m_container_widget, ui->m_container_layout);
+    deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
     //Create a new ContentWidget and add it to the container widget
     Content::ContentWidget* contentWidget = new Content::ContentWidget(std::make_shared<User>(username, password, id), ui->m_container_widget);

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,6 +27,10 @@ SOURCES += \
     Content/Pockets/pocketswidget.cpp \
     Content/Records/newrecordwidget.cpp \
     Content/Records/record.cpp \
+    Content/Statistics/Components/chartviewbase.cpp \
+    Content/Statistics/Components/pocketsvaluechartview.cpp \
+    Content/Statistics/statisticsselectionwidget.cpp \
+    Content/Statistics/statisticswidget.cpp \
     Content/contentwidget.cpp \
     Content/overviewwidget.cpp \
     Content/profilewidget.cpp \
@@ -58,6 +62,10 @@ HEADERS += \
     Content/Pockets/pocketswidget.h \
     Content/Records/newrecordwidget.h \
     Content/Records/record.h \
+    Content/Statistics/Components/chartviewbase.h \
+    Content/Statistics/Components/pocketsvaluechartview.h \
+    Content/Statistics/statisticsselectionwidget.h \
+    Content/Statistics/statisticswidget.h \
     Content/contentwidget.h \
     Content/overviewwidget.h \
     Content/profilewidget.h \
@@ -89,6 +97,8 @@ FORMS += \
     Content/Pockets/Components/pocketlistitemwidget.ui \
     Content/Pockets/pocketswidget.ui \
     Content/Records/newrecordwidget.ui \
+    Content/Statistics/statisticsselectionwidget.ui \
+    Content/Statistics/statisticswidget.ui \
     Content/contentwidget.ui \
     Content/overviewwidget.ui \
     Content/profilewidget.ui \

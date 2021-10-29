@@ -61,7 +61,7 @@ namespace Settings
     void SettingsWindow::showFileStorageContentWidget(FileStorage fileStorage)
     {
         //Delete the current widget from the container widget
-        deleteActiveContentWidget(ui->m_fileStorageContainer_widget, ui->m_fileStorageContainer_layout);
+        deleteActiveContentWidget<QWidget*>(ui->m_fileStorageContainer_widget, ui->m_fileStorageContainer_layout);
 
         //Create the needed File Storage content widget according to the current selection
         if(fileStorage == FileStorage::LOCAL)
