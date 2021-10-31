@@ -41,6 +41,7 @@ namespace Content::Records
         ui->m_item_lineEdit->setCompleter(m_user->itemsCompleter());
 
         //Setup the pockets combobox
+        ui->m_pockets_comboBox->clear();
         ui->m_pockets_comboBox->setEditable(true);
         ui->m_pockets_comboBox->lineEdit()->setReadOnly(true);
         ui->m_pockets_comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
