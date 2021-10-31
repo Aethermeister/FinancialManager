@@ -16,6 +16,12 @@ namespace Content::Records
     public:
         Record(const int value, const QDate& date, const QTime& time, const QString& location, const QString& item, const QString& pocketName);
 
+        Record(const Record& pocket) = default;
+        Record(Record&& pocket) = default;
+
+        Record& operator=(const Record&) = default;
+        Record& operator=(Record&& other) = default;
+
         const bool operator==(const Record& record) const;
 
         /**

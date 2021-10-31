@@ -20,9 +20,15 @@ namespace Content::Statistics
     void StatisticsSelectionWidget::initializeConnections()
     {
         //Send the selected type via signal
+
         connect(ui->m_pocketValueAndUsage_btn, &QPushButton::clicked, [=]
         {
             emit sig_statisticsTypeSelected(StatisticsType::POCKET_VALUE_AND_USAGE);
+        });
+
+        connect(ui->m_recordsData_btn, &QPushButton::clicked, [=]
+        {
+            emit sig_statisticsTypeSelected(StatisticsType::RECORDS_DATA);
         });
     }
 }

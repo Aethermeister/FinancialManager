@@ -1,7 +1,7 @@
 #ifndef POCKETSVALUECHARTVIEW_H
 #define POCKETSVALUECHARTVIEW_H
 
-#include "chartviewbase.h"
+#include "piechartview.h"
 #include "user.h"
 
 namespace Content::Statistics::Components
@@ -17,9 +17,8 @@ namespace Content::Statistics::Components
 
     /**
      * Ui class which provides Pocket value and usage related information
-     * Derived from ChartViewBase
     */
-    class PocketsValueChartView : public ChartViewBase
+    class PocketsValueChartView : public PieChartView
     {
         Q_OBJECT
     public:
@@ -35,6 +34,12 @@ namespace Content::Statistics::Components
         */
         virtual void initializeChartAdjustingWidgets() override;
 
+    protected:
+        /**
+         * Show the needed series according to the currently set type(s)
+        */
+        virtual void showSelectedPieSeries() override;
+
     private:
         /**
          * Creates and returns the Pocket's value data series
@@ -46,24 +51,10 @@ namespace Content::Statistics::Components
         QPieSeries* createPocketUsageSeries() const;
 
         /**
-         * Creates and returns the series slice display modifier widget
-        */
-        QWidget* createSliceValueDisplayModifierWidget() const;
-        /**
          * Creates and returns the Pocket data display modifier widget
         */
         QWidget* createPocketTypeDisplayModifierWidget() const;
 
-        /**
-         * Show the needed series according to the currently set type
-        */
-        void showSelectedSeries();
-
-        /**
-         * Slice display mode variable
-         * The value is displayed as default
-        */
-        SliceDisplayMode m_sliceDisplayMode = SliceDisplayMode::VALUE;
         /**
          * Pocket data display mode variable
          * The Pocket value is displayed as default
@@ -80,11 +71,6 @@ namespace Content::Statistics::Components
         QPieSeries* m_pocketUsageSeries;
 
     private slots:
-        /**
-         * Called when the used changes the slice display mode
-         * through the corresponding chart modifier widget
-        */
-        void slot_changeSliceDisplayMode();
         /**
          * Called when the used changes the Pocket data display mode
          * through the corresponding chart modifier widget

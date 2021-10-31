@@ -16,7 +16,8 @@ namespace Content::Statistics
     */
     enum StatisticsType
     {
-        POCKET_VALUE_AND_USAGE
+        POCKET_VALUE_AND_USAGE,
+        RECORDS_DATA
     };
 
     /**

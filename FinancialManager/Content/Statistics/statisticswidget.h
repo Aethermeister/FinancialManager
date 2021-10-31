@@ -2,6 +2,7 @@
 #define STATISTICSWIDGET_H
 #include "user.h"
 #include "statisticsselectionwidget.h"
+#include "Components/chartviewbase.h"
 
 #include <QWidget>
 
@@ -42,7 +43,15 @@ namespace Content::Statistics
         /**
          * Shows the chart which indicates the pocket values and usages
         */
-        void showPocketValueStatisticsWidget();
+        void showPocketValueAndUsageStatisticsWidget();
+        /**
+         * Show the chart which indocates the values and usage of Records
+        */
+        void showRecordsDataStatisticsWidget();
+        /**
+         * Initialize the common state of the chart views
+        */
+        void initializeSelectedStatisticsWidget(Components::ChartViewBase* selectedChartView);
 
         /**
          * The current user

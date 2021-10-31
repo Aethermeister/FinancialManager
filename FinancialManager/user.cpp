@@ -58,7 +58,7 @@ void User::persistNewRecord(const Content::Records::Record& newRecord)
     //Search for the index where the new Record should be inserted
     //and store the new Record in memory at the correct position
     const auto indexOfNewRecord = searchForNewRecordPosition(newRecord.date(), newRecord.time());
-    m_records.insert(indexOfNewRecord, newRecord);
+    m_records.insert(m_records.begin() + indexOfNewRecord, newRecord);
 
     //Find the Record's Pocket
     auto foundPocket = std::find_if(m_pockets.begin(), m_pockets.end(), [=](const Content::Pockets::Pocket& pocket)
@@ -120,7 +120,7 @@ void User::setMarkedForDeletion(bool marked)
     m_isMarkedForDeletion = marked;
 }
 
-const std::vector<Content::Pockets::Pocket>& User::pockets()
+const std::vector<Content::Pockets::Pocket>& User::pockets() const
 {
     return m_pockets;
 }
@@ -137,11 +137,12 @@ void User::deleteRecord(const Content::Records::Record &record)
     foundPocket->setRecordsCount(foundPocket->recordsCount() - 1);
     foundPocket->setValue(foundPocket->value() - record.value());
 
-    m_records.removeOne(record);
+    //Remove the pocket itself
+    m_records.erase(std::find(m_records.begin(), m_records.end(), record));
     emit sig_recordDeleted(record);
 }
 
-QList<Content::Records::Record> User::records()
+const std::vector<Content::Records::Record>& User::records() const
 {
     return m_records;
 }
@@ -203,8 +204,10 @@ void User::readRecordsFile()
         updateCompleterSource(location, item);
 
         //Put the Record to the beginning of the list so the latest Record will be the first element
-        m_records.prepend({value, date, time, location, item, pocket});
+        m_records.emplace_back(value, date, time, location, item, pocket);
     }
+
+    std::reverse(m_records.begin(), m_records.end());
 }
 
 void User::updateCompleterSource(const QString &location, const QString &item)
@@ -252,7 +255,7 @@ void User::persistRecordsData() const
 
     //Iterate over the Records list and create a json object for each record
     //Reverse iterator is used so the order of the Records remains during parsing the file
-    QList<Content::Records::Record>::const_reverse_iterator record;
+    std::vector<Content::Records::Record>::const_reverse_iterator record;
     for(record = m_records.crbegin(); record != m_records.crend(); ++record)
     {
         QJsonObject recordObject

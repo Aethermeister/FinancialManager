@@ -75,7 +75,7 @@ namespace Content::History::Component
         //Check whether there are enough records for the list counter
         //and reset the counter if it is originally over the records count
         const auto records = user->records();
-        if(const auto recordSize = records.size(); listedItemsCount > recordSize)
+        if(const auto recordSize = static_cast<int>(records.size()); listedItemsCount > recordSize)
         {
             listedItemsCount = recordSize;
         }

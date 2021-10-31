@@ -28,7 +28,9 @@ SOURCES += \
     Content/Records/newrecordwidget.cpp \
     Content/Records/record.cpp \
     Content/Statistics/Components/chartviewbase.cpp \
+    Content/Statistics/Components/piechartview.cpp \
     Content/Statistics/Components/pocketsvaluechartview.cpp \
+    Content/Statistics/Components/recordsdatachartview.cpp \
     Content/Statistics/statisticsselectionwidget.cpp \
     Content/Statistics/statisticswidget.cpp \
     Content/contentwidget.cpp \
@@ -63,7 +65,9 @@ HEADERS += \
     Content/Records/newrecordwidget.h \
     Content/Records/record.h \
     Content/Statistics/Components/chartviewbase.h \
+    Content/Statistics/Components/piechartview.h \
     Content/Statistics/Components/pocketsvaluechartview.h \
+    Content/Statistics/Components/recordsdatachartview.h \
     Content/Statistics/statisticsselectionwidget.h \
     Content/Statistics/statisticswidget.h \
     Content/contentwidget.h \

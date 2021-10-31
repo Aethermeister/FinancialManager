@@ -2,6 +2,7 @@
 #include "ui_statisticswidget.h"
 #include "Core/widgetdefines.h"
 #include "Components/pocketsvaluechartview.h"
+#include "Components/recordsdatachartview.h"
 
 namespace Content::Statistics
 {
@@ -49,18 +50,33 @@ namespace Content::Statistics
         connect(statisticsSelectionWidget, &StatisticsSelectionWidget::sig_statisticsTypeSelected, this, &StatisticsWidget::slot_showSelectedStatisticsWidget);
     }
 
-    void StatisticsWidget::showPocketValueStatisticsWidget()
+    void StatisticsWidget::showPocketValueAndUsageStatisticsWidget()
     {
         //Create the Pocket value and usage chart widget
         Components::PocketsValueChartView* pocketsValueChartView = new Components::PocketsValueChartView(m_user, this);
-        pocketsValueChartView->initializeSeries(); //Initialize the value and usage charts externally
-        pocketsValueChartView->initializeChartAdjustingWidgets(); //Initialize the corresponding modifier widgets
-        ui->m_statisticsContainer_layout->addWidget(pocketsValueChartView);
+        initializeSelectedStatisticsWidget(pocketsValueChartView);
+    }
+
+    void StatisticsWidget::showRecordsDataStatisticsWidget()
+    {
+        //Create the Records data chart widget
+        Components::RecordsDataChartView* recordsDataChartView = new Components::RecordsDataChartView(m_user, this);
+        initializeSelectedStatisticsWidget(recordsDataChartView);
+    }
+
+    void StatisticsWidget::initializeSelectedStatisticsWidget(Components::ChartViewBase *selectedChartView)
+    {
+        //Initialize the series and modifier widgets of teh parameter given chart view
+        //And show the chart view in the content area
+        selectedChartView->initializeSeries();
+        selectedChartView->initializeChartAdjustingWidgets();
+
+        ui->m_statisticsContainer_layout->addWidget(selectedChartView);
 
         //Insert the chart widget related modifier widgets in the header layout next to the Back button
         //The start position is 2 because of the Back button and separator spacer
         int positionCounter = 2;
-        const auto& chartAdjustingWidgets = pocketsValueChartView->chartAdjustingWidgets();
+        const auto& chartAdjustingWidgets = selectedChartView->chartAdjustingWidgets();
         for(const auto widget : chartAdjustingWidgets)
         {
             ui->m_chartHeader_layout->insertWidget(positionCounter, widget);
@@ -75,7 +91,11 @@ namespace Content::Statistics
         //According to the parameter given type show the needed statistics widget
         if(type == StatisticsType::POCKET_VALUE_AND_USAGE)
         {
-            showPocketValueStatisticsWidget();
+            showPocketValueAndUsageStatisticsWidget();
+        }
+        else if(type == StatisticsType::RECORDS_DATA)
+        {
+            showRecordsDataStatisticsWidget();
         }
 
         //Show the Back button when a chart widget is shown in the content area

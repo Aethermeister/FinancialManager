@@ -79,7 +79,7 @@ public:
     /**
      * Returns the list of Pockets
     */
-    const std::vector<Content::Pockets::Pocket>& pockets();
+    const std::vector<Content::Pockets::Pocket>& pockets() const;
 
     /**
      * Removes the parameter given Record from the list of Records
@@ -89,7 +89,7 @@ public:
     /**
      * Returns the list of Records
     */
-    QList<Content::Records::Record> records();
+    const std::vector<Content::Records::Record>& records() const;
 
 private:
     /**
@@ -174,7 +174,7 @@ private:
     /**
      * List of the user's records
     */
-    QList<Content::Records::Record> m_records;
+    std::vector<Content::Records::Record> m_records;
     /**
      * List of the previously used locations without duplications
      * Used as source for the corresponding QCompleter

@@ -55,6 +55,7 @@ namespace Content::Statistics::Components
         m_chart->setTitleFont(chartFont);
 
         m_chart->legend()->hide();
+        m_chart->setAnimationOptions(QChart::AllAnimations);
 
         setChart(m_chart);
         setRenderHint(QPainter::Antialiasing);

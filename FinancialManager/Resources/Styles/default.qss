@@ -63,6 +63,16 @@ QGroupBox
     font-weight: bold;
 }
 
+QMenu::item
+{
+    color: white;
+}
+
+QMenu::item:selected
+{
+    background: rgba(100, 100, 100, 150);
+}
+
 QScrollArea
 {
 

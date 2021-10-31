@@ -7,15 +7,6 @@
 namespace Content::Statistics::Components
 {
     /**
-     * Enum which holds values to change the QPieSeries slice display
-    */
-    enum SliceDisplayMode
-    {
-        VALUE,
-        PERCENTAGE
-    };
-
-    /**
      * Base class of the statistics chart Ui classes
     */
     class ChartViewBase : public QChartView

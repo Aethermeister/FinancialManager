@@ -2,7 +2,7 @@
 
 namespace Content::Statistics::Components
 {
-    PocketsValueChartView::PocketsValueChartView(std::shared_ptr<User> user, QWidget *parent) : ChartViewBase(user, parent)
+    PocketsValueChartView::PocketsValueChartView(std::shared_ptr<User> user, QWidget *parent) : PieChartView(user, parent)
     {
     }
 
@@ -20,7 +20,7 @@ namespace Content::Statistics::Components
         m_chartSeries.push_back(m_pocketUsageSeries);
 
         //Show the default series in the chart
-        showSelectedSeries();
+        showSelectedPieSeries();
     }
 
     void PocketsValueChartView::initializeChartAdjustingWidgets()
@@ -33,102 +33,7 @@ namespace Content::Statistics::Components
         std::reverse(m_chartAdjustingWidgets.begin(), m_chartAdjustingWidgets.end());
     }
 
-    QPieSeries *PocketsValueChartView::createPocketValueSeries() const
-    {
-        //Get the user's pockets list and initialize a QPieSeries with its values
-        const auto& pockets = m_user->pockets();
-        QPieSeries* valueSeries = new QPieSeries();
-
-        //Iterate over the retrieved pockets
-        for(const auto& pocket : pockets)
-        {
-            //Create slice and set its properties according to the given Pocket value data
-            auto slice = valueSeries->append("", pocket.value());
-            slice->setProperty("name", pocket.name());
-            slice->setProperty("sliceValue", pocket.value());
-            slice->setExploded();
-        }
-
-        return valueSeries;
-    }
-
-    QPieSeries *PocketsValueChartView::createPocketUsageSeries() const
-    {
-        //Get the user's pockets list and initialize a QPieSeries with its usage values
-        const auto& pockets = m_user->pockets();
-        QPieSeries* usageSeries = new QPieSeries();
-
-        //Iterate over the retrieved pockets
-        for(const auto& pocket : pockets)
-        {
-            //Create slice and set its properties according to the given Pocket usage data
-            auto slice = usageSeries->append("", pocket.recordsCount());
-            slice->setProperty("name", pocket.name());
-            slice->setProperty("sliceValue", pocket.recordsCount());
-            slice->setExploded();
-        }
-
-        return usageSeries;
-    }
-
-    QWidget *PocketsValueChartView::createSliceValueDisplayModifierWidget() const
-    {
-        //Create a container widget which will hold the modifier widgets
-        QWidget* sliceModifierWidget = new QWidget();
-        QHBoxLayout* sliceModifierLayout = new QHBoxLayout(sliceModifierWidget);
-        sliceModifierLayout->setMargin(0);
-        sliceModifierLayout->setContentsMargins(0,0,25,0); //Set the right margin so it will be appear separated from the other modifier widget group
-
-        //Create two exclusive buttons
-        //One for the value one for the percentage display
-        QPushButton* valueButton = new QPushButton("Value", sliceModifierWidget);
-        valueButton->setProperty("displayMode", SliceDisplayMode::VALUE);
-        valueButton->setAutoExclusive(true);
-        valueButton->setCheckable(true);
-        valueButton->setChecked(true);
-        connect(valueButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changeSliceDisplayMode);
-        sliceModifierLayout->addWidget(valueButton);
-
-        QPushButton* percentageButton = new QPushButton("Percentage", sliceModifierWidget);
-        percentageButton->setProperty("displayMode", SliceDisplayMode::PERCENTAGE);
-        percentageButton->setAutoExclusive(true);
-        percentageButton->setCheckable(true);
-        percentageButton->setChecked(false);
-        connect(percentageButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changeSliceDisplayMode);
-        sliceModifierLayout->addWidget(percentageButton);
-
-        return sliceModifierWidget;
-    }
-
-    QWidget *PocketsValueChartView::createPocketTypeDisplayModifierWidget() const
-    {
-        //Create a container widget which will hold the modifier widgets
-        QWidget* pocketModifierWidget = new QWidget();
-        QHBoxLayout* pocketModifierLayout = new QHBoxLayout(pocketModifierWidget);
-        pocketModifierLayout->setMargin(0);
-
-        //Create two exclusive buttons
-        //One for the Pocket value one for the Pocket usage display
-        QPushButton* pocketValueButton = new QPushButton("Pocket Value", pocketModifierWidget);
-        pocketValueButton->setProperty("pocketType", PocketTypeDisplay::POCKET_VALUE);
-        pocketValueButton->setAutoExclusive(true);
-        pocketValueButton->setCheckable(true);
-        pocketValueButton->setChecked(true);
-        connect(pocketValueButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changePocketTypeDisplay);
-        pocketModifierLayout->addWidget(pocketValueButton);
-
-        QPushButton* pocketUsageButton = new QPushButton("Pocket Usage", pocketModifierWidget);
-        pocketUsageButton->setProperty("pocketType", PocketTypeDisplay::POCKET_USAGE);
-        pocketUsageButton->setAutoExclusive(true);
-        pocketUsageButton->setCheckable(true);
-        pocketUsageButton->setChecked(false);
-        connect(pocketUsageButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changePocketTypeDisplay);
-        pocketModifierLayout->addWidget(pocketUsageButton);
-
-        return pocketModifierWidget;
-    }
-
-    void PocketsValueChartView::showSelectedSeries()
+    void PocketsValueChartView::showSelectedPieSeries()
     {
         //Remove the currently attached series from teh chart
         if(auto attachedSeries = m_chart->series(); !attachedSeries.empty())
@@ -188,19 +93,70 @@ namespace Content::Statistics::Components
         m_chart->addSeries(newSeries);
     }
 
-    void PocketsValueChartView::slot_changeSliceDisplayMode()
+    QPieSeries *PocketsValueChartView::createPocketValueSeries() const
     {
-        //Get the sender buttons Slice Display Mode property data
-        const auto senderButton = qobject_cast<QPushButton*>(sender());
-        const auto newSliceDisplayMode = static_cast<SliceDisplayMode>(senderButton->property("displayMode").toInt());
+        //Get the user's pockets list and initialize a QPieSeries with its values
+        const auto& pockets = m_user->pockets();
+        QPieSeries* valueSeries = new QPieSeries();
 
-        //If the new display mode differs from the currently used
-        //set the new display mode and update the visible series
-        if(m_sliceDisplayMode != newSliceDisplayMode)
+        //Iterate over the retrieved pockets
+        for(const auto& pocket : pockets)
         {
-            m_sliceDisplayMode = newSliceDisplayMode;
-            showSelectedSeries();
+            //Create slice and set its properties according to the given Pocket value data
+            auto slice = valueSeries->append("", pocket.value());
+            slice->setProperty("name", pocket.name());
+            slice->setProperty("sliceValue", pocket.value());
+            slice->setExploded();
         }
+
+        return valueSeries;
+    }
+
+    QPieSeries *PocketsValueChartView::createPocketUsageSeries() const
+    {
+        //Get the user's pockets list and initialize a QPieSeries with its usage values
+        const auto& pockets = m_user->pockets();
+        QPieSeries* usageSeries = new QPieSeries();
+
+        //Iterate over the retrieved pockets
+        for(const auto& pocket : pockets)
+        {
+            //Create slice and set its properties according to the given Pocket usage data
+            auto slice = usageSeries->append("", pocket.recordsCount());
+            slice->setProperty("name", pocket.name());
+            slice->setProperty("sliceValue", pocket.recordsCount());
+            slice->setExploded();
+        }
+
+        return usageSeries;
+    }
+
+    QWidget *PocketsValueChartView::createPocketTypeDisplayModifierWidget() const
+    {
+        //Create a container widget which will hold the modifier widgets
+        QWidget* pocketModifierWidget = new QWidget();
+        QHBoxLayout* pocketModifierLayout = new QHBoxLayout(pocketModifierWidget);
+        pocketModifierLayout->setMargin(0);
+
+        //Create two exclusive buttons
+        //One for the Pocket value one for the Pocket usage display
+        QPushButton* pocketValueButton = new QPushButton("Pocket Value", pocketModifierWidget);
+        pocketValueButton->setProperty("pocketType", PocketTypeDisplay::POCKET_VALUE);
+        pocketValueButton->setAutoExclusive(true);
+        pocketValueButton->setCheckable(true);
+        pocketValueButton->setChecked(true);
+        connect(pocketValueButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changePocketTypeDisplay);
+        pocketModifierLayout->addWidget(pocketValueButton);
+
+        QPushButton* pocketUsageButton = new QPushButton("Pocket Usage", pocketModifierWidget);
+        pocketUsageButton->setProperty("pocketType", PocketTypeDisplay::POCKET_USAGE);
+        pocketUsageButton->setAutoExclusive(true);
+        pocketUsageButton->setCheckable(true);
+        pocketUsageButton->setChecked(false);
+        connect(pocketUsageButton, &QPushButton::clicked, this, &PocketsValueChartView::slot_changePocketTypeDisplay);
+        pocketModifierLayout->addWidget(pocketUsageButton);
+
+        return pocketModifierWidget;
     }
 
     void PocketsValueChartView::slot_changePocketTypeDisplay()
@@ -214,7 +170,7 @@ namespace Content::Statistics::Components
         if(m_pocketTypeDisplay != newPocketTypeDisplay)
         {
             m_pocketTypeDisplay = newPocketTypeDisplay;
-            showSelectedSeries();
+            showSelectedPieSeries();
         }
     }
 }
