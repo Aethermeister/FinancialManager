@@ -54,7 +54,7 @@ namespace Content::Pockets::Component
         ui->m_recordsCount_lbl->setText(recordsCountInformation);
 
         //Get the date when the Pocket was last used
-        const auto lastUsedDate = m_pocket.lastUsedDate();
+        const auto& lastUsedDate = m_pocket.lastUsedDate();
         ui->m_lastUsageDate_lbl->setVisible(lastUsedDate.isValid());
         //If the retrieved QDate is valid (the Pocket already has Record(s)) calculate the elapsed days
         if(lastUsedDate.isValid())

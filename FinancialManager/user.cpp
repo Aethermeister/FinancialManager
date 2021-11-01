@@ -42,9 +42,10 @@ void User::deletePocket(const Content::Pockets::Pocket &deletedPocket)
             std::remove_if(m_records.begin(), m_records.end(),[=](const Content::Records::Record& record)
             {
                 return record.pocketName() == deletedPocket.name();
-            })
+            }), m_records.end()
         );
     }
+    m_records.shrink_to_fit();
 
     //Remove the pocket itself
     m_pockets.erase(std::find(m_pockets.begin(), m_pockets.end(), deletedPocket));

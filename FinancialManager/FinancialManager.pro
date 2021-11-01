@@ -20,6 +20,9 @@ SOURCES += \
     Content/History/Components/recordcontentwidget.cpp \
     Content/History/Components/recordhistoryitemwidget.cpp \
     Content/History/recordshistorywidget.cpp \
+    Content/Overview/Components/generaloverviewmessagewidget.cpp \
+    Content/Overview/Components/statisticsoverviewwidget.cpp \
+    Content/Overview/overviewwidget.cpp \
     Content/Pockets/Components/pocketdeletiondialog.cpp \
     Content/Pockets/Components/pocketlistingwidget.cpp \
     Content/Pockets/Components/pocketlistitemwidget.cpp \
@@ -35,7 +38,6 @@ SOURCES += \
     Content/Statistics/statisticsselectionwidget.cpp \
     Content/Statistics/statisticswidget.cpp \
     Content/contentwidget.cpp \
-    Content/overviewwidget.cpp \
     Content/profilewidget.cpp \
     Notification/notificationbase.cpp \
     Notification/notificationwidget.cpp \
@@ -58,6 +60,9 @@ HEADERS += \
     Content/History/Components/recordcontentwidget.h \
     Content/History/Components/recordhistoryitemwidget.h \
     Content/History/recordshistorywidget.h \
+    Content/Overview/Components/generaloverviewmessagewidget.h \
+    Content/Overview/Components/statisticsoverviewwidget.h \
+    Content/Overview/overviewwidget.h \
     Content/Pockets/Components/pocketdeletiondialog.h \
     Content/Pockets/Components/pocketlistingwidget.h \
     Content/Pockets/Components/pocketlistitemwidget.h \
@@ -73,7 +78,6 @@ HEADERS += \
     Content/Statistics/statisticsselectionwidget.h \
     Content/Statistics/statisticswidget.h \
     Content/contentwidget.h \
-    Content/overviewwidget.h \
     Content/profilewidget.h \
     Core/defines.h \
     Core/encrypt.h \
@@ -98,6 +102,9 @@ FORMS += \
     Content/History/Components/recordcontentwidget.ui \
     Content/History/Components/recordhistoryitemwidget.ui \
     Content/History/recordshistorywidget.ui \
+    Content/Overview/Components/generaloverviewmessagewidget.ui \
+    Content/Overview/Components/statisticsoverviewwidget.ui \
+    Content/Overview/overviewwidget.ui \
     Content/Pockets/Components/pocketdeletiondialog.ui \
     Content/Pockets/Components/pocketlistingwidget.ui \
     Content/Pockets/Components/pocketlistitemwidget.ui \
@@ -106,7 +113,6 @@ FORMS += \
     Content/Statistics/statisticsselectionwidget.ui \
     Content/Statistics/statisticswidget.ui \
     Content/contentwidget.ui \
-    Content/overviewwidget.ui \
     Content/profilewidget.ui \
     Notification/notificationwidget.ui \
     Notification/revertrecordwidget.ui \

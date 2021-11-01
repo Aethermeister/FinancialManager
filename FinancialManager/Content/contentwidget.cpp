@@ -1,7 +1,7 @@
 #include "contentwidget.h"
 #include "ui_contentwidget.h"
 #include "Core/defines.h"
-#include "overviewwidget.h"
+#include "Overview/overviewwidget.h"
 #include "Pockets/pocketswidget.h"
 #include "Records/newrecordwidget.h"
 #include "History/recordshistorywidget.h"
@@ -98,7 +98,7 @@ namespace Content
         deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
         //Create a new OverviewWidget and add it to the container widget
-        OverviewWidget* overviewWidget = new OverviewWidget(ui->m_container_widget);
+        Overview::OverviewWidget* overviewWidget = new Overview::OverviewWidget(m_user, ui->m_container_widget);
         ui->m_container_layout->addWidget(overviewWidget);
     }
 
