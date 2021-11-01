@@ -16,6 +16,7 @@ namespace Content::Statistics
     */
     enum StatisticsType
     {
+        CASH_FLOW,
         POCKET_VALUE_AND_USAGE,
         RECORDS_DATA
     };

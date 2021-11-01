@@ -27,6 +27,7 @@ SOURCES += \
     Content/Pockets/pocketswidget.cpp \
     Content/Records/newrecordwidget.cpp \
     Content/Records/record.cpp \
+    Content/Statistics/Components/cashflowchartview.cpp \
     Content/Statistics/Components/chartviewbase.cpp \
     Content/Statistics/Components/piechartview.cpp \
     Content/Statistics/Components/pocketsvaluechartview.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     Content/Pockets/pocketswidget.h \
     Content/Records/newrecordwidget.h \
     Content/Records/record.h \
+    Content/Statistics/Components/cashflowchartview.h \
     Content/Statistics/Components/chartviewbase.h \
     Content/Statistics/Components/piechartview.h \
     Content/Statistics/Components/pocketsvaluechartview.h \

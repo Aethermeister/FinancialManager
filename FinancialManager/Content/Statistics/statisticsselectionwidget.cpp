@@ -21,6 +21,11 @@ namespace Content::Statistics
     {
         //Send the selected type via signal
 
+        connect(ui->m_cashFlow_btn, &QPushButton::clicked, [=]
+        {
+            emit sig_statisticsTypeSelected(StatisticsType::CASH_FLOW);
+        });
+
         connect(ui->m_pocketValueAndUsage_btn, &QPushButton::clicked, [=]
         {
             emit sig_statisticsTypeSelected(StatisticsType::POCKET_VALUE_AND_USAGE);

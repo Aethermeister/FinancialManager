@@ -41,6 +41,10 @@ namespace Content::Statistics
         */
         void showStatisticsSelectionWidget();
         /**
+         * Shows the chart which indicates the pocket value over time
+        */
+        void showCashFlowStatisticsWidget();
+        /**
          * Shows the chart which indicates the pocket values and usages
         */
         void showPocketValueAndUsageStatisticsWidget();

@@ -1,6 +1,7 @@
 #include "statisticswidget.h"
 #include "ui_statisticswidget.h"
 #include "Core/widgetdefines.h"
+#include "Components/cashflowchartview.h"
 #include "Components/pocketsvaluechartview.h"
 #include "Components/recordsdatachartview.h"
 
@@ -50,6 +51,13 @@ namespace Content::Statistics
         connect(statisticsSelectionWidget, &StatisticsSelectionWidget::sig_statisticsTypeSelected, this, &StatisticsWidget::slot_showSelectedStatisticsWidget);
     }
 
+    void StatisticsWidget::showCashFlowStatisticsWidget()
+    {
+        //Create the Cash Flow chart widget
+        Components::CashFlowChartView* cashFlowChartView = new Components::CashFlowChartView(m_user, this);
+        initializeSelectedStatisticsWidget(cashFlowChartView);
+    }
+
     void StatisticsWidget::showPocketValueAndUsageStatisticsWidget()
     {
         //Create the Pocket value and usage chart widget
@@ -89,7 +97,11 @@ namespace Content::Statistics
         deleteActiveContentWidget<StatisticsSelectionWidget*>(this, ui->m_statisticsContainer_layout);
 
         //According to the parameter given type show the needed statistics widget
-        if(type == StatisticsType::POCKET_VALUE_AND_USAGE)
+        if(type == StatisticsType::CASH_FLOW)
+        {
+            showCashFlowStatisticsWidget();
+        }
+        else if(type == StatisticsType::POCKET_VALUE_AND_USAGE)
         {
             showPocketValueAndUsageStatisticsWidget();
         }
