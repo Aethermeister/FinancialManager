@@ -7,5 +7,6 @@
         <file>Images/settings.png</file>
         <file>Images/card.png</file>
         <file>Images/cash.png</file>
+        <file>Images/diamond.ico</file>
     </qresource>
 </RCC>

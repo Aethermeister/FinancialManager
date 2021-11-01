@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    QApplication::setWindowIcon(QIcon("://Images/diamond.ico"));
+
     QCoreApplication::setApplicationName("Financial Manager");
     QCoreApplication::setOrganizationName("Aether Projects");
     QCoreApplication::setOrganizationDomain("Aether Projects");
