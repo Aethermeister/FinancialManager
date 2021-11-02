@@ -26,6 +26,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::showAuthenticationWidget()
 {
+    ui->m_profile_btn->setVisible(false);
+
     //Delete the current widget from the container widget
     deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
@@ -41,6 +43,8 @@ void MainWindow::showAuthenticationWidget()
 
 void MainWindow::showMainContentWidget(const QString& username, const QString& password, const QString& id)
 {
+    ui->m_profile_btn->setVisible(true);
+
     //Delete the current widget from the container widget
     deleteActiveContentWidget<QWidget*>(ui->m_container_widget, ui->m_container_layout);
 
