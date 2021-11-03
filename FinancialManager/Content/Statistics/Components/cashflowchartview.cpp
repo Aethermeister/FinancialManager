@@ -369,6 +369,6 @@ namespace Content::Statistics::Components
             }
         }
 
-        return std::make_pair(minValue * 0.5, maxValue * 1.5);
+        return std::make_pair(minValue * 0.9, maxValue * 1.1);
     }
 }
