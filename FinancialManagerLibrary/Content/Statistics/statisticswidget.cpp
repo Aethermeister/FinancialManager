@@ -20,8 +20,14 @@ namespace Content::Statistics
 
     StatisticsWidget::~StatisticsWidget()
     {
-        //Delete the current ChartViewBase widget from the content area
-        deleteActiveContentWidget<Components::ChartViewBase*>(this, ui->m_statisticsContainer_layout);
+        //If the current content widget is a ChartViewBase widget
+        //than clear the adjusting widgets vector because this destructor will automatically delete them
+        auto childChartView = findChild<Components::ChartViewBase*>();
+        if(childChartView)
+        {
+            childChartView->chartAdjustingWidgets().clear();
+        }
+
         delete ui;
     }
 
