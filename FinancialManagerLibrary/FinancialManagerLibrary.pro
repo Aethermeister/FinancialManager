@@ -12,6 +12,10 @@ CONFIG(release, debug|release) {
         DESTDIR = ../Build/Release
 }
 
+TEMPLATE = lib
+
+DEFINES += MAKE_LIB_EXPORT
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -47,6 +51,7 @@ SOURCES += \
     Content/Statistics/statisticswidget.cpp \
     Content/contentwidget.cpp \
     Content/profilewidget.cpp \
+    FinancialManagerLibraryMain.cpp \
     Notification/notificationbase.cpp \
     Notification/notificationwidget.cpp \
     Notification/revertrecordwidget.cpp \
@@ -54,7 +59,6 @@ SOURCES += \
     Settings/localfilestoragewidget.cpp \
     Settings/settingsmanager.cpp \
     Settings/settingswindow.cpp \
-    main.cpp \
     mainwindow.cpp \
     user.cpp
 
@@ -90,6 +94,7 @@ HEADERS += \
     Core/defines.h \
     Core/encrypt.h \
     Core/widgetdefines.h \
+    FinancialManagerLibraryMain.h \
     Notification/notificationbase.h \
     Notification/notificationwidget.h \
     Notification/revertrecordwidget.h \
@@ -136,5 +141,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resources/resources.qrc
-
-RC_ICONS = Resources/Images/diamond.ico

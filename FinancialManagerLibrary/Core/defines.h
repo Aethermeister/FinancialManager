@@ -16,6 +16,12 @@
 #include <QJsonArray>
 
 
+#if defined MAKE_LIB_EXPORT
+    #define LIB_EXPORT Q_DECL_EXPORT
+#else
+    #define LIB_EXPORT Q_DECL_IMPORT
+#endif
+
 
 #define USERSFILE APPLICATIONFOLDER() + "/users.json"
 
