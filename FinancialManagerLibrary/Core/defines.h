@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#include "global_defines.h"
 #include "widgetdefines.h"
 #include "encrypt.h"
 #include "Settings/settingsmanager.h"
@@ -14,13 +15,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-
-
-#if defined MAKE_LIB_EXPORT
-    #define LIB_EXPORT Q_DECL_EXPORT
-#else
-    #define LIB_EXPORT Q_DECL_IMPORT
-#endif
 
 
 #define USERSFILE APPLICATIONFOLDER() + "/users.json"

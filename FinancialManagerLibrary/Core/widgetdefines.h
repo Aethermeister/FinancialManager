@@ -54,6 +54,7 @@ inline void deleteActiveContentWidget(QWidget* parentWidget, QLayout* parentLayo
     if(activeWidget)
     {
         parentLayout->removeWidget(activeWidget);
+        activeWidget->setParent(nullptr);
         activeWidget->deleteLater();
     }
 }

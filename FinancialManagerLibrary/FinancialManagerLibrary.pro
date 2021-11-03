@@ -93,6 +93,7 @@ HEADERS += \
     Content/profilewidget.h \
     Core/defines.h \
     Core/encrypt.h \
+    Core/global_defines.h \
     Core/widgetdefines.h \
     FinancialManagerLibraryMain.h \
     Notification/notificationbase.h \
