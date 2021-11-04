@@ -16,10 +16,12 @@ LIBS += $$DESTDIR/FinancialManagerLibrary.lib
 TEMPLATE = app
 
 SOURCES +=  \
-    testMain.cpp \
-    tst_encrypt.cpp \
-    tst_widgetdefines.cpp
+    Core/tst_defines.cpp \
+    Core/tst_encrypt.cpp \
+    Core/tst_widgetdefines.cpp \
+    testMain.cpp
 
 HEADERS += \
-    tst_encrypt.h \
-    tst_widgetdefines.h
+    Core/tst_defines.h \
+    Core/tst_encrypt.h \
+    Core/tst_widgetdefines.h

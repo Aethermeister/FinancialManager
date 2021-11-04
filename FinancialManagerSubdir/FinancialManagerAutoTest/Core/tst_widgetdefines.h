@@ -2,7 +2,7 @@
 #define TST_WIDGETDEFINES_H
 #include <QtTest>
 
-#include "Core/widgetdefines.h"
+#include "Core/defines.h"
 
 namespace Test::Core
 {
