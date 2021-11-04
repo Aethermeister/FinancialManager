@@ -1,6 +1,6 @@
 QT += testlib
 QT += core gui charts
-CONFIG += qt warn_on depend_includepath testcase
+CONFIG += c++11 c++17 qt warn_on depend_includepath testcase
 
 CONFIG(debug, debug|release) {
         DESTDIR = ../Build/Debug
@@ -15,4 +15,11 @@ LIBS += $$DESTDIR/FinancialManagerLibrary.lib
 
 TEMPLATE = app
 
-SOURCES +=  tst_core.cpp
+SOURCES +=  \
+    testMain.cpp \
+    tst_encrypt.cpp \
+    tst_widgetdefines.cpp
+
+HEADERS += \
+    tst_encrypt.h \
+    tst_widgetdefines.h
