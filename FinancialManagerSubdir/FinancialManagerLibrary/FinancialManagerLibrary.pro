@@ -5,11 +5,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 c++17
 
 CONFIG(debug, debug|release) {
-        DESTDIR = ../Build/Debug
+        DESTDIR = ../../Build/Debug
 }
 
 CONFIG(release, debug|release) {
-        DESTDIR = ../Build/Release
+        DESTDIR = ../../Build/Release
 }
 
 TEMPLATE = lib

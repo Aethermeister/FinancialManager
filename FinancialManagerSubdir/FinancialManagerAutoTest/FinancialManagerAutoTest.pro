@@ -3,11 +3,11 @@ QT += core gui charts
 CONFIG += c++11 c++17 qt warn_on depend_includepath testcase
 
 CONFIG(debug, debug|release) {
-        DESTDIR = ../Build/Debug
+        DESTDIR = ../../Build/Debug
 }
 
 CONFIG(release, debug|release) {
-        DESTDIR = ../Build/Release
+        DESTDIR = ../../Build/Release
 }
 
 INCLUDEPATH += $$PWD/../FinancialManagerLibrary
