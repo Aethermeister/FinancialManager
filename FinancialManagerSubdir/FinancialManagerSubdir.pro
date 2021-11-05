@@ -1,6 +1,9 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-            FinancialManager \   # relative paths
+            FinancialManager \
             FinancialManagerLibrary \
             FinancialManagerAutoTest
+
+FinancialManager.depends = FinancialManagerLibrary
+FinancialManagerAutoTest.depends = FinancialManagerLibrary

@@ -40,6 +40,26 @@ namespace Authentication
         connect(ui->m_backToLogin_btn, &QPushButton::clicked, this, &SignUpWidget::sig_backToLogin);
     }
 
+    QPushButton *SignUpWidget::signUpButton()
+    {
+        return ui->m_signUp_btn;
+    }
+
+    QLineEdit *SignUpWidget::usernameLineEdit()
+    {
+        return ui->m_username_lineEdit;
+    }
+
+    QLineEdit *SignUpWidget::passwordLineEdit()
+    {
+        return ui->m_password_lineEdit;
+    }
+
+    QLineEdit *SignUpWidget::verifyPasswordLineEdit()
+    {
+        return ui->m_verifyPassword_lineEdit;
+    }
+
     void SignUpWidget::slot_signUp()
     {
         //Set the ui to the default state so there is no error indication

@@ -1,9 +1,13 @@
 #include "authenticationcomponent.h"
-#include "Core/defines.h"
 
 namespace Authentication
 {
-    void AuthenticationComponent::setInformationLabel(QLabel *information_lbl)
+QLabel *AuthenticationComponent::informationLabel()
+{
+    return m_information_lbl;
+}
+
+void AuthenticationComponent::setInformationLabel(QLabel *information_lbl)
     {
         m_information_lbl = information_lbl;
     }

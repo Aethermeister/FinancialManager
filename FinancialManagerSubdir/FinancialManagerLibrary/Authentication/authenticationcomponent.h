@@ -1,5 +1,6 @@
 #ifndef AUTHENTICATION_AUTHENTICATIONCOMPONENT_H
 #define AUTHENTICATION_AUTHENTICATIONCOMPONENT_H
+#include "Core/defines.h"
 
 #include <QLabel>
 #include <QLineEdit>
@@ -9,10 +10,14 @@ namespace Authentication
     /**
      * Base class for the LoginWidget and SignUpWidget classes
     */
-    class AuthenticationComponent
+    class LIB_EXPORT AuthenticationComponent
     {
     public:
-        AuthenticationComponent() = default;
+        /**
+         * Returns the Authentication widget's information QLabel
+         * Used so test project(s) can access it
+        */
+        QLabel* informationLabel();
 
     protected:
         /**

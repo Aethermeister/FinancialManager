@@ -4,6 +4,8 @@
 #include "authenticationcomponent.h"
 
 #include <QWidget>
+#include <QCheckBox>
+#include <QPushButton>
 
 namespace Ui {
 class LoginWidget;
@@ -15,13 +17,34 @@ namespace Authentication
      * Ui class to handle login related user interactions
      * Part of the AuthenticationWidget as content widget
     */
-    class LoginWidget : public QWidget, public AuthenticationComponent
+    class LIB_EXPORT LoginWidget : public QWidget, public AuthenticationComponent
     {
         Q_OBJECT
 
     public:
         explicit LoginWidget(QWidget *parent = nullptr);
         ~LoginWidget();
+
+        /**
+         * Returns the Login widget's username QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* usernameLineEdit();
+        /**
+         * Returns the Login widget's password QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* passwordLineEdit();
+        /**
+         * Returns the Login widget's remember me QCheckBox
+         * Used so test project(s) can access it
+        */
+        QCheckBox* rememberMeCheckBox();
+        /**
+         * Returns the Login widget's login QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* loginButton();
 
     private:
         Ui::LoginWidget *ui;

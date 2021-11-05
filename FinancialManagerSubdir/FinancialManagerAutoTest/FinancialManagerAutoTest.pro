@@ -16,12 +16,17 @@ LIBS += $$DESTDIR/FinancialManagerLibrary.lib
 TEMPLATE = app
 
 SOURCES +=  \
+    Authentication/tst_loginwidgettest.cpp \
+    Authentication/tst_signupwidgettest.cpp \
     Core/tst_defines.cpp \
     Core/tst_encrypt.cpp \
     Core/tst_widgetdefines.cpp \
     testMain.cpp
 
 HEADERS += \
+    Authentication/tst_loginwidgettest.h \
+    Authentication/tst_signupwidgettest.h \
     Core/tst_defines.h \
     Core/tst_encrypt.h \
-    Core/tst_widgetdefines.h
+    Core/tst_widgetdefines.h \
+    TestUtils.h

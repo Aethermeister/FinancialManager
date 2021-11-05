@@ -1,6 +1,7 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 #include "Core/encrypt.h"
+#include "Core/global_defines.h"
 
 #include <QString>
 #include <QVariant>
@@ -42,7 +43,7 @@ namespace Settings
     /**
      * Singleton class for managing the application settings
     */
-    class SettingsManager
+    class LIB_EXPORT SettingsManager
     {
     public:
         SettingsManager();
@@ -51,6 +52,12 @@ namespace Settings
          * Returns the instance of the SettingsManager
         */
         static SettingsManager* instance();
+
+        /**
+         * Overwrites every application related registry entry with the default value
+         * Used for test cleanup during auto tests
+        */
+        void resetSettingsData();
 
         /**
          * Stores the parameter given value with the given key in the registry

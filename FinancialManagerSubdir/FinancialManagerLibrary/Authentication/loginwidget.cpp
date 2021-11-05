@@ -1,6 +1,5 @@
 #include "loginwidget.h"
 #include "ui_loginwidget.h"
-#include "Core/defines.h"
 
 #include <QTimer>
 
@@ -20,6 +19,26 @@ namespace Authentication
     LoginWidget::~LoginWidget()
     {
         delete ui;
+    }
+
+    QLineEdit *LoginWidget::usernameLineEdit()
+    {
+        return ui->m_username_lineEdit;
+    }
+
+    QLineEdit *LoginWidget::passwordLineEdit()
+    {
+        return ui->m_password_lineEdit;
+    }
+
+    QCheckBox *LoginWidget::rememberMeCheckBox()
+    {
+        return ui->m_rememberMe_checkBox;
+    }
+
+    QPushButton *LoginWidget::loginButton()
+    {
+        return ui->m_login_btn;
     }
 
     void LoginWidget::initializeUi()

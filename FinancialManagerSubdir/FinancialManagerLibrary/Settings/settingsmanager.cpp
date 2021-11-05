@@ -48,4 +48,16 @@ namespace Settings
             }
         }
     }
+
+    void SettingsManager::resetSettingsData()
+    {
+        QSettings settings;
+
+        //Iterate over the default settings key value pairs
+        //and overwrite the existing data with the default
+        for(auto it = DefaultSettingsValues.begin(); it != DefaultSettingsValues.end(); ++it)
+        {
+            settings.setValue(QString::number(it.key()), it.value());
+        }
+    }
 }

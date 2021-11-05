@@ -3,6 +3,7 @@
 
 #include "authenticationcomponent.h"
 
+#include <QPushButton>
 #include <QWidget>
 
 namespace Ui {
@@ -15,13 +16,34 @@ namespace Authentication
      * Ui class to handle sign up related user interactions
      * Part of the AuthenticationWidget as content widget
     */
-    class SignUpWidget : public QWidget, public AuthenticationComponent
+    class LIB_EXPORT SignUpWidget : public QWidget, public AuthenticationComponent
     {
         Q_OBJECT
 
     public:
         explicit SignUpWidget(QWidget *parent = nullptr);
         ~SignUpWidget();
+
+        /**
+         * Returns the Sign Up widget's sign up QLineEdit
+         * Used so test project(s) can access it
+        */
+        QPushButton* signUpButton();
+        /**
+         * Returns the Sign Up widget's username QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* usernameLineEdit();
+        /**
+         * Returns the Sign Up widget's password QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* passwordLineEdit();
+        /**
+         * Returns the Sign Up widget's verify password QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* verifyPasswordLineEdit();
 
     private:
         Ui::SignUpWidget *ui;
