@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Styles/default.qss</file>
-        <file>Images/diamond.png</file>
-        <file>Images/profile.png</file>
-    </qresource>
-</RCC>

@@ -1,0 +1,276 @@
+QMainWindow
+{
+    background-color: rgb(50, 50, 50);
+}
+
+QWidget
+{
+    background-color: rgb(50, 50, 50);
+}
+
+QWidget[type="header"]
+{
+    background-color: rgb(34, 34, 34);
+}
+
+QWidget[type="controlWidget"]
+{
+    background-color: rgb(30, 30, 30);
+}
+
+Content--Pockets--Component--PocketListItemWidget
+{
+    background-color: rgb(45, 45, 45);
+}
+
+Content--History--Component--RecordHistoryItemWidget[state="normal"]
+{
+    background-color: rgb(45, 45, 45);
+}
+
+Content--History--Component--RecordHistoryItemWidget[state="hover"]
+{
+    background-color: rgb(40, 40, 40);
+}
+
+Content--History--Component--RecordHistoryItemWidget[state="pressed"]
+{
+    background-color: rgb(35, 35, 35);
+}
+
+Content--History--Component--RecordHistoryItemWidget[state="checked"]
+{
+    background-color: rgb(35, 35, 35);
+}
+
+QDialog
+{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(50, 50, 50);
+}
+
+QFrame[type="notification"]
+{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(60, 60, 60);
+}
+
+QGroupBox
+{
+    color: white;
+    font-weight: bold;
+}
+
+QMenu::item
+{
+    color: white;
+}
+
+QMenu::item:selected
+{
+    background: rgba(100, 100, 100, 150);
+}
+
+QScrollArea
+{
+
+    background-color: rgb(50, 50, 50);
+}
+
+QToolTip
+{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(50, 50, 50);
+}
+
+QAbstractItemView
+{
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(50, 50, 50);
+}
+
+QLabel
+{
+    color: white;
+    background: transparent;
+}
+
+QLabel[error="true"]
+{
+    color: red;
+    background: transparent;
+}
+
+QLabel[isNegative="false"]
+{
+    color: green;
+}
+
+QLabel[isNegative="true"]
+{
+    color: red;
+}
+
+QPushButton
+{
+    color: white;
+    background-color: rgb(30, 30, 30);
+    border: none;
+    height: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(25, 25, 25);
+}
+
+QPushButton:pressed
+{
+    background-color: rgb(20, 20, 20);
+}
+
+QPushButton:checked
+{
+    background-color: rgb(15, 15, 15);
+}
+
+QPushButton[type="controlButton"]
+{
+    height: 50px;
+    max-width: 400px;
+    font-size: 12px;
+}
+
+QPushButton[type="controlButton"]:checked
+{
+    background-color: rgb(15, 15, 15);
+    font-weight: bold;
+}
+
+QPushButton[type="redButton"]
+{
+    background-color: rgb(150, 0, 0);
+}
+
+QPushButton[type="redButton"]:hover
+{
+    background-color: rgb(125, 0, 0);
+}
+
+QPushButton[type="redButton"]:pressed
+{
+    background-color: rgb(100, 0, 0);
+}
+
+QPushButton[type="headerButton"]
+{
+    background-color: none;
+}
+
+QRadioButton
+{
+    color: white;
+}
+
+QRadioButton:disabled
+{
+    color: gray;
+}
+
+QCheckBox
+{
+    color: white;
+}
+
+QCheckBox:disabled
+{
+    color: gray;
+}
+
+QLineEdit, QComboBox
+{
+    color: white;
+    border: none;
+    border-bottom : 1px solid darkGray;
+    height: 30px;
+}
+
+QLineEdit:focus,
+QComboBox:focus
+{
+    border-bottom : 1px solid white;
+}
+
+QLineEdit[error="true"],
+QComboBox[error="true"]
+{
+    border-bottom : 1px solid red;
+}
+
+QProgressBar
+{
+    color: transparent;
+    border: 1px solid transparent;
+    background-color: rgba(34, 119, 59, 0.1);
+}
+
+QProgressBar::chunk
+{
+    background-color: rgb(34, 119, 59);
+}
+
+QScrollBar:vertical
+{
+    background-color: #2A2929;
+    width: 15px;
+    margin: 15px 3px 15px 3px;
+    border: 1px transparent #2A2929;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical
+{
+    background-color: rgb(34, 34, 34);
+    min-height: 5px;
+    border-radius: 4px;
+}
+
+QScrollBar:horizontal
+{
+    background-color: #2A2929;
+    height: 15px;
+    margin: 3px 15px 3px 15px;
+    border: 1px transparent #2A2929;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:horizontal
+{
+    background-color: rgb(34, 34, 34);
+    min-width: 5px;
+    border-radius: 4px;
+}
+
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal
+{
+    border: none;
+    background: none;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal
+{
+    border: none;
+    background: none;
+}
+
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+{
+    background: none;
+}
