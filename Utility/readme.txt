@@ -1,0 +1,1 @@
+BEFORE USING THE FinancialManagerInstaller.exe YOU MIGHT NEED TO INSTALL THE Microsoft Visual C++ 2015 Redistributable Package (x64/x86)

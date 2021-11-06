@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Financial Manager</Name>
+    <Version>1.0.0</Version>
+    <Title>Financial Manager Installer</Title>
+    <Publisher>Aether Projects</Publisher>
+    <StartMenuDir>Financial Manager</StartMenuDir>
+    <TargetDir>@HomeDir@/Financial Manager</TargetDir>
+</Installer>
