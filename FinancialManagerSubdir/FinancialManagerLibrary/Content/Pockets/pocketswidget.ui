@@ -270,6 +270,13 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>m_newPocketName_lineEdit</tabstop>
+  <tabstop>m_newPocketInitialValue_lineEdit</tabstop>
+  <tabstop>m_pocketType_comboBox</tabstop>
+  <tabstop>m_createNewPocket_btn</tabstop>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
