@@ -447,7 +447,17 @@ namespace Content::Statistics::Components
             const auto barValue = senderBarSet->at(index);
             const auto barName = senderBarSet->label();
 
-            indicatorLabel->setText(QString(barName + ": %0 HUF").arg(barValue));
+            QString postfix;
+            if(m_recordsDataDisplayMode == RECORDS_VALUE)
+            {
+                postfix = "HUF";
+            }
+            else if(m_recordsDataDisplayMode == RECORDS_COUNT)
+            {
+                postfix = "record(s)";
+            }
+
+            indicatorLabel->setText(QString(barName + ": %0 %1").arg(barValue).arg(postfix));
         }
         else //Otherwise show an empty string
         {
