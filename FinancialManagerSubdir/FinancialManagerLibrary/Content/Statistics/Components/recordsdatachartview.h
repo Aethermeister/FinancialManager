@@ -1,7 +1,7 @@
 #ifndef RECORDSDATACHARTVIEW_H
 #define RECORDSDATACHARTVIEW_H
 
-#include "piechartview.h"
+#include "chartviewbase.h"
 
 #include <unordered_map>
 
@@ -34,7 +34,7 @@ namespace Content::Statistics::Components
     /**
      * Ui class which provides summarized information for Record values at locations and of items
     */
-    class RecordsDataChartView : public PieChartView
+    class RecordsDataChartView : public ChartViewBase
     {
         Q_OBJECT
     public:
@@ -50,17 +50,27 @@ namespace Content::Statistics::Components
         */
         virtual void initializeChartAdjustingWidgets() override;
 
-    protected:
-        /**
-         * Show the needed series according to the currently set type(s)
-        */
-        virtual void showSelectedPieSeries() override;
-
     private:
+        /**
+         * Show the series with the needed QBarSets according to the currently set type and filter
+        */
+        void showSelectedBarSeries();
+
+        /**
+         * Calculate and return a QColor according to the parameter given values
+        */
+        QColor calculateColor(int& counter, bool isPositive);
+
         /**
          * Creates a menu which lists the Pockets and provides filtering option for them
         */
         QPushButton* createPocketFilterButton();
+
+        /**
+         * Creates a button which allows the user to ignore extreme positive and negative valus according to the chart average
+        */
+        QPushButton* createIgnoreExtremesButton();
+
         /**
          * Creates a modifier widget so the user can change the chart's display mode
         */
@@ -75,15 +85,25 @@ namespace Content::Statistics::Components
         */
         void collectRecordsData();
         /**
-         * Changes the displayed label of each slice of the parameter given series
-         * according to the currently set slice display mode
+         * Changes the displayed title of the axes and chart according to the selected type
         */
-        void adjustSeriesDisplay(QPieSeries* series);
+        void adjustSeriesDisplay();
 
         /**
-         * Creates and return one summarized map according to the currently set display mode/type and filter
+         * Remove the extreme QBarSets from the series
         */
-        std::unordered_map<QString, int> summarizeRecordsData();
+        void ignoreExtremeBars();
+
+        /**
+         * Creates and return one summarized list according to the currently set display mode/type and filter
+        */
+        const std::vector<std::pair<QString, int>> summarizeRecordsData();
+
+        /**
+         * Creates a sorted pair vector from the parameter given map and returns it via the parameter given vector
+        */
+        void sortSummarizedRecordsData(const std::unordered_map<QString, int>& summarizedRecordsData, std::vector<std::pair<QString, int>>& sortedRecordsData);
+
         /**
          * Returns which previously collected and stored map should be processed for the chart
         */
@@ -106,6 +126,16 @@ namespace Content::Statistics::Components
          * Record count mapped to locations which is mapped to Pocket
         */
         std::unordered_map<QString, std::unordered_map<QString, int>> m_recordsLocationsCountMap;
+
+        /**
+         * The QBarSeries which is created from the Records data
+        */
+        QBarSeries* m_barSeries;
+
+        /**
+         * Flag which indicates the usage of the ignore extremes function
+        */
+        bool m_ignoreExtremes = false;
 
         /**
          * Stringlist which contains the name of Pockets which has to be filtered

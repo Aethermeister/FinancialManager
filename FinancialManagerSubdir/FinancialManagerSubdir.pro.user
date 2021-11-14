@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2021-11-05T19:33:35. -->
+<!-- Written by QtCreator 4.15.2, 2021-11-14T03:31:03. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -77,14 +77,6 @@
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginFalse">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginTrue">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.h:LoginWidgetTest">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:cleanup">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:cleanupTestCase">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:init">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:initTestCase">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:test_initializeUi">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:test_signUpFalse">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.cpp:test_signUpTrue">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_signupwidgettest.h:SignUpWidgetTest">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
@@ -322,7 +314,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Release</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Debug</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>
@@ -395,7 +387,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Release</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">2</value>
   </valuemap>

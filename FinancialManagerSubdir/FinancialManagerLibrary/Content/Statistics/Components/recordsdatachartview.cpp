@@ -1,8 +1,10 @@
 #include "recordsdatachartview.h"
 
+#include <execution>
+
 namespace Content::Statistics::Components
 {
-    RecordsDataChartView::RecordsDataChartView(std::shared_ptr<User> user, QWidget *parent) : PieChartView(user, parent)
+    RecordsDataChartView::RecordsDataChartView(std::shared_ptr<User> user, QWidget *parent) : ChartViewBase(user, parent)
     {
 
     }
@@ -17,47 +19,119 @@ namespace Content::Statistics::Components
         //Process the records and map them
         //and show the default series
         collectRecordsData();
-        showSelectedPieSeries();
+        showSelectedBarSeries();
     }
 
     void RecordsDataChartView::initializeChartAdjustingWidgets()
     {
         //Create the chart modifier widgets
-        m_chartAdjustingWidgets.push_back(createSliceValueDisplayModifierWidget());
         m_chartAdjustingWidgets.push_back(createRecordsDisplayModeModifierWidgets());
         m_chartAdjustingWidgets.push_back(createRecordsDisplayTypeModifierWidgets());
         m_chartAdjustingWidgets.push_back(createPocketFilterButton());
+        m_chartAdjustingWidgets.push_back(createIgnoreExtremesButton());
 
         //Invert the vector so the contained widgets will appear in the correct order
         std::reverse(m_chartAdjustingWidgets.begin(), m_chartAdjustingWidgets.end());
     }
 
-    void RecordsDataChartView::showSelectedPieSeries()
+    void RecordsDataChartView::showSelectedBarSeries()
     {
         //Remove and delete the attached series
-        //Only one QPieSeries is initialized at the same time so deleteAllSeries is safe
+        //Only one QBarSeries is initialized at the same time so deleteAllSeries is safe
         m_chart->removeAllSeries();
 
-        //Getthe summarized map for the currently set display mode/type
+        m_barSeries = new QBarSeries();
+
+        //Counters for the negative and positive QBarSets
+        int negativeValueCounter = -1;
+        int positiveValueCounter = -1;
+
+        //Get the summarized (and sorted) Records data and create a QBarSet for each
         const auto& summarizedRecordsData = summarizeRecordsData();
-
-        QPieSeries* series = new QPieSeries();
-
-        //Iterate over the summarized map and create a slice for each entry
         for(const auto& [item, value] : summarizedRecordsData)
         {
-            auto slice = series->append("", value);
-            slice->setProperty("name", item);
-            slice->setProperty("sliceValue", value);
-            slice->setExploded();
+            QBarSet* barSet = new QBarSet(item);
+            barSet->setLabelColor(Qt::white);
+
+            //Set the color of the QBarSet according to the current value and counter
+            if(value >= 0 )
+            {
+                barSet->setBrush(calculateColor(positiveValueCounter, true));
+            }
+            else
+            {
+                barSet->setBrush(calculateColor(negativeValueCounter, false));
+            }
+
+            barSet->append(value);
+            m_barSeries->append(barSet);
         }
 
-        //Adjust the slice label according to the current slice display mode
-        adjustSeriesDisplay(series);
+        //Check whether the extreme QBarSets should be ignored
+        ignoreExtremeBars();
 
-        //Show the slice labels and add the new series to the chart
-        series->setLabelsVisible();
-        m_chart->addSeries(series);
+        //Set the series and axis of the QChart
+        m_chart->addSeries(m_barSeries);
+        m_chart->createDefaultAxes();
+        //The X axis is not needed remove and delete it
+        if(!m_chart->axes(Qt::Horizontal).empty())
+        {
+            auto xAxis = m_chart->axes(Qt::Horizontal).at(0);
+            m_chart->removeAxis(xAxis);
+            xAxis->deleteLater();
+        }
+
+        //Show the QChart labels with adjusted fonts
+        m_chart->legend()->setVisible(true);
+        m_chart->legend()->setAlignment(Qt::AlignRight);
+
+        QFont font = m_chart->legend()->font();
+        font.setPointSizeF(14);
+        m_chart->legend()->setFont(font);
+
+        //Set additional QChart texts (Title and Labels)
+        adjustSeriesDisplay();
+        m_barSeries->setLabelsPosition(QAbstractBarSeries::LabelsPosition::LabelsOutsideEnd);
+        m_barSeries->setLabelsPrecision(10);
+        m_barSeries->setLabelsVisible();
+    }
+
+    QColor RecordsDataChartView::calculateColor(int &counter, bool isPositive)
+    {
+        counter += 1;
+        QColor color;
+
+        //Check whether the current color is needed for positive or negative QBarSet
+        if(isPositive)
+        {
+            //Two types of green is used
+            //1. For the first 10 positive green color: rgb(x, 255, x)
+            //2. From the eleventh color: rgb(0, 155 + x, 0)
+            if(counter > 10)
+            {
+                color = QColor((counter - 10) * 10, 255, (counter - 10) * 10);
+            }
+            else
+            {
+                color = QColor(0, 155 + (counter * 10), 0);
+            }
+        }
+        else
+        {
+            //Two types of red is used
+            //1. For the first 6 negative red color: rgb(255 - x, 0, 0)
+            //2. From the sixth color: rgb(255, 60 - x , 60 - x)
+            if(counter > 6)
+            {
+                color = QColor(255 - ((counter-6) * 10), 0, 0);
+            }
+            else
+            {
+                color = QColor(255, 60 - (counter * 10), 60 - (counter * 10));
+            }
+        }
+
+        return color;
     }
 
     void RecordsDataChartView::collectRecordsData()
@@ -106,7 +180,7 @@ namespace Content::Statistics::Components
                     m_pocketFilter.append(pocketName);
                 }
 
-                showSelectedPieSeries();
+                showSelectedBarSeries();
             });
 
             filterMenu->addAction(filterAction);
@@ -115,6 +189,23 @@ namespace Content::Statistics::Components
         filterButton->setMenu(filterMenu);
 
         return filterButton;
+    }
+
+    QPushButton *RecordsDataChartView::createIgnoreExtremesButton()
+    {
+        //Create a checkable QPushButton for the ignore extremes function
+        QPushButton* ignoreExtremesButton = new QPushButton("Ignore Extremes");
+        ignoreExtremesButton->setCheckable(true);
+        ignoreExtremesButton->setChecked(false);
+
+        //If the button is toggled adjust the corresponding flag and show the modified series
+        connect(ignoreExtremesButton, &QPushButton::toggled, [=] (bool checked)
+        {
+            m_ignoreExtremes = checked;
+            showSelectedBarSeries();
+        });
+
+        return ignoreExtremesButton;
     }
 
     QWidget *RecordsDataChartView::createRecordsDisplayModeModifierWidgets() const
@@ -175,49 +266,52 @@ namespace Content::Statistics::Components
         return recordsDisplayTypeModifierWidget;
     }
 
-    void RecordsDataChartView::adjustSeriesDisplay(QPieSeries *series)
+    void RecordsDataChartView::adjustSeriesDisplay()
     {
-        QString valuePostfix;
-
         //According to the currently set Records Data Display Mode value
-        //set the newly used series and modify the displayed information (Slice label postfix and title)
+        //set the newly used series and modify the displayed information
         if(m_recordsDataDisplayMode == RecordsDataDisplayMode::RECORDS_VALUE)
         {
-            valuePostfix = "HUF";
             m_chart->setTitle("Records Value Chart");
+            m_chart->axes(Qt::Vertical).at(0)->setTitleText("Value (HUF)");
         }
         else if(m_recordsDataDisplayMode == RecordsDataDisplayMode::RECORDS_COUNT)
         {
-            valuePostfix = "record(s)";
             m_chart->setTitle("Records Count Chart");
+            m_chart->axes(Qt::Vertical).at(0)->setTitleText("Value (Records count)");
         }
         else
         {
             return;
         }
+    }
 
-        //Iterate over the series' slices and set their display property
-        for(auto& slice : series->slices())
+    void RecordsDataChartView::ignoreExtremeBars()
+    {
+        //Check whether the series' extreme QBarSets should be ignored
+        if(m_ignoreExtremes)
         {
-            QString sliceLabel = "%0 | %1";
-            const auto sliceName = slice->property("name").toString();
-
-            //According to the currently set Slice Display Mode set the displayed slice information with the correct data
-            QString displayedValue;
-            if(m_sliceDisplayMode == SliceDisplayMode::VALUE)
+            //Calculate the absolute sum of the QBarSets
+            int sum = 0;
+            const auto& bars = m_barSeries->barSets();
+            std::for_each(std::execution::par, bars.begin(), bars.end(), [&](QBarSet* barSet)
             {
-                displayedValue = QString::number(slice->property("sliceValue").toInt()) + " " + valuePostfix;
-            }
-            else if(m_sliceDisplayMode == SliceDisplayMode::PERCENTAGE)
-            {
-                displayedValue = QString::number(slice->percentage() * 100, 'f', 2) + "%";
-            }
+                sum += std::abs(barSet->sum());
+            });
 
-            slice->setLabel(sliceLabel.arg(sliceName, displayedValue));
+            //Remove the QBarSets from the series which QBarSet's value is over the calculated average*2
+            const int avg = sum / bars.size();
+            std::for_each(bars.begin(), bars.end(), [&](QBarSet* barSet)
+            {
+                if(std::abs(barSet->sum()) > (avg * 2))
+                {
+                    m_barSeries->remove(barSet);
+                }
+            });
         }
     }
 
-    std::unordered_map<QString, int> RecordsDataChartView::summarizeRecordsData()
+    const std::vector<std::pair<QString, int>> RecordsDataChartView::summarizeRecordsData()
     {
         std::unordered_map<QString, int> summarizedRecordsData;
         //Get which map should be summarized according to the set display mode/type
@@ -237,7 +331,28 @@ namespace Content::Statistics::Components
             }
         }
 
-        return summarizedRecordsData;
+        //Create a sorted vector from the created map
+        std::vector<std::pair<QString, int>> sortedRecordsData;
+        sortSummarizedRecordsData(summarizedRecordsData, sortedRecordsData);
+
+        return sortedRecordsData;
+    }
+
+    void RecordsDataChartView::sortSummarizedRecordsData(const std::unordered_map<QString, int>& summarizedRecordsData, std::vector<std::pair<QString, int>>& sortedRecordsData)
+    {
+        sortedRecordsData.reserve(summarizedRecordsData.size());
+
+        //Convert the parameter given map to a vector
+        for(const auto& it : summarizedRecordsData)
+        {
+            sortedRecordsData.push_back(it);
+        }
+
+        //Sort the vector
+        std::sort(std::execution::par, sortedRecordsData.begin(), sortedRecordsData.end(), [](const std::pair<QString, int>& a, const std::pair<QString, int>& b)
+        {
+            return a.second > b.second;
+        });
     }
 
     std::unordered_map<QString, std::unordered_map<QString, int>>& RecordsDataChartView::selectedRecordsData()
@@ -282,7 +397,7 @@ namespace Content::Statistics::Components
         if(m_recordsDataDisplayMode != newRecordsDisplayMode)
         {
             m_recordsDataDisplayMode = newRecordsDisplayMode;
-            showSelectedPieSeries();
+            showSelectedBarSeries();
         }
     }
 
@@ -297,7 +412,7 @@ namespace Content::Statistics::Components
         if(m_recordsDataDisplayType != newRecordsDisplayType)
         {
             m_recordsDataDisplayType = newRecordsDisplayType;
-            showSelectedPieSeries();
+            showSelectedBarSeries();
         }
     }
 }
