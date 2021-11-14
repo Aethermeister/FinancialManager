@@ -72,6 +72,12 @@ namespace Content::Statistics::Components
         QPushButton* createIgnoreExtremesButton();
 
         /**
+         * Creates an indicator QLabel for the hovered QBarSets
+         * This QLabel shows the name and value of a hovered QBarSet
+        */
+        QLabel* createBarSetValueIndicatorLabel();
+
+        /**
          * Creates a modifier widget so the user can change the chart's display mode
         */
         QWidget* createRecordsDisplayModeModifierWidgets() const;
@@ -165,6 +171,12 @@ namespace Content::Statistics::Components
          * through the corresponding chart modifier widget
         */
         void slot_changeRecordsDisplayType();
+
+        /**
+         * Called when a QBarSet is hovered
+         * Shows and updated indicator QLabel for the hovered QBarSet's value
+        */
+        void slot_BarSetHoverChanged(bool status, int index);
     };
 }
 

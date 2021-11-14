@@ -29,6 +29,7 @@ namespace Content::Statistics::Components
         m_chartAdjustingWidgets.push_back(createRecordsDisplayTypeModifierWidgets());
         m_chartAdjustingWidgets.push_back(createPocketFilterButton());
         m_chartAdjustingWidgets.push_back(createIgnoreExtremesButton());
+        m_chartAdjustingWidgets.push_back(createBarSetValueIndicatorLabel());
 
         //Invert the vector so the contained widgets will appear in the correct order
         std::reverse(m_chartAdjustingWidgets.begin(), m_chartAdjustingWidgets.end());
@@ -63,6 +64,9 @@ namespace Content::Statistics::Components
                 barSet->setBrush(calculateColor(negativeValueCounter, false));
             }
 
+            //Connect the QBarSet's hovered signal so the name and value of the QBarSet can be displayed
+            connect(barSet, &QBarSet::hovered, this, &RecordsDataChartView::slot_BarSetHoverChanged);
+
             barSet->append(value);
             m_barSeries->append(barSet);
         }
@@ -86,7 +90,7 @@ namespace Content::Statistics::Components
         m_chart->legend()->setAlignment(Qt::AlignRight);
 
         QFont font = m_chart->legend()->font();
-        font.setPointSizeF(14);
+        font.setPointSizeF(12);
         m_chart->legend()->setFont(font);
 
         //Set additional QChart texts (Title and Labels)
@@ -206,6 +210,14 @@ namespace Content::Statistics::Components
         });
 
         return ignoreExtremesButton;
+    }
+
+    QLabel *RecordsDataChartView::createBarSetValueIndicatorLabel()
+    {
+        //Create the indicator QLabel with modified indent so the text is separated from the last chart adjusting widget
+        QLabel* valueIndicatorLabel = new QLabel();
+        valueIndicatorLabel->setIndent(25);
+        return valueIndicatorLabel;
     }
 
     QWidget *RecordsDataChartView::createRecordsDisplayModeModifierWidgets() const
@@ -413,6 +425,33 @@ namespace Content::Statistics::Components
         {
             m_recordsDataDisplayType = newRecordsDisplayType;
             showSelectedBarSeries();
+        }
+    }
+
+    void RecordsDataChartView::slot_BarSetHoverChanged(bool status, int index)
+    {
+        //Get the stored indicator QLabel from the vector
+        auto indicatorWidget = std::find_if(std::execution::par, m_chartAdjustingWidgets.begin(), m_chartAdjustingWidgets.end(), [](QWidget* widget)
+        {
+            return dynamic_cast<QLabel*>(widget);
+        });
+
+        //Cast the retrieved QWidget to QLabel so its state can be changed
+        auto indicatorLabel = dynamic_cast<QLabel*>(*indicatorWidget);
+
+        //Check the status of the hover
+        //If the QBarSet is being hovered than so the sender QBarSet's name and value
+        if(status)
+        {
+            const auto senderBarSet = dynamic_cast<QBarSet*>(sender());
+            const auto barValue = senderBarSet->at(index);
+            const auto barName = senderBarSet->label();
+
+            indicatorLabel->setText(QString(barName + ": %0 HUF").arg(barValue));
+        }
+        else //Otherwise show an empty string
+        {
+            indicatorLabel->setText("");
         }
     }
 }
