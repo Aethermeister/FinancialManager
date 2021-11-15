@@ -4,6 +4,7 @@
 #include <QString>
 #include <QByteArray>
 
+#define PASSWORDREGEX "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$"
 #define COMPRESSIONLEVEL 2
 
 /**

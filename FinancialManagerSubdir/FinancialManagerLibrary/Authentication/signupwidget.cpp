@@ -85,12 +85,12 @@ namespace Authentication
 
         //Check the given password and show error
         //if it does not meet the minimum requirement
-        if(password.trimmed().size() < 6)
+        const QRegularExpression re(PASSWORDREGEX);
+        const QRegularExpressionMatch match = re.match(password.trimmed());
+        if(!match.hasMatch())
         {
             setWidgetErrorState(ui->m_password_lineEdit, true);
-
-            showInformation(ui->m_information_lbl, "Password has to contain at least 6 characters");
-
+            showInformation(ui->m_information_lbl, "Password has to contain 8-32 characters.\nIt has to contain lower and uppercase letters and digits");
             return;
         }
 

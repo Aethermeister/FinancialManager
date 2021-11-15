@@ -96,12 +96,12 @@ namespace Content
 
         //Check the given new password and show error
         //if it does not meet the minimum requirements
-        if(newPassword.trimmed().size() < 6)
+        const QRegularExpression re(PASSWORDREGEX);
+        const QRegularExpressionMatch match = re.match(newPassword.trimmed());
+        if(!match.hasMatch())
         {
             setWidgetErrorState(ui->m_newPassword_lineEdit, true);
-
-            showInformation(ui->m_passwordInformation_lbl, "Password has to contain at least 6 characters");
-
+            showInformation(ui->m_passwordInformation_lbl, "Password has to contain 8-32 characters.\nIt has to contain lower and uppercase letters and digits");
             return;
         }
 
