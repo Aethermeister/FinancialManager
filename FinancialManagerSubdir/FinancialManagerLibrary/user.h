@@ -7,6 +7,7 @@
 #include <QString>
 #include <QStringList>
 #include <QCompleter>
+#include <QTimer>
 
 /**
  * Class to store the user related informations and behaviours
@@ -92,6 +93,11 @@ public:
     const std::vector<Content::Records::Record>& records() const;
 
 private:
+    /**
+     * Initializes the QTimer which is responsible for the auto savings
+    */
+    void initializeAutoSaveTimer();
+
     /**
      * Checks the User related AppData files
      * and creates it if it does not exist
@@ -185,6 +191,15 @@ private:
      * Used as source for the corresponding QCompleter
     */
     QStringList m_items;
+
+    /**
+     * The QTimer which saves the modified user data on timeout
+    */
+    QTimer* m_autoSaveTimer;
+    /**
+     * Flag which indicates whether the user data is changed since the last save
+    */
+    bool m_shouldSaveUserData = false;
 
 signals:
     /**

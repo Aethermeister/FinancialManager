@@ -1,5 +1,7 @@
 #include "user.h"
 #include "Core/defines.h"
+#include "Notification/notificationwidget.h"
+#include "Content/contentwidget.h"
 
 User::User(const QString &username, const QString &password, const QString &id, QObject *parent) :
     QObject(parent), m_username(username), m_password(password), m_id(id)
@@ -11,10 +13,16 @@ User::User(const QString &username, const QString &password, const QString &id, 
     checkUserFiles();
     readPocketsFile();
     readRecordsFile();
+
+    initializeAutoSaveTimer();
 }
 
 User::~User()
 {
+    //Stop and delete the auto save QTimer manually
+    m_autoSaveTimer->stop();
+    m_autoSaveTimer->deleteLater();
+
     //Delete the user and the user related files if the deletion mark was previously set
     if(m_isMarkedForDeletion)
     {
@@ -30,6 +38,7 @@ User::~User()
 void User::addNewPocket(Content::Pockets::Pocket &newPocket)
 {
     m_pockets.push_back(std::move(newPocket));
+    m_shouldSaveUserData = true;
 }
 
 void User::deletePocket(const Content::Pockets::Pocket &deletedPocket)
@@ -49,6 +58,8 @@ void User::deletePocket(const Content::Pockets::Pocket &deletedPocket)
 
     //Remove the pocket itself
     m_pockets.erase(std::find(m_pockets.begin(), m_pockets.end(), deletedPocket));
+
+    m_shouldSaveUserData = true;
 }
 
 void User::persistNewRecord(const Content::Records::Record& newRecord)
@@ -78,6 +89,7 @@ void User::persistNewRecord(const Content::Records::Record& newRecord)
     }
 
     emit sig_recordAdded(indexOfNewRecord, newRecord);
+    m_shouldSaveUserData = true;
 }
 
 QCompleter *User::locationsCompleter() const
@@ -141,11 +153,42 @@ void User::deleteRecord(const Content::Records::Record &record)
     //Remove the pocket itself
     m_records.erase(std::find(m_records.begin(), m_records.end(), record));
     emit sig_recordDeleted(record);
+
+    m_shouldSaveUserData = true;
 }
 
 const std::vector<Content::Records::Record>& User::records() const
 {
     return m_records;
+}
+
+void User::initializeAutoSaveTimer()
+{
+    //Create a non-singleshot QTimer with 10 sec interval
+    m_autoSaveTimer = new QTimer();
+    m_autoSaveTimer->setInterval(10000);
+    m_autoSaveTimer->setSingleShot(false);
+
+    //Save teh modified user data on timeout
+    connect(m_autoSaveTimer, &QTimer::timeout, [=]
+    {
+        //Check whether the user data should be saved
+        if(m_shouldSaveUserData)
+        {
+            //Save the user data
+            persistPocketsData();
+            persistRecordsData();
+
+            m_shouldSaveUserData = false;
+
+            //Show notification about the auto saved user data
+            Notification::NotificationWidget* autoSaveNotification =
+                    new Notification::NotificationWidget("User data has been saved", Content::ContentWidget::instance());
+            autoSaveNotification->show();
+        }
+    });
+
+    m_autoSaveTimer->start();
 }
 
 void User::checkUserFiles() const
