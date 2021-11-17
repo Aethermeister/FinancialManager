@@ -1,0 +1,1 @@
+& OpenCppCoverage --config_file=CodeCoverageConfig.txt -- ..\Build\Release\FinancialManagerAutoTest.exe

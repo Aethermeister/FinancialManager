@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2021-11-15T01:41:22. -->
+<!-- Written by QtCreator 4.15.2, 2021-11-17T19:01:10. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -77,6 +77,15 @@
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginFalse">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginTrue">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.h:LoginWidgetTest">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:initTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_deleteActiveContentWidget">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setLabelNegativeState">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setWidgetErrorState">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setWidgetStyleByProperty">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_showInformation">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_updateWidgetStyle">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.h:Test::Core::WidgetDefinesTest">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
@@ -107,7 +116,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 5.15.2 MSVC2019 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 5.15.2 MSVC2019 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt5.5152.win64_msvc2019_64_kit</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
@@ -314,7 +323,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Release</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>
@@ -387,7 +396,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Projects/Qt/FinancialManager/Build/Release</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">2</value>
   </valuemap>

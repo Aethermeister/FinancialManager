@@ -49,7 +49,7 @@ void SignUpWidgetTest::test_signUpFalse()
     signUpWidget->usernameLineEdit()->setText(username);
     signUpWidget->signUpButton()->click();
     QVERIFY(signUpWidget->informationLabel()->isVisible());
-    QCOMPARE(signUpWidget->informationLabel()->text(), "Password has to contain at least 6 characters");
+    QCOMPARE(signUpWidget->informationLabel()->text(), "Password has to contain 8-32 characters.\nIt has to contain lower and uppercase letters and digits");
 
     signUpWidget->usernameLineEdit()->setText(username);
     signUpWidget->passwordLineEdit()->setText(password);

@@ -12,6 +12,9 @@ CONFIG(release, debug|release) {
         DESTDIR = ../../Build/Release
 }
 
+QMAKE_CXXFLAGS_RELEASE += /Zi
+QMAKE_LFLAGS_RELEASE += /DEBUG
+
 TEMPLATE = lib
 
 DEFINES += MAKE_LIB_EXPORT
