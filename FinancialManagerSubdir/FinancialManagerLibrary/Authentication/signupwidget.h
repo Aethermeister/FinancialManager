@@ -25,7 +25,7 @@ namespace Authentication
         ~SignUpWidget();
 
         /**
-         * Returns the Sign Up widget's sign up QLineEdit
+         * Returns the Sign Up widget's sign up QPushButton
          * Used so test project(s) can access it
         */
         QPushButton* signUpButton();
@@ -44,6 +44,11 @@ namespace Authentication
          * Used so test project(s) can access it
         */
         QLineEdit* verifyPasswordLineEdit();
+        /**
+         * Returns the Sign Up widget's back to login widget QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* backToLoginButton();
 
     private:
         Ui::SignUpWidget *ui;

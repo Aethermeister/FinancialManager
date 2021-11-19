@@ -1,5 +1,6 @@
 #ifndef USER_H
 #define USER_H
+#include "Core/global_defines.h"
 #include "Content/Pockets/pocket.h"
 #include "Content/Records/record.h"
 
@@ -14,7 +15,7 @@
  * The User manages a list of Record which is the essential data source for other operations
  * The User is responsible for getting existing data, managing and persisting them
 */
-class User : public QObject
+class LIB_EXPORT User : public QObject
 {
     Q_OBJECT
 

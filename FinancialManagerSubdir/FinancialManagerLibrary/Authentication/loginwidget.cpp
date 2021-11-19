@@ -41,6 +41,11 @@ namespace Authentication
         return ui->m_login_btn;
     }
 
+    QPushButton *LoginWidget::createAccountButton()
+    {
+        return ui->m_createAccount_btn;
+    }
+
     void LoginWidget::initializeUi()
     {
         //Get the REMEMBER_ME settings value and initialize the ui according to this value

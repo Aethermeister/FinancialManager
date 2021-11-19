@@ -1,5 +1,6 @@
 #ifndef OVERVIEWWIDGET_H
 #define OVERVIEWWIDGET_H
+#include "Core/global_defines.h"
 #include "user.h"
 
 #include <QWidget>
@@ -14,7 +15,7 @@ namespace Content::Overview
      * Ui class which provides a general overview of the user created Records and Pockets
      * If the user is new eand there are no Pockets or Records general help is provided
     */
-    class OverviewWidget : public QWidget
+    class LIB_EXPORT OverviewWidget : public QWidget
     {
         Q_OBJECT
 

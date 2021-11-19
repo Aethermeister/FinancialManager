@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>UserFiles/pockets.json</file>
+        <file>UserFiles/records.json</file>
+    </qresource>
+</RCC>

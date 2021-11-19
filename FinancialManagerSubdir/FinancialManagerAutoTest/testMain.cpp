@@ -3,6 +3,9 @@
 #include "Core/tst_defines.h"
 #include "Authentication/tst_signupwidgettest.h"
 #include "Authentication/tst_loginwidgettest.h"
+#include "Authentication/tst_authenticationwidgettest.h"
+#include "Content/tst_profilwidgettest.h"
+#include "Content/Overview/tst_overviewwidgettest.h"
 
 #include <QtTest>
 #include <QCoreApplication>
@@ -27,6 +30,9 @@ int main(int argc, char *argv[])
     Test::Core::DefinesTest definesTest;
     SignUpWidgetTest signUpWidgetTest;
     LoginWidgetTest loginWidgetTest;
+    AuthenticationWidgetTest authenticationWidgetTest;
+    ProfilWidgetTest profilWidgetTest;
+    OverviewWidgetTest overviewWidgetTest;
 
     return
             (
@@ -34,6 +40,9 @@ int main(int argc, char *argv[])
                 QTest::qExec(&encryptTest, argc, argv) ||
                 QTest::qExec(&definesTest, argc, argv) ||
                 QTest::qExec(&signUpWidgetTest, argc, argv) ||
-                QTest::qExec(&loginWidgetTest, argc, argv)
+                QTest::qExec(&loginWidgetTest, argc, argv) ||
+                QTest::qExec(&authenticationWidgetTest, argc, argv) ||
+                QTest::qExec(&profilWidgetTest, argc, argv) ||
+                QTest::qExec(&overviewWidgetTest, argc, argv)
             );
 }

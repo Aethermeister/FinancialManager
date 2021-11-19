@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2021-11-17T19:01:10. -->
+<!-- Written by QtCreator 4.15.2, 2021-11-19T01:51:50. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -68,24 +68,13 @@
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:cleanup">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:init">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_initializeUiDefault">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_initializeUiWithSettingsData">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginFalse">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.cpp:test_loginTrue">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Authentication/tst_loginwidgettest.h:LoginWidgetTest">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_deleteActiveContentWidget">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setLabelNegativeState">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setWidgetErrorState">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_setWidgetStyleByProperty">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_showInformation">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.cpp:test_updateWidgetStyle">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Core/tst_widgetdefines.h:Test::Core::WidgetDefinesTest">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:cleanup">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:init">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:initTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:test_overviewWidgetWithNewUser">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.cpp:test_overviewWidgetWithOldUser">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Projects/Qt/FinancialManager/FinancialManagerSubdir/FinancialManagerAutoTest/Content/Overview/tst_overviewwidgettest.h:OverviewWidgetTest">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
@@ -118,7 +107,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt5.5152.win64_msvc2019_64_kit</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Projects\Qt\FinancialManager\build-FinancialManagerSubdir-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug</value>

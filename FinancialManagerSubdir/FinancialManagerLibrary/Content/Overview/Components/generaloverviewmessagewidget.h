@@ -1,5 +1,6 @@
 #ifndef GENERALOVERVIEWMESSAGEWIDGET_H
 #define GENERALOVERVIEWMESSAGEWIDGET_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
 
@@ -12,7 +13,7 @@ namespace Content::Overview::Components
     /**
      * Ui class which provides general help information to the user
     */
-    class GeneralOverviewMessageWidget : public QWidget
+    class LIB_EXPORT GeneralOverviewMessageWidget : public QWidget
     {
         Q_OBJECT
 

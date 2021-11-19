@@ -1,5 +1,6 @@
 #ifndef AUTHENTICATIONWIDGET_H
 #define AUTHENTICATIONWIDGET_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
 
@@ -13,7 +14,7 @@ namespace Authentication
      * This is the main authentication ui class
      * It contains the additional authentication releated ui classes
     */
-    class AuthenticationWidget : public QWidget
+    class LIB_EXPORT AuthenticationWidget : public QWidget
     {
         Q_OBJECT
 

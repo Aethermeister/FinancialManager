@@ -31,13 +31,14 @@ inline void makeFolder(const QString& folderPath)
 }
 
 inline const QString username = "test_user";
+inline const QString id = "test_user";
 inline const QString password = "test_user00A";
 inline const QJsonObject testData
 {
     {
         username, QJsonObject
         {
-            {"id", username},
+            {"id", id},
             {"password", QString(password.toUtf8().toBase64())}
         }}
 };

@@ -1,5 +1,6 @@
 #ifndef STATISTICSOVERVIEWWIDGET_H
 #define STATISTICSOVERVIEWWIDGET_H
+#include "Core/global_defines.h"
 #include "user.h"
 
 #include <QWidget>
@@ -14,7 +15,7 @@ namespace Content::Overview::Components
      * Ui class which provides base statistics information
      * Lists the recent Records and shows charts
     */
-    class StatisticsOverviewWidget : public QWidget
+    class LIB_EXPORT StatisticsOverviewWidget : public QWidget
     {
         Q_OBJECT
 

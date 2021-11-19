@@ -21,6 +21,56 @@ namespace Content
         delete ui;
     }
 
+    QLabel *ProfileWidget::usernameLabel()
+    {
+        return ui->m_username_lbl;
+    }
+
+    QLabel *ProfileWidget::idLabel()
+    {
+        return ui->m_id_lbl;
+    }
+
+    QLabel *ProfileWidget::deletionInformationLabel()
+    {
+        return ui->m_deletionInformation_lbl;
+    }
+
+    QPushButton *ProfileWidget::deleteAccountButton()
+    {
+        return ui->m_deleteAccount_btn;
+    }
+
+    QPushButton *ProfileWidget::cancelDeletionButton()
+    {
+        return ui->m_cancelDeletion_btn;
+    }
+
+    QLineEdit *ProfileWidget::oldPasswordLineEdit()
+    {
+        return ui->m_oldPassword_lineEdit;
+    }
+
+    QLineEdit *ProfileWidget::newPasswordLineEdit()
+    {
+        return ui->m_newPassword_lineEdit;
+    }
+
+    QLineEdit *ProfileWidget::verifyNewPasswordLineEdit()
+    {
+        return ui->m_verifyNewPassword_lineEdit;
+    }
+
+    QLabel *ProfileWidget::passwordInformationLabel()
+    {
+        return ui->m_passwordInformation_lbl;
+    }
+
+    QPushButton *ProfileWidget::changePasswordButton()
+    {
+        return ui->m_changePassword_btn;
+    }
+
     void ProfileWidget::initializeConnections()
     {
         connect(ui->m_logout_btn, &QPushButton::clicked, this, &ProfileWidget::sig_requestLogout);
@@ -69,12 +119,9 @@ namespace Content
         const auto newPassword = ui->m_newPassword_lineEdit->text();
         const auto verifyNewPassword = ui->m_verifyNewPassword_lineEdit->text();
 
-        const auto oldBase64Password = encodeData(oldPassword);
-        const auto newBase64Password = encodeData(newPassword);
-
         //Check whether the user has given the correct old password
         //and show error if they are not the same
-        if(oldBase64Password != m_user->password())
+        if(oldPassword != m_user->password())
         {
             setWidgetErrorState(ui->m_oldPassword_lineEdit, true);
 
@@ -85,7 +132,7 @@ namespace Content
 
         //Check whether the user given password is the same with the old password
         //and show error if they are the same
-        if(newBase64Password == m_user->password())
+        if(newPassword == m_user->password())
         {
             setWidgetErrorState(ui->m_newPassword_lineEdit, true);
 
@@ -124,22 +171,25 @@ namespace Content
 
         //Modify the password in the JSON object
         auto userObject = usersObject.value(m_user->username()).toObject();
-        userObject["password"] = newBase64Password;
+        userObject["password"] = encodeData(newPassword);
         usersObject[m_user->username()] = userObject;
 
         //Save the modified JSON content to the users JSON file
         const auto modifiedUsersDocument = QJsonDocument(usersObject);
         writeJSONFile(USERSFILE, modifiedUsersDocument);
-        m_user->setPassword(newBase64Password);
+        m_user->setPassword(newPassword);
 
         //Reset the password change related ui
         ui->m_oldPassword_lineEdit->clear();
         ui->m_newPassword_lineEdit->clear();
         ui->m_verifyNewPassword_lineEdit->clear();
 
-        //Show notification indicating that the password has been changed successfully
-        Notification::NotificationWidget* passwordChangedNotification = new Notification::NotificationWidget("Password has been changed", parentWidget()->parentWidget());
-        passwordChangedNotification->show();
+        if(parentWidget())
+        {
+            //Show notification indicating that the password has been changed successfully
+            Notification::NotificationWidget* passwordChangedNotification = new Notification::NotificationWidget("Password has been changed", parentWidget()->parentWidget());
+            passwordChangedNotification->show();
+        }
     }
 
     void ProfileWidget::slot_markUserForDeletion()
@@ -153,8 +203,11 @@ namespace Content
         //Show deletion information on the ui and show a notification as well
         showInformation(ui->m_deletionInformation_lbl, deletionMessage);
 
-        Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account has been marked for deletion", parentWidget()->parentWidget());
-        deletionNotification->show();
+        if(parentWidget())
+        {
+            Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account has been marked for deletion", parentWidget()->parentWidget());
+            deletionNotification->show();
+        }
     }
 
     void ProfileWidget::slot_cancelDeletion()
@@ -168,7 +221,10 @@ namespace Content
         //Hide the deletion information QLabel and show notification to notify the user about the deletion cancellation
         ui->m_deletionInformation_lbl->setVisible(false);
 
-        Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account deletion has been canceled", parentWidget()->parentWidget());
-        deletionNotification->show();
+        if(parentWidget())
+        {
+            Notification::NotificationWidget* deletionNotification = new Notification::NotificationWidget("Account deletion has been canceled", parentWidget()->parentWidget());
+            deletionNotification->show();
+        }
     }
 }

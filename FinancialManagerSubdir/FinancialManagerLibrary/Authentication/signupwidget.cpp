@@ -60,6 +60,11 @@ namespace Authentication
         return ui->m_verifyPassword_lineEdit;
     }
 
+    QPushButton *SignUpWidget::backToLoginButton()
+    {
+        return ui->m_backToLogin_btn;
+    }
+
     void SignUpWidget::slot_signUp()
     {
         //Set the ui to the default state so there is no error indication
@@ -139,6 +144,6 @@ namespace Authentication
         writeJSONFile(USERSFILE, newUsersDocument);
 
         //Emit the signal which indicates that the user is signed up and authorized
-        emit sig_signedUp(username, base64Password, id);
+        emit sig_signedUp(username, password, id);
     }
 }

@@ -45,6 +45,11 @@ namespace Authentication
          * Used so test project(s) can access it
         */
         QPushButton* loginButton();
+        /**
+         * Returns the Login widget's create account button
+         * Used so test project(s) can access it
+        */
+        QPushButton* createAccountButton();
 
     private:
         Ui::LoginWidget *ui;
