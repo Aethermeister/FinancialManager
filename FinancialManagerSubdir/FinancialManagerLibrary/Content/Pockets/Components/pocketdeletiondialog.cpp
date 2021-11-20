@@ -29,6 +29,16 @@ namespace Content::Pockets::Component
         delete ui;
     }
 
+    QPushButton *PocketDeletionDialog::cancelButton()
+    {
+        return ui->m_cancel_btn;
+    }
+
+    QPushButton *PocketDeletionDialog::deleteButton()
+    {
+        return ui->m_delete_btn;
+    }
+
     void PocketDeletionDialog::initializeConnections() const
     {
         connect(ui->m_delete_btn, &QPushButton::clicked, this, &PocketDeletionDialog::slot_deleteButtonClicked);

@@ -20,6 +20,8 @@ SOURCES +=  \
     Authentication/tst_loginwidgettest.cpp \
     Authentication/tst_signupwidgettest.cpp \
     Content/Overview/tst_overviewwidgettest.cpp \
+    Content/Pockets/tst_pocketsdeletiondialogtest.cpp \
+    Content/Pockets/tst_pocketswidgettest.cpp \
     Content/tst_profilwidgettest.cpp \
     Core/tst_defines.cpp \
     Core/tst_encrypt.cpp \
@@ -35,6 +37,8 @@ HEADERS += \
     Authentication/tst_loginwidgettest.h \
     Authentication/tst_signupwidgettest.h \
     Content/Overview/tst_overviewwidgettest.h \
+    Content/Pockets/tst_pocketsdeletiondialogtest.h \
+    Content/Pockets/tst_pocketswidgettest.h \
     Content/tst_profilwidgettest.h \
     Core/tst_defines.h \
     Core/tst_encrypt.h \

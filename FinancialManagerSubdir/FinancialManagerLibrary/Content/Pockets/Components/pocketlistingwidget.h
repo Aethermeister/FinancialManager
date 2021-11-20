@@ -15,7 +15,7 @@ namespace Content::Pockets::Component
      * Ui class which lists the given User's pockets
      * This class is responsible for keeping the listed pockets up-to-date
     */
-    class PocketListingWidget : public QWidget
+    class LIB_EXPORT PocketListingWidget : public QWidget
     {
         Q_OBJECT
 

@@ -14,7 +14,7 @@ namespace Content::Pockets::Component
      * Ui class which acts as indicator for a given Pocket
      * This ui class is used by the PocketsWidget by listing the existing Pockets
     */
-    class PocketListItemWidget : public QWidget
+    class LIB_EXPORT PocketListItemWidget : public QWidget
     {
         Q_OBJECT
 

@@ -4,6 +4,10 @@
 
 #include <QSpacerItem>
 #include <QWidget>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QPushButton>
+#include <QLabel>
 
 namespace Ui {
 class PocketsWidget;
@@ -15,13 +19,44 @@ namespace Content::Pockets
      * Ui class which provides interactable interface for the user to create new Pockets
      * This class is responsible for correctly creating and managing the Pockets
     */
-    class PocketsWidget : public QWidget
+    class LIB_EXPORT PocketsWidget : public QWidget
     {
         Q_OBJECT
 
     public:
         explicit PocketsWidget(std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~PocketsWidget();
+
+        /**
+         * Returns the pockets widget's new pocket name QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* pocketNameLineEdit();
+        /**
+         * Returns the pockets widget's new pocket initial value QLineEdit
+         * Used so test project(s) can access it
+        */
+        QLineEdit* pocketInitialValueLineEdit();
+        /**
+         * Returns the pockets widget's new pocket type QComboBox
+         * Used so test project(s) can access it
+        */
+        QComboBox* pocketTypeComboBox();
+        /**
+         * Returns the pockets widget's create new pocket QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* createNewPocketButton();
+        /**
+         * Returns the pockets widget's new pocket creation information QLabel
+         * Used so test project(s) can access it
+        */
+        QLabel* informationLabel();
+        /**
+         * Returns the pockets widget's pockets listing QWidget
+         * Used so test project(s) can access it
+        */
+        QWidget* pocketListingWidget();
 
     private:
         Ui::PocketsWidget *ui;

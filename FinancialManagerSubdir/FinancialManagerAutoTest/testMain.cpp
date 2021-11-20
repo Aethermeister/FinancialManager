@@ -10,6 +10,8 @@
 #include "Notification/tst_notificationwidgettest.h"
 #include "Notification/tst_revertrecordwidgettest.h"
 #include "Content/Overview/tst_overviewwidgettest.h"
+#include "Content/Pockets/tst_pocketsdeletiondialogtest.h"
+#include "Content/Pockets/tst_pocketswidgettest.h"
 
 #include <QtTest>
 #include <QCoreApplication>
@@ -41,6 +43,8 @@ int main(int argc, char *argv[])
     NotificationWidgetTest notificationWidgetTest;
     RevertRecordWidgetTest revertRecordWidgetTest;
     OverviewWidgetTest overviewWidgetTest;
+    PocketsDeletionDialogTest pocketsDeletionDialogTest;
+    PocketsWidgetTest pocketsWidgetTest;
 
     return
             (
@@ -55,6 +59,8 @@ int main(int argc, char *argv[])
                 QTest::qExec(&profilWidgetTest, argc, argv) ||
                 QTest::qExec(&notificationWidgetTest, argc, argv) ||
                 QTest::qExec(&revertRecordWidgetTest, argc, argv) ||
-                QTest::qExec(&overviewWidgetTest, argc, argv)
+                QTest::qExec(&overviewWidgetTest, argc, argv) ||
+                QTest::qExec(&pocketsDeletionDialogTest, argc, argv) ||
+                QTest::qExec(&pocketsWidgetTest, argc, argv)
             );
 }

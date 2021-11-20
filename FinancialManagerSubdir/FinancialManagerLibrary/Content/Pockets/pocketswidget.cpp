@@ -21,6 +21,36 @@ namespace Content::Pockets
         delete ui;
     }
 
+    QLineEdit *PocketsWidget::pocketNameLineEdit()
+    {
+        return ui->m_newPocketName_lineEdit;
+    }
+
+    QLineEdit *PocketsWidget::pocketInitialValueLineEdit()
+    {
+        return ui->m_newPocketInitialValue_lineEdit;
+    }
+
+    QComboBox *PocketsWidget::pocketTypeComboBox()
+    {
+        return ui->m_pocketType_comboBox;
+    }
+
+    QPushButton *PocketsWidget::createNewPocketButton()
+    {
+        return ui->m_createNewPocket_btn;
+    }
+
+    QLabel *PocketsWidget::informationLabel()
+    {
+        return ui->m_information_lbl;
+    }
+
+    QWidget *PocketsWidget::pocketListingWidget()
+    {
+        return ui->m_pocketListing_widget;
+    }
+
     void PocketsWidget::initializeUi()
     {
         //Make the Pcket type combobox editable so a QLineEdit is created automatically
@@ -29,6 +59,8 @@ namespace Content::Pockets
         ui->m_pocketType_comboBox->lineEdit()->setReadOnly(true);
         ui->m_pocketType_comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
         ui->m_pocketType_comboBox->lineEdit()->setPlaceholderText("Select Pocket Type");
+
+        ui->m_information_lbl->setVisible(false);
 
         //Populate the type combobox with the Pocket types
         QStringList pocketTypes;

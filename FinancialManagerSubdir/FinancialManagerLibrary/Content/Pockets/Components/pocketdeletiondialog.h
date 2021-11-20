@@ -1,7 +1,9 @@
 #ifndef POCKETDELETIONDIALOG_H
 #define POCKETDELETIONDIALOG_H
+#include "Core/global_defines.h"
 
 #include <QDialog>
+#include <QPushButton>
 
 namespace Ui {
 class PocketDeletionDialog;
@@ -22,13 +24,24 @@ namespace Content::Pockets::Component
      * Ui class which acts as a confirmation dialog
      * The user can cancel the Pocket deletion or confirm it
     */
-    class PocketDeletionDialog : public QDialog
+    class LIB_EXPORT PocketDeletionDialog : public QDialog
     {
         Q_OBJECT
 
     public:
         explicit PocketDeletionDialog(const QString& pocketName, int recordsCount, QWidget *parent = nullptr);
         ~PocketDeletionDialog();
+
+        /**
+         * Returns the pocket deletion widget's cancel QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* cancelButton();
+        /**
+         * Returns the pocket deletion widget's delete QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* deleteButton();
 
     private:
         Ui::PocketDeletionDialog *ui;
@@ -56,5 +69,7 @@ namespace Content::Pockets::Component
         void sig_finished(Content::Pockets::Component::DeletionResult result);
     };
 }
+
+Q_DECLARE_METATYPE(Content::Pockets::Component::DeletionResult)
 
 #endif // POCKETDELETIONDIALOG_H

@@ -24,6 +24,7 @@ namespace Content::Pockets::Component
         for(const auto& pocketItem : pocketItems)
         {
             ui->m_pocketListing_layout->removeWidget(pocketItem);
+            pocketItem->setParent(nullptr);
             pocketItem->deleteLater();
         }
 
