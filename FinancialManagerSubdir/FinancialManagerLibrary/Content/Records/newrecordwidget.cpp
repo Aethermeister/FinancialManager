@@ -24,6 +24,61 @@ namespace Content::Records
         delete ui;
     }
 
+    QLineEdit *NewRecordWidget::recordValueLineEdit()
+    {
+        return ui->m_value_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::recordItemLineEdit()
+    {
+        return ui->m_item_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::recordLocationLineEdit()
+    {
+        return ui->m_location_lineEdit;
+    }
+
+    QComboBox *NewRecordWidget::recordPocketComboBox()
+    {
+        return ui->m_pockets_comboBox;
+    }
+
+    QLineEdit *NewRecordWidget::yearLineEdit()
+    {
+        return ui->m_year_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::monthLineEdit()
+    {
+        return ui->m_month_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::dayLineEdit()
+    {
+        return ui->m_day_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::hoursLineEdit()
+    {
+        return ui->m_hours_lineEdit;
+    }
+
+    QLineEdit *NewRecordWidget::minutesLineEdit()
+    {
+        return ui->m_minutes_lineEdit;
+    }
+
+    QPushButton *NewRecordWidget::submitRecordButton()
+    {
+        return ui->m_submit_btn;
+    }
+
+    QWidget *NewRecordWidget::historyListingWidget()
+    {
+        return ui->m_historyListing_widget;
+    }
+
     void NewRecordWidget::initializeUi()
     {
         initializeRecordSettings();
@@ -166,7 +221,7 @@ namespace Content::Records
 
             //If the date and time values are correct create a RevertRecordWidget
             //which will schedule the Record persistence
-            if(isDateValid && isTimeValid)
+            if(isDateValid && isTimeValid && parentWidget())
             {
                 Notification::RevertRecordWidget* revertRecordWidget =
                         new Notification::RevertRecordWidget({value, date, time, location, item, pocketName}, m_user, parentWidget()->parentWidget());

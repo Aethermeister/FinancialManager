@@ -15,7 +15,7 @@ namespace Content::History::Component
      * The RecordsHistoryWidget ui class uses a list of this RecordHistoryItemWidget
      * to list all of the Records for the current user
     */
-    class RecordHistoryItemWidget : public QWidget
+    class LIB_EXPORT RecordHistoryItemWidget : public QWidget
     {
         Q_OBJECT
 
