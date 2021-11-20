@@ -16,7 +16,7 @@ namespace Content::History::Component
      * Ui class which lists the given User's records
      * This class is responsible for keeping the listed records up-to-date
     */
-    class HistoryListingWidget : public QWidget
+    class LIB_EXPORT HistoryListingWidget : public QWidget
     {
         Q_OBJECT
 

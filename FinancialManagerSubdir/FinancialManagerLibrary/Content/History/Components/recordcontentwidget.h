@@ -3,6 +3,7 @@
 #include "user.h"
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class RecordContentWidget;
@@ -14,13 +15,15 @@ namespace Content::History::Component
      * Ui class which acts as an indicator for the given Record
      * The details of the Record are listed within this ui class
     */
-    class RecordContentWidget : public QWidget
+    class LIB_EXPORT RecordContentWidget : public QWidget
     {
         Q_OBJECT
 
     public:
         explicit RecordContentWidget(QWidget *parent = nullptr);
         ~RecordContentWidget();
+
+        QPushButton* deleteRecordButton();
 
         /**
          * Externally callable initialization method

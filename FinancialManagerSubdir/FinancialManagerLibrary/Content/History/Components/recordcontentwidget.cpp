@@ -18,6 +18,11 @@ namespace Content::History::Component
         delete ui;
     }
 
+    QPushButton *RecordContentWidget::deleteRecordButton()
+    {
+        return ui->m_deleteRecord_btn;
+    }
+
     void RecordContentWidget::initializeUi(const Content::Records::Record &selectedRecord)
     {
         //Set the ui so the details of the parameter given Record are listed

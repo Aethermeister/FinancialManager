@@ -1,5 +1,6 @@
 #ifndef HISTORYFILTERWIDGET_H
 #define HISTORYFILTERWIDGET_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
 #include <QPair>
@@ -61,13 +62,15 @@ namespace Content::History::Component
      * This class is responsible for validating the user given filter values and
      * sending them to the RecordsHistoryWidget class for further calculations
     */
-    class HistoryFilterWidget : public QWidget
+    class LIB_EXPORT HistoryFilterWidget : public QWidget
     {
         Q_OBJECT
 
     public:
         explicit HistoryFilterWidget(QWidget *parent = nullptr);
         ~HistoryFilterWidget();
+
+        QLineEdit* itemFilterLineEdit();
 
     private:
         Ui::HistoryFilterWidget *ui;

@@ -19,6 +19,7 @@ SOURCES +=  \
     Authentication/tst_authenticationwidgettest.cpp \
     Authentication/tst_loginwidgettest.cpp \
     Authentication/tst_signupwidgettest.cpp \
+    Content/History/tst_recordshistorywidgettest.cpp \
     Content/Overview/tst_overviewwidgettest.cpp \
     Content/Pockets/tst_pocketsdeletiondialogtest.cpp \
     Content/Pockets/tst_pocketswidgettest.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     Authentication/tst_authenticationwidgettest.h \
     Authentication/tst_loginwidgettest.h \
     Authentication/tst_signupwidgettest.h \
+    Content/History/tst_recordshistorywidgettest.h \
     Content/Overview/tst_overviewwidgettest.h \
     Content/Pockets/tst_pocketsdeletiondialogtest.h \
     Content/Pockets/tst_pocketswidgettest.h \

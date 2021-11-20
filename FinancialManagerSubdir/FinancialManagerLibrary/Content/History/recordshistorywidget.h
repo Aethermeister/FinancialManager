@@ -3,6 +3,7 @@
 #include "user.h"
 #include "Components/recordhistoryitemwidget.h"
 #include "Components/historyfilterwidget.h"
+#include "Components/recordcontentwidget.h"
 
 #include <QWidget>
 
@@ -16,13 +17,23 @@ namespace Content::History
      * Ui class which provides interactable interface for the user to manage the Records
      * This class is responsible for listing, filtering and managing the existing Records
     */
-    class RecordsHistoryWidget : public QWidget
+    class LIB_EXPORT RecordsHistoryWidget : public QWidget
     {
         Q_OBJECT
 
     public:
         explicit RecordsHistoryWidget(std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~RecordsHistoryWidget();
+
+        /**
+         * Returns the history widget's record listing QWidget
+         * Used so test project(s) can access it
+        */
+        QWidget* historyListingWidget();
+
+        QPushButton* filterButton();
+        Component::HistoryFilterWidget* filterWidget();
+        Component::RecordContentWidget* recordContentWidget();
 
     private:
         Ui::RecordsHistoryWidget *ui;

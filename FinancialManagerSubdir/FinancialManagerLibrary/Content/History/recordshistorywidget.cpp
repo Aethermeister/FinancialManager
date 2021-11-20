@@ -22,6 +22,26 @@ namespace Content::History
         delete ui;
     }
 
+    QWidget *RecordsHistoryWidget::historyListingWidget()
+    {
+        return ui->m_historyListing_widget;
+    }
+
+    QPushButton *RecordsHistoryWidget::filterButton()
+    {
+        return ui->m_filter_btn;
+    }
+
+    Component::HistoryFilterWidget *RecordsHistoryWidget::filterWidget()
+    {
+        return ui->m_filter_widget;
+    }
+
+    Component::RecordContentWidget *RecordsHistoryWidget::recordContentWidget()
+    {
+        return ui->m_recordContent_widget;
+    }
+
     void RecordsHistoryWidget::initializeUi()
     {
         ui->m_filter_widget->setVisible(false);

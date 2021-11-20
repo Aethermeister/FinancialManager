@@ -24,6 +24,11 @@ namespace Content::History::Component
         delete ui;
     }
 
+    void RecordHistoryItemWidget::setMouseOver(bool isMouseOver)
+    {
+        m_isMouseOver = isMouseOver;
+    }
+
     void RecordHistoryItemWidget::setChecked(bool checked)
     {
         m_isChecked = checked;
@@ -83,8 +88,8 @@ namespace Content::History::Component
     void RecordHistoryItemWidget::mousePressEvent(QMouseEvent *event)
     {
         //Check whether this event was invoked by the Mouse Left button
-        const auto releasedButton = event->button();
-        if(releasedButton != Qt::LeftButton)
+        const auto pressedButton = event->button();
+        if(pressedButton != Qt::LeftButton)
         {
             return;
         }

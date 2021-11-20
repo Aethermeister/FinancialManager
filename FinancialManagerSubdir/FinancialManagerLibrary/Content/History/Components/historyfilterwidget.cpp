@@ -21,6 +21,11 @@ namespace Content::History::Component
         delete ui;
     }
 
+    QLineEdit *HistoryFilterWidget::itemFilterLineEdit()
+    {
+        return ui->m_item_lineEdit;
+    }
+
     void HistoryFilterWidget::initializeConnections() const
     {
         //Connect every QLineEdits' editingFinished signal to the slot_validateFilter slot

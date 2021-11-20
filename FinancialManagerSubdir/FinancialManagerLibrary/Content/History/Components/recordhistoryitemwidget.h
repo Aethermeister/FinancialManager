@@ -23,6 +23,8 @@ namespace Content::History::Component
         explicit RecordHistoryItemWidget(const Content::Records::Record& record, bool isInteractive, QWidget *parent = nullptr);
         ~RecordHistoryItemWidget();
 
+        void setMouseOver(bool isMouseOver);
+
         /**
          * Sets the checked state of whis object
         */

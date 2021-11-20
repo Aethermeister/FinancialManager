@@ -142,6 +142,7 @@ namespace Content::History::Component
         {
             if(m_activeRecordItemWidget->record() == record)
             {
+                m_activeRecordItemWidget->setParent(nullptr);
                 m_activeRecordItemWidget->deleteLater();
                 m_activeRecordItemWidget = nullptr;
                 return;

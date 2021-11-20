@@ -57,6 +57,8 @@ void NewRecordWidgetTest::test_defaultUi()
     QCOMPARE(newRecordWidget->minutesLineEdit()->text().toInt(), currentDateTime.time().minute());
 
     QCOMPARE(newRecordWidget->historyListingWidget()->findChildren<Content::History::Component::RecordHistoryItemWidget*>().size(), 10);
+
+    newRecordWidget->deleteLater();
 }
 
 void NewRecordWidgetTest::test_createNewRecord()
@@ -71,4 +73,6 @@ void NewRecordWidgetTest::test_createNewRecord()
     newRecordWidget->recordPocketComboBox()->setCurrentIndex(0);
 
     newRecordWidget->submitRecordButton()->click();
+
+    newRecordWidget->deleteLater();
 }
