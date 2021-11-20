@@ -22,6 +22,21 @@ namespace Settings
         delete ui;
     }
 
+    QRadioButton *SettingsWindow::localFileStorageRadioButton()
+    {
+        return ui->m_local_radioBtn;
+    }
+
+    QRadioButton *SettingsWindow::customFileStorageRadioButton()
+    {
+        return ui->m_custom_radioBtn;
+    }
+
+    QWidget *SettingsWindow::fileStorageContainerWidget()
+    {
+        return ui->m_fileStorageContainer_widget;
+    }
+
     void SettingsWindow::initializeUi()
     {
         //Set the QDialog properties
@@ -31,7 +46,6 @@ namespace Settings
         //Add dynamic properties to the sile storage QRadioButtons for future usage
         ui->m_local_radioBtn->setProperty("FILE_STORAGE", FileStorage::LOCAL);
         ui->m_custom_radioBtn->setProperty("FILE_STORAGE", FileStorage::CUSTOM);
-        ui->m_database_radioBtn->setProperty("FILE_STORAGE", FileStorage::DATABASE);
 
         //Get the File Storage settings data and set the ui according to this value
         const auto selectedFileStorage = SettingsManager::instance()->data<int>(SettingsData::FILE_STORAGE);
@@ -43,17 +57,12 @@ namespace Settings
         {
             ui->m_custom_radioBtn->setChecked(true);
         }
-        else if(selectedFileStorage == FileStorage::DATABASE)
-        {
-            ui->m_database_radioBtn->setChecked(true);
-        }
     }
 
     void SettingsWindow::initializeConnections() const
     {
         connect(ui->m_local_radioBtn, &QRadioButton::toggled, this, &SettingsWindow::slot_fileStorageChanged);
         connect(ui->m_custom_radioBtn, &QRadioButton::toggled, this, &SettingsWindow::slot_fileStorageChanged);
-        connect(ui->m_database_radioBtn, &QRadioButton::toggled, this, &SettingsWindow::slot_fileStorageChanged);
 
         connect(ui->m_ok_btn, &QPushButton::clicked, this, &QDialog::deleteLater);
     }

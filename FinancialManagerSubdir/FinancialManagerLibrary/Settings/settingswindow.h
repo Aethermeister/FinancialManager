@@ -3,6 +3,7 @@
 #include "Settings/settingsmanager.h"
 
 #include <QDialog>
+#include <QRadioButton>
 
 namespace Ui {
 class SettingsWindow;
@@ -14,13 +15,29 @@ namespace Settings
      * SettingsWindow Ui class
      * This modal QDialog is the base for every settings related widget
     */
-    class SettingsWindow : public QDialog
+    class LIB_EXPORT SettingsWindow : public QDialog
     {
         Q_OBJECT
 
     public:
         explicit SettingsWindow(QWidget *parent = nullptr);
         ~SettingsWindow();
+
+        /**
+         * Returns the Settings window's local file storage QRadioButton
+         * Used so test project(s) can access it
+        */
+        QRadioButton* localFileStorageRadioButton();
+        /**
+         * Returns the Settings window's custom file storage QRadioButton
+         * Used so test project(s) can access it
+        */
+        QRadioButton* customFileStorageRadioButton();
+        /**
+         * Returns the Settings window's file storage container QWidget
+         * Used so test project(s) can access it
+        */
+        QWidget* fileStorageContainerWidget();
 
     private:
         Ui::SettingsWindow *ui;

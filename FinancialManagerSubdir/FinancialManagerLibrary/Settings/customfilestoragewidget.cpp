@@ -21,6 +21,11 @@ namespace Settings
         delete ui;
     }
 
+    QLineEdit *CustomFileStorageWidget::managedApplicationFolderLineEdit()
+    {
+        return ui->m_managedApplicationFolder_lineEdit;
+    }
+
     void CustomFileStorageWidget::initializeUi()
     {
         //Get the stored custom application folder path from the settings

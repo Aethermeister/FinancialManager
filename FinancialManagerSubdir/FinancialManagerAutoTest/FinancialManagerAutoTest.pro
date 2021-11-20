@@ -24,6 +24,10 @@ SOURCES +=  \
     Core/tst_defines.cpp \
     Core/tst_encrypt.cpp \
     Core/tst_widgetdefines.cpp \
+    Notification/tst_notificationwidgettest.cpp \
+    Notification/tst_revertrecordwidgettest.cpp \
+    Settings/tst_customfilestoragewidgettest.cpp \
+    Settings/tst_settingswindowtest.cpp \
     testMain.cpp
 
 HEADERS += \
@@ -35,6 +39,10 @@ HEADERS += \
     Core/tst_defines.h \
     Core/tst_encrypt.h \
     Core/tst_widgetdefines.h \
+    Notification/tst_notificationwidgettest.h \
+    Notification/tst_revertrecordwidgettest.h \
+    Settings/tst_customfilestoragewidgettest.h \
+    Settings/tst_settingswindowtest.h \
     TestUtils.h
 
 RESOURCES += \

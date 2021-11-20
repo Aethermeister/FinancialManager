@@ -25,6 +25,11 @@ namespace Notification
         delete ui;
     }
 
+    QPushButton *RevertRecordWidget::revertButton()
+    {
+        return ui->m_revert_btn;
+    }
+
     void RevertRecordWidget::initializeUi()
     {
         //Initialize the base ui
@@ -42,7 +47,7 @@ namespace Notification
 
     void RevertRecordWidget::initializeConnections() const
     {
-        connect(ui->m_revent_btn, &QPushButton::clicked, this, &RevertRecordWidget::slot_revertButtonClicked);
+        connect(ui->m_revert_btn, &QPushButton::clicked, this, &RevertRecordWidget::slot_revertButtonClicked);
     }
 
     void RevertRecordWidget::slot_revertButtonClicked()

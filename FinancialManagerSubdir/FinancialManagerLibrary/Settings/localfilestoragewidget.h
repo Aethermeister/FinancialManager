@@ -1,5 +1,6 @@
 #ifndef LOCALFILESTORAGEWIDGET_H
 #define LOCALFILESTORAGEWIDGET_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
 
@@ -12,7 +13,7 @@ namespace Settings
     /**
      * Ui class which shows basic information for the locally used application files path
     */
-    class LocalFileStorageWidget : public QWidget
+    class LIB_EXPORT LocalFileStorageWidget : public QWidget
     {
         Q_OBJECT
 

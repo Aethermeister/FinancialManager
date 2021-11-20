@@ -1,5 +1,6 @@
 #ifndef NOTIFICATIONBASE_H
 #define NOTIFICATIONBASE_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
 #include <QTimer>

@@ -20,8 +20,7 @@ namespace Settings
     enum FileStorage
     {
         LOCAL,
-        CUSTOM,
-        DATABASE
+        CUSTOM
     };
 
     /**

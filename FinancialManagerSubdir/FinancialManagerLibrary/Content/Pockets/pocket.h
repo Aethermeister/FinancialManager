@@ -1,5 +1,6 @@
 #ifndef POCKET_H
 #define POCKET_H
+#include "Core/global_defines.h"
 
 #include <QString>
 #include <QDateTime>
@@ -24,7 +25,7 @@ namespace Content::Pockets
      * The user manages a list of Pocket objects
      * This class wraps the Pocket related informations
     */
-    class Pocket
+    class LIB_EXPORT Pocket
     {
     public:
        Pocket(const QString& name, const QString& pocketTypeString, int value);

@@ -4,6 +4,7 @@
 #include "notificationbase.h"
 
 #include <QFrame>
+#include <QLabel>
 
 namespace Ui {
 class NotificationWidget;
@@ -15,13 +16,19 @@ namespace Notification
      * Component ui class derived from the NotificationBase class
      * This class is responsible to show actual information
     */
-    class NotificationWidget : public QFrame, public NotificationBase
+    class LIB_EXPORT NotificationWidget : public QFrame, public NotificationBase
     {
         Q_OBJECT
 
     public:
         explicit NotificationWidget(const QString& message, QWidget *parent = nullptr);
         ~NotificationWidget();
+
+        /**
+         * Returns the notification widget's message QQLabel
+         * Used so test project(s) can access it
+        */
+        QLabel* messageLabel();
 
     private:
         Ui::NotificationWidget *ui;

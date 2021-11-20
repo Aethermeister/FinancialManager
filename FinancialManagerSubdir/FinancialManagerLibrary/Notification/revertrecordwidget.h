@@ -2,8 +2,10 @@
 #define REVERTRECORDWIDGET_H
 #include "notificationbase.h"
 #include "user.h"
+#include "Core/global_defines.h"
 
 #include <QFrame>
+#include <QPushButton>
 
 namespace Ui {
 class RevertRecordWidget;
@@ -17,13 +19,19 @@ namespace Notification
      * This class is responsible to schedule the persistence of the new Records
      * Also provides a 'Revert' option which nullifies the given Record
     */
-    class RevertRecordWidget : public QFrame, public NotificationBase
+    class LIB_EXPORT RevertRecordWidget : public QFrame, public NotificationBase
     {
         Q_OBJECT
 
     public:
         explicit RevertRecordWidget(const Content::Records::Record& record, std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~RevertRecordWidget();
+
+        /**
+         * Returns the revert record widget's revert QPushButton
+         * Used so test project(s) can access it
+        */
+        QPushButton* revertButton();
 
     private:
         Ui::RevertRecordWidget *ui;

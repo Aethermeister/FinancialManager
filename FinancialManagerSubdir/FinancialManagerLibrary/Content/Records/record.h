@@ -1,5 +1,6 @@
 #ifndef RECORD_H
 #define RECORD_H
+#include "Core/global_defines.h"
 
 #include <QDate>
 #include <QTime>
@@ -11,7 +12,7 @@ namespace Content::Records
      * The user manages a list of Records
      * This class wraps the Record related informations
     */
-    class Record
+    class LIB_EXPORT Record
     {
     public:
         Record(const int value, const QDate& date, const QTime& time, const QString& location, const QString& item, const QString& pocketName);

@@ -19,6 +19,11 @@ namespace Notification
         delete ui;
     }
 
+    QLabel *NotificationWidget::messageLabel()
+    {
+        return ui->m_message_lbl;
+    }
+
     void NotificationWidget::initializeUi()
     {
         //Initialize the base ui
