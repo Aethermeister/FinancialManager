@@ -34,7 +34,7 @@ namespace Content::Statistics::Components
     /**
      * Ui class which provides summarized information for Record values at locations and of items
     */
-    class RecordsDataChartView : public ChartViewBase
+    class LIB_EXPORT RecordsDataChartView : public ChartViewBase
     {
         Q_OBJECT
     public:

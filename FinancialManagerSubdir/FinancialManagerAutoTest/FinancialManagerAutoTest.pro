@@ -24,6 +24,7 @@ SOURCES +=  \
     Content/Pockets/tst_pocketsdeletiondialogtest.cpp \
     Content/Pockets/tst_pocketswidgettest.cpp \
     Content/Records/tst_newrecordwidgettest.cpp \
+    Content/Statistics/tst_statisticswidgettest.cpp \
     Content/tst_contentwidgettest.cpp \
     Content/tst_profilwidgettest.cpp \
     Core/tst_defines.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     Content/Pockets/tst_pocketsdeletiondialogtest.h \
     Content/Pockets/tst_pocketswidgettest.h \
     Content/Records/tst_newrecordwidgettest.h \
+    Content/Statistics/tst_statisticswidgettest.h \
     Content/tst_contentwidgettest.h \
     Content/tst_profilwidgettest.h \
     Core/tst_defines.h \

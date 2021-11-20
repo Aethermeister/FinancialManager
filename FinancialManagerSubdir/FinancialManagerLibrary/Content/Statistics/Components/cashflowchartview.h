@@ -29,7 +29,7 @@ namespace Content::Statistics::Components
      * Ui class which shows the Pockets value change over time
      * With additional options the user can visualize a filtered display
     */
-    class CashFlowChartView : public ChartViewBase
+    class LIB_EXPORT CashFlowChartView : public ChartViewBase
     {
         Q_OBJECT
     public:

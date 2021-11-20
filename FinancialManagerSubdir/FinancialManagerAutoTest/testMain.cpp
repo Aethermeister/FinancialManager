@@ -16,6 +16,7 @@
 #include "Content/Pockets/tst_pocketswidgettest.h"
 #include "Content/Records/tst_newrecordwidgettest.h"
 #include "Content/History/tst_recordshistorywidgettest.h"
+#include "Content/Statistics/tst_statisticswidgettest.h"
 
 #include <QtTest>
 #include <QCoreApplication>
@@ -53,6 +54,7 @@ int main(int argc, char *argv[])
     PocketsWidgetTest pocketsWidgetTest;
     NewRecordWidgetTest newRecordWidgetTest;
     RecordsHistoryWidgetTest recordsHistoryWidgetTest;
+    StatisticsWidgetTest statisticsWidgetTest;
 
     return
             (
@@ -73,6 +75,7 @@ int main(int argc, char *argv[])
                 QTest::qExec(&pocketsDeletionDialogTest, argc, argv) ||
                 QTest::qExec(&pocketsWidgetTest, argc, argv) ||
                 QTest::qExec(&newRecordWidgetTest, argc, argv) ||
-                QTest::qExec(&recordsHistoryWidgetTest, argc, argv)
+                QTest::qExec(&recordsHistoryWidgetTest, argc, argv) ||
+                QTest::qExec(&statisticsWidgetTest, argc, argv)
             );
 }

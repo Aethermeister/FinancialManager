@@ -18,7 +18,7 @@ namespace Content::Statistics::Components
     /**
      * Ui class which provides Pocket value and usage related information
     */
-    class PocketsValueChartView : public PieChartView
+    class LIB_EXPORT PocketsValueChartView : public PieChartView
     {
         Q_OBJECT
     public:

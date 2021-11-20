@@ -17,6 +17,21 @@ namespace Content::Statistics
         delete ui;
     }
 
+    QPushButton *StatisticsSelectionWidget::cashFlowButton()
+    {
+        return ui->m_cashFlow_btn;
+    }
+
+    QPushButton *StatisticsSelectionWidget::pocketValueAndUsageButton()
+    {
+        return ui->m_pocketValueAndUsage_btn;
+    }
+
+    QPushButton *StatisticsSelectionWidget::recordsDataButton()
+    {
+        return ui->m_recordsData_btn;
+    }
+
     void StatisticsSelectionWidget::initializeConnections()
     {
         //Send the selected type via signal

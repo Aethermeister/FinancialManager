@@ -31,6 +31,11 @@ namespace Content::Statistics
         delete ui;
     }
 
+    QPushButton *StatisticsWidget::backButton()
+    {
+        return ui->m_back_btn;
+    }
+
     void StatisticsWidget::initializeUi()
     {
         //Always show the selection widget when the statistics widget is first shown

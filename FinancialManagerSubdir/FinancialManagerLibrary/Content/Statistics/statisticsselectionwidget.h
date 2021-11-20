@@ -1,7 +1,9 @@
 #ifndef STATISTICSSELECTIONWIDGET_H
 #define STATISTICSSELECTIONWIDGET_H
+#include "Core/global_defines.h"
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class StatisticsSelectionWidget;
@@ -24,13 +26,17 @@ namespace Content::Statistics
     /**
      * This Ui class provides options to select a preferred statistics widget
     */
-    class StatisticsSelectionWidget : public QWidget
+    class LIB_EXPORT StatisticsSelectionWidget : public QWidget
     {
         Q_OBJECT
 
     public:
         explicit StatisticsSelectionWidget(QWidget *parent = nullptr);
         ~StatisticsSelectionWidget();
+
+        QPushButton* cashFlowButton();
+        QPushButton* pocketValueAndUsageButton();
+        QPushButton* recordsDataButton();
 
     private:
         Ui::StatisticsSelectionWidget *ui;

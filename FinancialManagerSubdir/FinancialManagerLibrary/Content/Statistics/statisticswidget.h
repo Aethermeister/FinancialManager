@@ -5,6 +5,7 @@
 #include "Components/chartviewbase.h"
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class StatisticsWidget;
@@ -23,6 +24,8 @@ namespace Content::Statistics
     public:
         explicit StatisticsWidget(std::shared_ptr<User> user, QWidget *parent = nullptr);
         ~StatisticsWidget();
+
+        QPushButton* backButton();
 
     private:
         Ui::StatisticsWidget *ui;
