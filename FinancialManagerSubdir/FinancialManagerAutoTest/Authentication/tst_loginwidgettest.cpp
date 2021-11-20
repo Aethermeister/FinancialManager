@@ -84,6 +84,8 @@ void LoginWidgetTest::test_loginFalse()
     loginWidget->loginButton()->click();
     QVERIFY(loginWidget->informationLabel()->isVisible());
     QCOMPARE(loginWidget->informationLabel()->text(), "Incorrect username and/or password");
+
+    loginWidget->deleteLater();
 }
 
 void LoginWidgetTest::test_loginTrue()

@@ -38,6 +38,31 @@ namespace Content
         return s_instance;
     }
 
+    QPushButton *ContentWidget::overviewButton()
+    {
+        return ui->m_overview_btn;
+    }
+
+    QPushButton *ContentWidget::pocketsButton()
+    {
+        return ui->m_pockets_btn;
+    }
+
+    QPushButton *ContentWidget::newRecordButton()
+    {
+        return ui->m_newRecord_btn;
+    }
+
+    QPushButton *ContentWidget::historyButton()
+    {
+        return ui->m_history_btn;
+    }
+
+    QPushButton *ContentWidget::statisticsButton()
+    {
+        return ui->m_statistics_btn;
+    }
+
     void ContentWidget::slot_showProfileWidget()
     {
         showProfileWidget();

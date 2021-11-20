@@ -16,7 +16,7 @@ namespace Content::Statistics
      * This is the main widget for the other statistics related Ui classes
      * It contains a controller for chart selection and contains the selected charts
     */
-    class StatisticsWidget : public QWidget
+    class LIB_EXPORT StatisticsWidget : public QWidget
     {
         Q_OBJECT
 

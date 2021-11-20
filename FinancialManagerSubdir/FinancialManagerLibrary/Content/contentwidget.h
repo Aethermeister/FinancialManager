@@ -3,6 +3,7 @@
 #include "user.h"
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class ContentWidget;
@@ -15,7 +16,7 @@ namespace Content
      * It contains a controller for the additional ui classes
      * and displays the selected widgets
     */
-    class ContentWidget : public QWidget
+    class LIB_EXPORT ContentWidget : public QWidget
     {
         Q_OBJECT
 
@@ -27,6 +28,12 @@ namespace Content
          * Returns the instance of the only ContentWidget
         */
         static ContentWidget* instance();
+
+        QPushButton* overviewButton();
+        QPushButton* pocketsButton();
+        QPushButton* newRecordButton();
+        QPushButton* historyButton();
+        QPushButton* statisticsButton();
 
     public slots:
         /**

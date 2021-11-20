@@ -24,6 +24,7 @@ SOURCES +=  \
     Content/Pockets/tst_pocketsdeletiondialogtest.cpp \
     Content/Pockets/tst_pocketswidgettest.cpp \
     Content/Records/tst_newrecordwidgettest.cpp \
+    Content/tst_contentwidgettest.cpp \
     Content/tst_profilwidgettest.cpp \
     Core/tst_defines.cpp \
     Core/tst_encrypt.cpp \
@@ -32,7 +33,8 @@ SOURCES +=  \
     Notification/tst_revertrecordwidgettest.cpp \
     Settings/tst_customfilestoragewidgettest.cpp \
     Settings/tst_settingswindowtest.cpp \
-    testMain.cpp
+    testMain.cpp \
+    tst_mainwindowtest.cpp
 
 HEADERS += \
     Authentication/tst_authenticationwidgettest.h \
@@ -43,6 +45,7 @@ HEADERS += \
     Content/Pockets/tst_pocketsdeletiondialogtest.h \
     Content/Pockets/tst_pocketswidgettest.h \
     Content/Records/tst_newrecordwidgettest.h \
+    Content/tst_contentwidgettest.h \
     Content/tst_profilwidgettest.h \
     Core/tst_defines.h \
     Core/tst_encrypt.h \
@@ -51,7 +54,8 @@ HEADERS += \
     Notification/tst_revertrecordwidgettest.h \
     Settings/tst_customfilestoragewidgettest.h \
     Settings/tst_settingswindowtest.h \
-    TestUtils.h
+    TestUtils.h \
+    tst_mainwindowtest.h
 
 RESOURCES += \
     Resources/TestResources.qrc

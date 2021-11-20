@@ -24,6 +24,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QWidget *MainWindow::containerWidget()
+{
+    return ui->m_container_widget;
+}
+
+QPushButton *MainWindow::profilButton()
+{
+    return ui->m_profile_btn;
+}
+
+QLabel *MainWindow::titleLabel()
+{
+    return ui->m_title_lbl;
+}
+
 void MainWindow::showAuthenticationWidget()
 {
     ui->m_profile_btn->setVisible(false);

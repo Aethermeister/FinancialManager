@@ -128,6 +128,8 @@ void ProfilWidgetTest::test_deleteAccount()
     QVERIFY(profilWidget->cancelDeletionButton()->isVisible());
 
     QVERIFY(user->isMarkedForDeletion());
+
+    profilWidget->deleteLater();
 }
 
 void ProfilWidgetTest::test_cancelDeletion()
@@ -145,4 +147,6 @@ void ProfilWidgetTest::test_cancelDeletion()
     QVERIFY(profilWidget->cancelDeletionButton()->isHidden());
 
     QVERIFY(!user->isMarkedForDeletion());
+
+    profilWidget->deleteLater();
 }
